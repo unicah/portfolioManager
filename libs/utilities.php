@@ -1,11 +1,15 @@
 <?php
     require_once("libs/template_engine.php");
+
     $global_context = array();
     function addToContext($key,$value){
         global $global_context;
         $global_context[$key] = $value;
     }
-
+    function unsetContext($key){
+      global $global_context;
+      unset($global_context[$key]);
+    }
     function redirectWithMessage($message, $url="index.php"){
       echo "<script>alert('$message'); window.location='$url';</script>";
       die();
@@ -44,7 +48,12 @@
         }
     }
     function addJsRef($uri, $first = true){
-
+        global $global_context;
+        if(isset($global_context["js_ref"])){
+            $global_context["js_ref"][] = array("uri"=>$uri);
+        }else{
+            $global_context["js_ref"] = array(array("uri"=>$uri));
+        }
     }
 
     function addSelectedCmbArray($arreglo,$atributo,$valor,$selAtributo="selected"){

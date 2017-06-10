@@ -3,18 +3,18 @@ body{
     font-size:16px;
     margin:0px;
     padding:0px;
+    background-color: #f7f4ed;
 }
 body, .menu, .contenido, .footer {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    min-width: 768px;
 }
 .menu{
     position:fixed;
     width:100%;
     top:0px;
     left:0px;
-    background-color: rgb(88,65,65);
+    background-color: #1C5679;
     text-align: center;
     box-shadow: 0px 0px 2px rgba(0,0,0,.8);
 }
@@ -64,7 +64,7 @@ body, .menu, .contenido, .footer {
     margin:0px;
     text-align: center;
     padding:0.5em;
-    background-color: #454141;
+    background-color: #1C5679;
     color:white;
     width:100%;
 }
@@ -88,9 +88,22 @@ pre{
     text-align: center;
 }
 
-.center{
-    text-align:center;
+
+label {
+  font-weight: bold;
+  padding-top:0.5em;
 }
-.right{
-    text-align: right;
+
+@media screen and (min-width: 768px){
+    .col-offset-1{margin-left:8.333333333%;}
+    .col-offset-2{margin-left:16.6666666667%;}
+    .col-offset-3{margin-left:25%;}
+    .col-offset-4{margin-left:33.3333333333%;}
+    .col-offset-5{margin-left:41.6666666667%;}
+    .col-offset-6{margin-left:50%;}
+}
+
+.btn-primary{
+  background-color: #1C5679;
+  color:white;
 }

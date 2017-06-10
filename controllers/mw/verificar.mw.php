@@ -6,17 +6,23 @@
           return true;
         }else{
           $_SESSION["userLogged"] = false;
-          $_SESSION["userName"] = "";
+          $_SESSION["userCode"] = "";
+          $_SESSION["userScreenName"] = "";
+          $_SESSION["userEmail"] = "";
           return false;
         }
     }
-    function mw_setEstaLogueado($usuario, $logueado){
+    function mw_setEstaLogueado($usuario, $nombre, $email, $logueado){
         if($logueado){
             $_SESSION["userLogged"] = true;
-            $_SESSION["userName"] = $usuario;
+            $_SESSION["userCode"] = $usuario;
+            $_SESSION["userEmail"] = $email;
+            $_SESSION["userScreenName"] = $nombre;
         }else{
             $_SESSION["userLogged"] = false;
-            $_SESSION["userName"] = "";
+            $_SESSION["userCode"] = "";
+            $_SESSION["userScreenName"] = "";
+            $_SESSION["userEmail"] = "";
         }
     }
     function mw_redirectToLogin($to){
