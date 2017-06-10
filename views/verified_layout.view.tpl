@@ -16,7 +16,10 @@
         <body>
             <div class="menu">
                 <ul>
-                    <li><a href="index.php?page=home">Portfolio Manager</a></li>
+                    <li><a href="index.php?page=admin">PFM Dashboard</a></li>
+                    <li><a href="index.php?page=portafolio">Portafolios</a></li>
+                    <li><a href="index.php?page=mnt">Manenimientos</a></li>
+                    <li><a href="index.php?page=logout">Cerrar Sesión</a></li>
                 </ul>
             </div>
             <div class="contenido">

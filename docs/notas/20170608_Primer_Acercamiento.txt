@@ -1,0 +1,32 @@
+Empresa Tiene area técnica y de proyectos
+
+Area Legal (dptos) Area Admin Finanzas
+ Todas ellas participan en el flujo de los documentos
+
+Area legal -> Clientes son entidades que ejecutan proyectos. Desarrollo de Estudio ( Estos son los documentos ) Legal contrata consultores según cliente o proyecto. (Cartera de Consultores) (Cartera de Clientes)
+
+Empresa se vuelve un intermediario ( plazos, negociación y contrato )
+
+Portafolio por proyecto.  (Usuario pertenece a un area y cualquier area debe definirse como creador de portafolio)
+
+Control de Versiones. La mayoría son documentos en PDF, VISIO, autocad (manejo de varios tipos de documentos).
+Subir nuevamente el archivo es una nueva versión. Se debe guardar la fecha, usuario y posibilidad de mantener versiones y cherry picks de los documentos.
+
+Bitácora de cualquier acceso a los documentos
+y bloqueo de los documentos por usuario.
+
+
+Cada Documento de dejar establecido un observación o abstract como meta data.
+
+ACL (roles y usuarios)
+
+Establecer un equipo para el portafolio.
+
+La codificación del archivo, tipo de archivo, proyecto.
+Parametrizacion del Archivo.
+
+Cada documento lleva un flujo (se define por portafolio)
+
+Definir roles por portafolio.
+
+Fecha de Vencimiento (Alarma con observaciones) 
