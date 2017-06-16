@@ -12,6 +12,16 @@
        return $usuario;
    }
 
+   function obtenerUsuarioPorFiltro($userEmail, $userType){
+       $usuario = array();
+       $sqlstr = sprintf("SELECT `usuariocod`,`usuarioemail`, `usuarionom`,
+       `usuarioest`, `usuariotipo`
+          FROM usuario where usuarioemail like '%s' and usuariotipo like '%s';",
+          $userEmail.'%' , $userType);
+       $usuarios = obtenerRegistros($sqlstr);
+       return $usuarios;
+   }
+
    function obtenerUsuariosPorTipo($userType, $userEst='ACT', $userName ='%'){
      $usuario = array();
      $sqlstr = sprintf("SELECT `usuariocod`,`usuarioemail`, `usuarionom`, `usuariopswd`,
