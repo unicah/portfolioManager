@@ -1,5 +1,5 @@
 body{
-    font-family:'Roboto', sans-serif;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, arial, sans-serif;
     font-size:16px;
     margin:0px;
     padding:0px;
@@ -93,6 +93,14 @@ label {
   font-weight: bold;
   padding-top:0.5em;
 }
+@media screen and (min-width: 568px){
+  .col-sm-offset-1{margin-left:8.333333333%;}
+  .col-sm-offset-2{margin-left:16.6666666667%;}
+  .col-sm-offset-3{margin-left:25%;}
+  .col-sm-offset-4{margin-left:33.3333333333%;}
+  .col-sm-offset-5{margin-left:41.6666666667%;}
+  .col-sm-offset-6{margin-left:50%;}
+}
 
 @media screen and (min-width: 768px){
     .col-offset-1{margin-left:8.333333333%;}
@@ -125,3 +133,34 @@ label {
       display: none;
   }
 }
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: .25em 0;
+  padding: .5em;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font: 400 16px 'Source Sans Pro', 'Helvetica Neue', Helvetica, arial, sans-serif;
+ }
+
+ .select{
+   position: relative;
+ }
+ .select::after{
+  content: '\f123';
+  font-family: "Ionicons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  position: absolute;
+  right: 17px;
+  top: 15px;
+  pointer-events: none;
+ }

@@ -11,4 +11,8 @@
   function isValidPassword($value){
     return preg_match('/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z!@#$%]{8,32}$/', $value) ;
   }
+
+  function isValidText($value){
+    return preg_match("/^[a-zA-Z 'áéíóúüÁÉÍÓÚÜÑñ]*$/",$value);
+  }
 ?>
