@@ -35,7 +35,6 @@
         <td class="sd-hide">Depto</td>
         <td class="center">
           <a href="index.php?page=user&usrcod={{usuariocod}}&mode=UPD" class="btn depth-1 s-margin"><span class="ion-edit"></span></a>
-          <a href="index.php?page=user&usrcod={{usuariocod}}&mode=DEL" class="btn depth-1 s-margin"><span class="ion-trash-a"></span></a>
           <a href="index.php?page=user&usrcod={{usuariocod}}&mode=DSP" class="btn depth-1 s-margin"><span class="ion-eye"></span></a>
         </td>
       </tr>
@@ -43,3 +42,17 @@
     </tbody>
   </table>
 </div>
+<script>
+    $().ready(
+    function(){
+      $("#btnFiltro").click(
+        function(e){
+          e.preventDefault();
+          e.stopPropagation();
+          document.forms[0].submit();
+        }
+      );
+    }
+
+    );
+</script>

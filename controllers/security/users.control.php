@@ -11,7 +11,18 @@
    require_once('models/security/security.model.php');
   function run(){
       $data = array();
-      $data["usuarios"] = obtenerUsuarioPorFiltro('%','%');
+      $data["fltEmail"] = "";
+      $filter = '';
+      if(isset($_SESSION["users_context"])){
+        $filter = $_SESSION["users_context"]["filter"];
+      }
+
+      if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $filter = $_POST["fltEmail"];
+        $_SESSION["users_context"] = array("filter"=>$filter);
+      }
+      $data["fltEmail"] = $filter;
+      $data["usuarios"] = obtenerUsuarioPorFiltro($filter,'%');
       renderizar("security/users", $data );
   }
 
