@@ -35,8 +35,18 @@
      return $usuario;
    }
 
+   function obtenerUsuarioPorCodigo($usuariocod){
+       $usuario = array();
+       $sqlstr = sprintf("SELECT `usuariocod`,`usuarioemail`, `usuarionom`,`usuariopswd`,
+         UNIX_TIMESTAMP(`usuariofching`) as usuariofching,
+       `usuarioest`, `usuariotipo`
+          FROM usuario where usuariocod = %d;",$usuariocod);
+       $usuario = obtenerUnRegistro($sqlstr);
+       return $usuario;
+   }
+
    function insertUsuario($userName, $userEmail,
-                          $timestamp, $password, $userType = 'SYS'){
+                          $timestamp, $password, $userType = 'SYS', $userEst = 'ACT'){
 
       //userType= 'SYS' usuario normal, 'CNS' Consultor , 'CLT' Cliente, 'ADM' administrador del sitio
       //-----------------------------------------------------------------
@@ -48,11 +58,12 @@
            `usuarioest`, `usuarioactcod`, `usuariopswdchg`,
            `usuariotipo`) VALUES ('%s', '%s','%s',
             FROM_UNIXTIME(%s), 'VGT', NULL,
-            'ACT', '', NULL, '%s');";
+            '%s', '', NULL, '%s');";
        $strsql = sprintf($strsql, valstr($userEmail),
                                    valstr($userName),
                                    $password,
                                    $timestamp,
+                                   $userEst,
                                    $userType);
 
        if(ejecutarNonQuery($strsql)){
@@ -60,4 +71,46 @@
        }
        return 0;
    }
+
+   function updateUsuario($usercod, $userName, $userEmail,
+                          $password, $userType, $userEst ){
+
+      //userType= 'SYS' usuario normal, 'CNS' Consultor , 'CLT' Cliente, 'ADM' administrador del sitio
+      //-----------------------------------------------------------------
+
+
+       $strsql = "UPDATE `usuario` set
+           `usuarioemail` = '%s', `usuarionom` = '%s', `usuariopswd` = '%s',
+           `usuarioest` = '%s',
+           `usuariotipo` = '%s' where `usuariocod` = %d;";
+       $strsql = sprintf($strsql, valstr($userEmail),
+                                   valstr($userName),
+                                   $password,
+                                   $userEst,
+                                   $userType, $usercod);
+
+       $affected = ejecutarNonQuery($strsql);
+       return ($affected > 0);
+   }
+   //funciones adiciones para datos
+   function getTiposUsuario(){
+     return array(
+       array("codigo"=>"ADM","valor"=>"Administrador"),
+       array("codigo"=>"USR","valor"=>"Usuario"),
+       array("codigo"=>"CNS","valor"=>"Consultor"),
+       array("codigo"=>"CLT","valor"=>"Cliente")
+     );
+   }
+
+   function getEstadoUsuario(){
+     return array(
+       array("codigo"=>"PND","valor"=>"Sin Activar"),
+       array("codigo"=>"ACT","valor"=>"Activo"),
+       array("codigo"=>"SPD","valor"=>"Suspendido"),
+       array("codigo"=>"INA","valor"=>"Inactivo")
+     );
+   }
+
+
+
    ?>
