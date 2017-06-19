@@ -4,7 +4,6 @@
             <meta charset="utf-8" />
             <title>{{page_title}}</title>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
-            <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
             <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css">
             <link rel="stylesheet" href="public/css/papier.css" />
             <link rel="stylesheet" href="public/css/estilo.css" />
