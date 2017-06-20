@@ -1,0 +1,30 @@
+<?php
+
+    require_once("libs/dao.php");
+
+
+
+
+    function obtenerRoles($rolCodigo){
+      $rol = array();
+      $sqlstr = sprintf("SELECT 'rolescod','rolesdsc','rolesest' FROM roles WHERE rolescod = %d;",$rolCodigo);
+      $rol = obtenerUnRegistro($sqlstr);
+      return $rol;
+    }
+    function obtenerRolesDsc($rolDsc){
+      $rol = array();
+      $sqlstr = sprintf("SELECT 'rolescod','rolesdsc','rolesest' FROM roles WHERE rolesdsc = %d;",$rolDsc);
+      $rol = obtenerUnRegistro($sqlstr);
+      return $rol;
+    }
+
+    function obtenerRolesPorFiltro($rolesdsc, $userType){
+        $usuario = array();
+        $sqlstr = sprintf("SELECT `usuariocod`,`usuarioemail`, `usuarionom`,
+        `usuarioest`, `usuariotipo`
+           FROM usuario where usuarioemail like '%s' and usuariotipo like '%s';", $rolesdsc.'%' , $userType);
+        $usuarios = obtenerRegistros($sqlstr);
+        return $usuarios;
+    }
+
+ ?>
