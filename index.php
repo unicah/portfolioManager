@@ -26,6 +26,9 @@
         case "login":
             require_once("controllers/security/login.control.php");
             die();
+          case "test":
+              require_once("controllers/tests/test.control.php");
+              die();
         case "logout":
             require_once("controllers/security/logout.control.php");
             die();
@@ -40,9 +43,19 @@
                   require_once("controllers/admin/admin.control.php"):
                   mw_redirectToLogin($_SERVER["QUERY_STRING"]);
               die();
+            case "users":
+              ($logged)?
+                require_once("controllers/security/users.control.php"):
+                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+              die();
+            case "user":
+              ($logged)?
+                require_once("controllers/security/user.control.php"):
+                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+              die();
         }
     // Elimina el menu administrativo
-    
+
 
     require_once("controllers/error.control.php");
 ?>
