@@ -53,6 +53,19 @@
                 require_once("controllers/security/user.control.php"):
                 mw_redirectToLogin($_SERVER["QUERY_STRING"]);
               die();
+<<<<<<< Updated upstream
+              case "programas":
+                ($logged)?
+                  require_once("controllers/mantenimientos/programas.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
+=======
+            case "user":
+              ($logged)?
+                require_once("controllers/mantenimientos/programas.control.php"):
+                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+              die();
+>>>>>>> Stashed changes
         }
     // Elimina el menu administrativo
 
