@@ -20,9 +20,9 @@
 
     function obtenerRolesPorFiltro($rolesdsc, $userType){
         $usuario = array();
-        $sqlstr = sprintf("SELECT `usuariocod`,`usuarioemail`, `usuarionom`,
-        `usuarioest`, `usuariotipo`
-           FROM usuario where usuarioemail like '%s' and usuariotipo like '%s';", $rolesdsc.'%' , $userType);
+        $sqlstr = sprintf("SELECT `rolescod`,`rolesdsc`, `rolesest`
+
+           FROM roles where rolescod like '%s' and rolesdsc like '%s';", $rolesdsc.'%' , $userType);
         $usuarios = obtenerRegistros($sqlstr);
         return $usuarios;
     }
