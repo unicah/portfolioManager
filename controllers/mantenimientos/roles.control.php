@@ -19,11 +19,9 @@
       $_SESSION["roles_context"] = array("filter" =>$filter);
     }
     $data["fltDsc"] = $filter;
-<<<<<<< Updated upstream
+
     $data["roles"] = obtenerRolesPorFiltro($filter, '%');
-=======
-    $data["roles"] = obtenerRolesDsc($filter);
->>>>>>> Stashed changes
+
     renderizar("mantenimientos/roles", $data);
 
 }
