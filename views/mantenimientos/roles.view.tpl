@@ -2,11 +2,11 @@
   Gestion de Roles
 </h1>
 <div class="row depth-1 m-padding">
-  <form action="index.php?page=users" method="post" class="col-md-8 col-offset-2">
+  <form action="index.php?page=roles" method="post" class="col-md-8 col-offset-2">
       <div class="row s-padding">
         <label class="col-md-1" for="fltDsc">Roles:&nbsp;</label>
         <input type="text" name="fltDsc"  class="col-md-8"
-              id="fltDsc" placeholder="" value="{{fltDsc}}" />
+              id="fltDsc" placeholder="prueba con el id" value="{{fltDsc}}" />
         <button class="col-md-3" id="btnFiltro"><span class="ion-refresh">&nbsp;Actualizar</span></button>
       </div>
   </form>
@@ -18,7 +18,7 @@
         <th>Codigo</th>
         <th>Nombre</th>
         <th class="sd-hide">Estado</th>
-        <th><a href="index.php?page=roles&rlscod=0&mode=INS" class="btn depth-1 s-margin">
+        <th><a href="index.php?page=rol&rlscod=0&mode=INS" class="btn depth-1 s-margin">
           <span class="ion-plus-circled"></span>
           </a></th>
       </tr>
