@@ -59,6 +59,12 @@
                   require_once("controllers/mantenimientos/programas.control.php"):
                   mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                 die();
+
+                case "programa":
+                  ($logged)?
+                    require_once("controllers/mantenimientos/programa.control.php"):
+                    mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                  die();
                 case "bitacora":
                   ($logged)?
                     require_once("controllers/support/bitacora.control.php"):
