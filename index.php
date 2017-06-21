@@ -37,6 +37,7 @@
     //Este switch se encarga de todo el enrutamiento que ocupa login
         $logged = mw_estaLogueado();
         if($logged)addToContext("layoutFile","verified_layout");
+        require_once("controllers/mw/support.mw.php");
         switch($pageRequest){
             case "admin":
               ($logged)?
@@ -53,11 +54,16 @@
                 require_once("controllers/security/user.control.php"):
                 mw_redirectToLogin($_SERVER["QUERY_STRING"]);
               die();
-            case "programas":
-              ($logged)?
-                require_once("controllers/mantenimientos/programas.control.php"):
-                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
-              die();
+              case "programas":
+                ($logged)?
+                  require_once("controllers/mantenimientos/programas.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
+                case "bitacora":
+                  ($logged)?
+                    require_once("controllers/support/bitacora.control.php"):
+                    mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                  die();
             case "roles":
               ($logged)?
                 require_once("controllers/mantenimientos/roles.control.php"):

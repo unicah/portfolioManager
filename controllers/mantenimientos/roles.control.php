@@ -19,7 +19,9 @@
       $_SESSION["roles_context"] = array("filter" =>$filter);
     }
     $data["fltDsc"] = $filter;
+
     $data["roles"] = obtenerRolesPorFiltro($filter, '%');
+
     renderizar("mantenimientos/roles", $data);
 
 }
