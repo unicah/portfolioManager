@@ -31,11 +31,25 @@
         <td>{{rolesdsc}}</td>
         <td class="sd-hide">{{rolesest}}</td>
         <td class="center">
-          <a href="" class="btn depth-1 s-margin"><span class="ion-edit"></span></a>
-          <a href="" class="btn depth-1 s-margin"><span class="ion-eye"></span></a>
+          <a href="index.php?page=rol&rlscod={{rolesdsc}}&mode=UPD" class="btn depth-1 s-margin"><span class="ion-edit"></span></a>
+          <a href="index.php?page=rol&rlscod={{rolesdsc}}&mode=DSP" class="btn depth-1 s-margin"><span class="ion-eye"></span></a>
         </td>
       </tr>
       {{endfor roles}}
     </tbody>
   </table>
 </div>
+<script>
+    $().ready(
+    function(){
+      $("#btnFiltro").click(
+        function(e){
+          e.preventDefault();
+          e.stopPropagation();
+          document.forms[0].submit();
+        }
+      );
+    }
+
+    );
+</script>

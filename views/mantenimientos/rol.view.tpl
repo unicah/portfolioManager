@@ -1,6 +1,6 @@
 <h1>Gestión de Rol</h1>
 <div class="row depth-1 m-padding">
-  <h2>{{modeDesc}}Nuevo Rol</h2>
+  <h2>{{modeDesc}}</h2>
 </div>
 <div class="row depth-1 m-padding">
   {{if haserrores}}

@@ -26,5 +26,12 @@
         $usuarios = obtenerRegistros($sqlstr);
         return $usuarios;
     }
+    function getEstadoRol(){
+      return array(
+        array("codigo"=>"PND","valor"=>"Sin Activar"),
+        array("codigo"=>"ACT","valor"=>"Activo"),
+        array("codigo"=>"INA","valor"=>"Inactivo")
+      );
+    }
 
  ?>
