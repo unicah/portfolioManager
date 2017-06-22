@@ -1,22 +1,15 @@
 <?php
-
     session_start();
-
-    require_once("libs/utilities.php");
-
-    $pageRequest = "home";
-
-    if(isset($_GET["page"])){
-        $pageRequest = $_GET["page"];
-    }
-
+     require_once("libs/utilities.php");
+         $pageRequest = "home";
+     if(isset($_GET["page"])){
+               $pageRequest = $_GET["page"];
+     }
     //Incorporando los midlewares son codigos que se deben ejecutar
-    //Siempre
-    require_once("controllers/mw/verificar.mw.php");
+     //Siempre
+     require_once("controllers/mw/verificar.mw.php");
     require_once("controllers/mw/site.mw.php");
-
-
-    //Este switch se encarga de todo el enrutamiento público
+ //Este switch se encarga de todo el enrutamiento público
     switch($pageRequest){
         //Accesos Publicos
         case "home":
@@ -33,7 +26,6 @@
             require_once("controllers/security/logout.control.php");
             die();
     }
-
     //Este switch se encarga de todo el enrutamiento que ocupa login
         $logged = mw_estaLogueado();
         if($logged)addToContext("layoutFile","verified_layout");
@@ -54,23 +46,12 @@
                 require_once("controllers/security/user.control.php"):
                 mw_redirectToLogin($_SERVER["QUERY_STRING"]);
               die();
+                case "bitacora":
                 ($logged)?
+                  require_once("controllers/support/bitacora.control.php"):
                   mw_redirectToLogin($_SERVER["QUERY_STRING"]);
-                  require_once("controllers/portafolios/portafolios.control.php"):
                 die();
-
-                case "portafolio":
-                    require_once("controllers/portafolios/portafolio.control.php"):
-                  ($logged)?
-                    mw_redirectToLogin($_SERVER["QUERY_STRING"]);
-
-                  die();
-<<<<<<< HEAD
-=======
->>>>>>> MantenimientoPortafolio
         }
     // Elimina el menu administrativo
-
-
     require_once("controllers/error.control.php");
 ?>
