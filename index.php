@@ -37,6 +37,7 @@
     //Este switch se encarga de todo el enrutamiento que ocupa login
         $logged = mw_estaLogueado();
         if($logged)addToContext("layoutFile","verified_layout");
+        require_once("controllers/mw/support.mw.php");
         switch($pageRequest){
             case "admin":
               ($logged)?
@@ -53,19 +54,7 @@
                 require_once("controllers/security/user.control.php"):
                 mw_redirectToLogin($_SERVER["QUERY_STRING"]);
               die();
-
-              case "portafolios":
-                ($logged)?
-                  require_once("controllers/portafolios/portafolios.control.php"):
-                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
-                die();
-
-                case "portafolio":
-                  ($logged)?
-                    require_once("controllers/portafolios/portafolio.control.php"):
-                    mw_redirectToLogin($_SERVER["QUERY_STRING"]);
-                  die();
-
+                case "bitacora":
         }
     // Elimina el menu administrativo
 
