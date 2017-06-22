@@ -13,7 +13,7 @@
         die($conexion->connect_error);
    }
 
-
+   $conexion->set_charset("utf8");
 
    function obtenerRegistros($sqlstr, &$conexion = null){
         if(!$conexion) global $conexion;

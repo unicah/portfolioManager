@@ -101,6 +101,7 @@
                                 $viewData["usuarioest"]
                               );
                   if($lastId){
+                    addBitacora("SEC001","Insert User",$viewData,"INFO");
                     redirectWithMessage("Usuario Creado Satisfactoriamente.", "index.php?page=users");
                     die();
                   }else{
@@ -139,6 +140,7 @@
                               );
                   // Si no hay error se redirige a la lista de usuarios
                   if($affected){
+                    addBitacora("SEC001","Update User",$viewData,"INFO");
                     redirectWithMessage("Usuario Actualizado Satisfactoriamente.", "index.php?page=users");
                     die();
                   }else{
