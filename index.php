@@ -54,16 +54,20 @@
                 require_once("controllers/security/user.control.php"):
                 mw_redirectToLogin($_SERVER["QUERY_STRING"]);
               die();
-              case "programas":
                 ($logged)?
-                  require_once("controllers/mantenimientos/programas.control.php"):
                   mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                  require_once("controllers/portafolios/portafolios.control.php"):
                 die();
-                case "bitacora":
+
+                case "portafolio":
+                    require_once("controllers/portafolios/portafolio.control.php"):
                   ($logged)?
-                    require_once("controllers/support/bitacora.control.php"):
                     mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+
                   die();
+<<<<<<< HEAD
+=======
+>>>>>>> MantenimientoPortafolio
         }
     // Elimina el menu administrativo
 
