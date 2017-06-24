@@ -1,58 +1,70 @@
-<h1>
-  Gestión de Usuarios
-</h1>
+<h1>Gestión de Portafolios</h1>
 <div class="row depth-1 m-padding">
-  <form action="index.php?page=users" method="post" class="col-md-8 col-offset-2">
-      <div class="row s-padding">
-        <label class="col-md-1" for="fltEmail">Correo:&nbsp;</label>
-        <input type="email" name="fltEmail"  class="col-md-8"
-              id="fltEmail" placeholder="correo@electron.ico" value="{{fltEmail}}" />
-        <button class="col-md-3" id="btnFiltro"><span class="ion-refresh">&nbsp;Actualizar</span></button>
+  <h2>{{modeDesc}}</h2>
+</div>
+<div class="row depth-1 m-padding">
+  {{if haserrores}}
+    <ul class="alert alert-danger depth-1 m-padding" style="list-style:none;">
+      {{foreach errores}}
+        <li>
+          {{this}}
+        </li>
+      {{endfor errores}}
+    </ul>
+  {{endif haserrores}}
+  <form action="index.php?page=portafolio" method="post" class="col-sm-8 col-sm-offset-2 col-md-6 col-offset-3">
+    <input type="hidden" name="mode" value="{{mode}}"  />
+    <input type="hidden" name="tocken" value="{{tocken}}"  />
+    <input type="hidden" name="portafoliocodigo" value="{{portafoliocodigo}}"  />
+    <div class="row">
+    <div class="row s-padding">
+      <label class="col-sm-5">Nombre Completo</label>
+      <input class="col-sm-7" {{readonly}} type="text" name="portafolionombre" id="portafolionombre" value="{{portafolionombre}}" placeholder="Nombre Completo" />
+    </div>
+    <div class="row s-padding">
+      <label class="col-sm-5">Observación</label>
+      <input class="col-sm-7" {{readonly}} type="text" name="portafolioobservacion" id="portafolioobservacion" value="{{portafolioobservacion}}" placeholder="Observación" />
+    </div>
+
+    <div class="row s-padding">
+      <label class="col-sm-5">Estado</label>
+      <span class="select col-sm-7"><select {{if readonly}}disabled readonly="readonly" {{endif readonly}} class="col-md-12" id="Cmbportafolioestado" name="Cmbportafolioestado">
+        {{foreach estado}}
+          <option value="{{codigo}}" {{selected}}>{{valor}}</option>
+        {{endfor estado}}
+      </select> </span>
+    </div>
+    <div class="row s-padding">
+      <label class="col-sm-5">Departamento</label>
+      <span class="select col-sm-7"><select {{if readonly}}disabled readonly="readonly" {{endif readonly}} class="col-md-12" id="Cmbdepartamentocodigo" name="Cmbdepartamentocodigo">
+        {{foreach departamento}}
+          <option value="{{codigo}}" {{selected}}>{{valor}}</option>
+        {{endfor departamento}}
+      </select> </span>
+    </div>
+
+    <div class="row s-padding">
+      <div class="col-md-12 right">
+        {{ifnot readonly}}
+        <button id="btnConfirm"><span class="icon "></span>Confirmar</button>
+        {{endifnot readonly}}
+        <button id="btnCancel">Cancelar</button>
       </div>
+    </div>
+    </div>
   </form>
 </div>
-<div class="row depth-1">
-  <table class="col-md-12">
-    <thead>
-      <tr>
-        <th>Correo</th>
-        <th>Nombre</th>
-        <th class="sd-hide">Tipo</th>
-        <th class="sd-hide">Estado</th>
-        <th class="sd-hide">Departamento</th>
-        <th><a href="index.php?page=user&usrcod=0&mode=INS" class="btn depth-1 s-margin">
-          <span class="ion-plus-circled"></span>
-          </a></th>
-      </tr>
-    </thead>
-    <tbody class="zebra">
-      {{foreach usuarios}}
-      <tr>
-        <td>{{usuarioemail}}</td>
-        <td>{{usuarionom}}</td>
-        <td class="sd-hide">{{usuariotipo}}</td>
-        <td class="sd-hide">{{usuarioest}}</td>
-        <td class="sd-hide">Depto</td>
-        <td class="center">
-          <a href="index.php?page=user&usrcod={{usuariocod}}&mode=UPD" class="btn depth-1 s-margin"><span class="ion-edit"></span></a>
-          <a href="index.php?page=user&usrcod={{usuariocod}}&mode=DSP" class="btn depth-1 s-margin"><span class="ion-eye"></span></a>
-        </td>
-      </tr>
-      {{endfor usuarios}}
-    </tbody>
-  </table>
-</div>
 <script>
-    $().ready(
-    function(){
-      $("#btnFiltro").click(
-        function(e){
+  $().ready(function(){
+      $("#btnConfirm").click(function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        document.forms[0].submit();
+        });
+      $("#btnCancel").click(function(e){
           e.preventDefault();
           e.stopPropagation();
-          document.forms[0].submit();
-        }
-      );
-    }
-
-    );
+          window.location.assign("index.php?page=portafolios");
+          });
+    });
 </script>

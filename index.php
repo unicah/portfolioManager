@@ -50,7 +50,7 @@
                 ($logged)?
                   require_once("controllers/support/bitacora.control.php"):
                   mw_redirectToLogin($_SERVER["QUERY_STRING"]);
-                die();
+                die();                case "portafolio":                ($logged)?                  require_once("controllers/portafolios/portafolio.control.php"):                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);                die();                case "portafolios":                ($logged)?                  require_once("controllers/portafolios/portafolios.control.php"):                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);                die();
         }
     // Elimina el menu administrativo
     require_once("controllers/error.control.php");
