@@ -7,7 +7,7 @@
       <div class="row s-padding">
         <label class="col-md-1" for="fltDsc">Roles:&nbsp;</label>
         <input type="text" name="fltDsc"  class="col-md-8"
-              id="fltDsc" placeholder="Roles" value="{{fltDsc}}" />
+              id="fltDsc" placeholder="Codigo de roles" value="{{fltDsc}}" />
         <button class="col-md-3" id="btnFiltro"><span class="ion-refresh">&nbsp;Actualizar</span></button>
       </div>
   </form>
@@ -19,7 +19,7 @@
         <th>Codigo</th>
         <th>Nombre</th>
         <th class="sd-hide">Estado</th>
-        <th><a href="index.php?page=rol&rlscod=0&mode=INS" class="btn depth-1 s-margin">
+        <th><a href="index.php?page=rol&rolescod&mode=INS" >
           <span class="ion-plus-circled"></span>
           </a></th>
       </tr>
@@ -31,8 +31,11 @@
         <td>{{rolesdsc}}</td>
         <td class="sd-hide">{{rolesest}}</td>
         <td class="center">
-          <a href="index.php?page=rol&rlscod={{rolesdsc}}&mode=UPD" class="btn depth-1 s-margin"><span class="ion-edit"></span></a>
-          <a href="index.php?page=rol&rlscod={{rolesdsc}}&mode=DSP" class="btn depth-1 s-margin"><span class="ion-eye"></span></a>
+
+
+
+          <a href="index.php?page=rol&rolescod={{rolescod}}&mode=UPD" class="btn depth-1 s-margin"><span class="ion-edit"></span></a>
+          <a href="index.php?page=rol&rolescod={{rolescod}}&mode=DSP" class="btn depth-1 s-margin"><span class="ion-eye"></span></a>
         </td>
       </tr>
       {{endfor roles}}

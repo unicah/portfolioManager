@@ -5,7 +5,7 @@
 *
 */
 
-  require_once('models/mantenimiento/mantenimiento.model.php');
+  require_once('models/mantenimientos/mantenimiento.model.php');
   function run(){
     $data = array();
     $data["fltDsc"]="";
