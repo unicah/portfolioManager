@@ -29,7 +29,7 @@
           $viewData["rolescod"] =$_GET["rolescod"];
           switch ($viewData["mode"]) {
             case 'INS':
-              $viewData["modeDesc"] = "Nuevo Programa";
+              $viewData["modeDesc"] = "Nuevo Rol";
               break;
             case 'UPD':
               $viewData["modeDesc"] = "Editar ";
@@ -83,22 +83,18 @@
                break;
 
              case 'UPD':
-               if(!$viewData["haserrores"] && !empty($viewData["programacod"])){
-                 //Se obtiene el usuario
-                 //$programa = obtenerProgramaPorCodigo($viewData["programacod"]);
-                 // Se actualiza los datos del usuario
-                 $affected = updatePrograma($viewData["programacod"],
-                               $viewData["programadsc"],
-                               $viewData["programaest"],
-                               $viewData["programatyp"]
+               if(!$viewData["haserrores"] && !empty($viewData["rolescod"])){
+                 $affected = updateRoles($viewData["rolescod"],
+                               $viewData["rolesdsc"],
+                               $viewData["rolesest"]
                              );
                  // Si no hay error se redirige a la lista de usuarios
                  if($affected){
-                   redirectWithMessage("Programa Actualizado Satisfactoriamente.", "index.php?page=programas");
+                   redirectWithMessage("rol Actualizado Satisfactoriamente.", "index.php?page=roles");
                    die();
                  }else{
                  // Se muestra un error sobre la edicion del usuario
-                   $viewData["errores"][] = "Error al editar el usuario";
+                   $viewData["errores"][] = "Error al editar el Rol";
                    $viewData["haserrores"] = true;
                  }
                }
@@ -113,7 +109,7 @@
                $viewData["readonly"] = 'readonly="readonly"';
                break;
              default:
-               redirectWithMessage("Acción Solicitada no disponible.", "index.php?page=programas");
+               redirectWithMessage("Acción Solicitada no disponible.", "index.php?page=roles");
                die();
            }
 

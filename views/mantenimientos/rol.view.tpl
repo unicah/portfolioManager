@@ -18,7 +18,7 @@
     <input type="hidden" name="rolescod" value="{{rolescod}}"  />
     <div class="row">
       <div class="row s-padding">
-        <label class="col-sm-5">Codigo</label>
+        <label class="col-sm-5">Codigo del rol </label>
         <input class="col-sm-7" {{readonly}} type="text" name="txtCodigo" id="txtCodigo" value="{{rolescod}}" placeholder="Codigo" />
       </div>
     <div class="row s-padding">
@@ -33,7 +33,7 @@
         {{endfor estadoRol}}
       </select> </span>
     </div>
-    
+
     <div class="row s-padding">
       <div class="col-md-12 right">
         {{ifnot readonly}}

@@ -35,8 +35,7 @@
     }
     function obtenerRolesPorCodigo($rolescod){
         $roles = array();
-        $sqlstr = sprintf("SELECT `rolescod`,`rolesdsc`,`rolesest`
-           FROM `roles` where rolescod = %s",$rolescod);
+        $sqlstr = sprintf("SELECT rolescod, rolesdsc, rolesest FROM roles WHERE rolescod = '%s'",$rolescod);
         $roles = obtenerUnRegistro($sqlstr);
         return $roles;
     }
@@ -62,11 +61,8 @@
     }
 
     function updateRoles($rolescod, $rolesdsc, $rolesest){
-      $strsql = "UPDATE `roles` SET
-        `rolescod` = '%s', `rolesdsc` = '%s', `rolesest` = '%s' WHERE `rolescod` = '%s';";
-        $strsql = sprintf($strsql, valstr($rolescod),
-                                    ($rolesdsc),
-                                    $rolesest);
+      $strsql = "UPDATE `roles` SET `rolesdsc`='%s', `rolesest`='%s' WHERE `rolescod`='%s';";
+        $strsql = sprintf($strsql,  $rolesdsc,   $rolesest, valstr($rolescod));
       $affected = ejecutarNonQuery($strsql);
       return ($affected > 0);
     }
