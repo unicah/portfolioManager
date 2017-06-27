@@ -58,6 +58,11 @@
                   require_once("controllers/mantenimientos/programas.control.php"):
                   mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                 die();
+              case "departamentos":
+                ($logged)?
+                  require_once("controllers/mantenimientos/departamentos.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
         }
     // Elimina el menu administrativo
 
