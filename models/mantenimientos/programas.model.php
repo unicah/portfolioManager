@@ -9,7 +9,6 @@ function obtenerProgramasPorFiltro($programacod, $Typ){
     return $programas;
 }
 
-
 function obtenerProgramaPorCodigo($programacod){
     $programa = array();
     $sqlstr = sprintf("SELECT *FROM programas where programacod = '%s';",valstr($programacod));
@@ -65,4 +64,5 @@ function getEstadoProgramas(){
     array("codigo"=>"INA","valor"=>"Inactivo")
   );
 }
+
  ?>

@@ -19,11 +19,7 @@
         <th>Descripción</th>
         <th class="sd-hide">Estado</th>
         <th class="sd-hide">Tipo</th>
-<<<<<<< Updated upstream
-        <th><a href="">
-=======
         <th><a href="index.php?page=programa&programacod=0&mode=INS">
->>>>>>> Stashed changes
           <span class="ion-plus-circled"></span>
           </a></th>
       </tr>
@@ -36,13 +32,8 @@
         <td class="sd-hide">{{programaest}}</td>
         <td class="sd-hide">{{programatyp}}</td>
         <td class="center">
-<<<<<<< Updated upstream
-          <a href="" class="btn depth-1 s-margin"><span class="ion-edit"></span></a>
-          <a href="" class="btn depth-1 s-margin"><span class="ion-eye"></span></a>
-=======
           <a href="index.php?page=programa&programacod={{programacod}}&mode=UPD" class="btn depth-1 s-margin"><span class="ion-edit"></span></a>
           <a href="index.php?page=programa&programacod={{programacod}}&mode=DSP" class="btn depth-1 s-margin"><span class="ion-eye"></span></a>
->>>>>>> Stashed changes
         </td>
       </tr>
       {{endfor programas}}
