@@ -101,6 +101,7 @@
                                 $viewData["usuarioest"]
                               );
                   if($lastId){
+                    addBitacora("SEC001","Insert User",$viewData,"INFO");
                     redirectWithMessage("Usuario Creado Satisfactoriamente.", "index.php?page=users");
                     die();
                   }else{
@@ -115,7 +116,7 @@
                   //Se obtiene el usuario
                   $usuario = obtenerUsuarioPorCodigo($viewData["usrcod"]);
                   $pswdSalted='';
-                  // Si no hay cambo de contraseña se usa la anterior
+                  // Si no hay cambio de contraseña se usa la anterior
                   if(isEmpty($viewData["usuariopswd"])){
                     $pswdSalted = $usuario["usuariopswd"];
                   }else{
@@ -139,6 +140,7 @@
                               );
                   // Si no hay error se redirige a la lista de usuarios
                   if($affected){
+                    addBitacora("SEC001","Update User",$viewData,"INFO");
                     redirectWithMessage("Usuario Actualizado Satisfactoriamente.", "index.php?page=users");
                     die();
                   }else{
