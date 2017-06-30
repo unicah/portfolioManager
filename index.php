@@ -59,28 +59,36 @@
                   require_once("controllers/mantenimientos/programas.control.php"):
                   mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                 die();
-
-                case "programa":
+              case "programa":
                   ($logged)?
                     require_once("controllers/mantenimientos/programa.control.php"):
                     mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                   die();
-                case "bitacora":
+              case "departamentos":
+                ($logged)?
+                  require_once("controllers/mantenimientos/departamentos.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
+              case "departamento":
+                ($logged)?
+                  require_once("controllers/mantenimientos/departamento.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
+              case "bitacora":
                   ($logged)?
                     require_once("controllers/support/bitacora.control.php"):
                     mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                   die();
-            case "roles":
-              ($logged)?
-                require_once("controllers/mantenimientos/roles.control.php"):
-                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
-              die();
-            case "rol":
-              ($logged)?
-                require_once("controllers/mantenimientos/rol.control.php"):
-                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
-              die();
-
+              case "roles":
+                ($logged)?
+                  require_once("controllers/mantenimientos/roles.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
+              case "rol":
+                ($logged)?
+                  require_once("controllers/mantenimientos/rol.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
         }
     // Elimina el menu administrativo
 
