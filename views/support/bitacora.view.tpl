@@ -13,7 +13,7 @@
             <option value="{{codigo}}" {{selected}}>{{valor}}</option>
           {{endfor fltTipos}}
         </select></span>
-        <span class="select col-md-2"><select name="fltMes" class="col-md-12">
+        <span class="select col-md-6"><select name="fltMes" class="col-md-12">
           {{foreach fltMeses}}
             <option value="{{codigo}}" {{selected}}>{{valor}}</option>
           {{endfor fltMeses}}
