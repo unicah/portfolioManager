@@ -70,6 +70,17 @@
                     require_once("controllers/support/bitacora.control.php"):
                     mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                   die();
+            case "roles":
+              ($logged)?
+                require_once("controllers/mantenimientos/roles.control.php"):
+                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+              die();
+            case "rol":
+              ($logged)?
+                require_once("controllers/mantenimientos/rol.control.php"):
+                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+              die();
+
         }
     // Elimina el menu administrativo
 
