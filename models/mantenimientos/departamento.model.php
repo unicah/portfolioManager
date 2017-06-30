@@ -9,6 +9,13 @@ function obtenerdepartamentosporfiltros($departmanetodesc){
     return $departamento;
 }
 
+function obtenerdepartamentosActivos(){
+  $departamentos = array();
+  $sqlstr="SELECT `departamentocodigo`, `departmanetodesc`, `departamentoest` FROM departamento where departamentoest='ACT';";
+    $departamentos = obtenerRegistros($sqlstr);
+    return $departamentos;
+}
+
 
 function obtenerDepartamentoPorCodigo($depcod){
       $departamento = array();

@@ -9,6 +9,7 @@
    * -----------------------------------------------------------------------
    */
   require_once('models/portafolios/portafolios.model.php');
+  require_once('models/mantenimientos/departamento.model.php');
   require_once("libs/validadores.php");
   function run(){
     $viewData =array();
@@ -19,7 +20,7 @@
     $viewData["haserrores"] = false;
     $viewData["readonly"] = false;
     //Arreglo para el combo de Tipos de usuario
-    $viewData["departamento"]= getDepartamento();
+    $viewData["departamento"]= obtenerdepartamentosActivos();
     $viewData["estado"]=  getEstadoPortafolio();
 
     if($_SERVER["REQUEST_METHOD"] == "GET"){
@@ -56,7 +57,6 @@
             $viewData["mode"] = $_POST["mode"];
             $viewData["portafoliocodigo"] = intval($_POST["portafoliocodigo"]);
             $viewData["portafolionombre"] = $_POST["portafolionombre"];
-            $time = time();
             $viewData["portafolioobservacion"] = $_POST["portafolioobservacion"];
             $viewData["portafolioestado"] = $_POST["Cmbportafolioestado"];
             $viewData["departamentocodigo"] =  $_POST["Cmbdepartamentocodigo"];
@@ -67,7 +67,7 @@
             }
 
             if( isEmpty($viewData["portafolioobservacion"])){
-                $viewData["errores"][] = "Nombre en formato Incorrecto";
+                $viewData["errores"][] = "Observación no puede ir vacía";
             }
 
             $viewData["haserrores"] = count($viewData["errores"]) && true;
@@ -75,7 +75,6 @@
             switch ($viewData["mode"]) {
               case 'INS':
                   $lastId = insertPortafolio($viewData["portafolionombre"],
-                                $time,
                                 $viewData["portafolioobservacion"],
                                 $viewData["portafolioestado"],
                                   $viewData["departamentocodigo"]
@@ -95,13 +94,13 @@
                 if(!$viewData["haserrores"] && $viewData["portafoliocodigo"] > 0){
                   //Se obtiene el usuario
                   // Se actualiza los datos del usuario
-                  $affected = updateUsuario($viewData["usrcod"],
-                                $viewData["usuarionom"],
-                                $viewData["usuarioemail"],
-                                $pswdSalted,
-                                $viewData["usuariotipo"],
-                                $viewData["usuarioest"]
-                              );
+                  // $affected = updateUsuario($viewData["usrcod"],
+                  //               $viewData["usuarionom"],
+                  //               $viewData["usuarioemail"],
+                  //               $pswdSalted,
+                  //               $viewData["usuariotipo"],
+                  //               $viewData["usuarioest"]
+                  //             );
                   // Si no hay error se redirige a la lista de usuarios
                   if($affected){
                     redirectWithMessage("Usuario Actualizado Satisfactoriamente.", "index.php?page=portafolios");
@@ -141,7 +140,7 @@
       $portafolio = obtenerPortafolioPorCodigo($viewData["portafoliocodigo"]);
       mergeFullArrayTo($portafolio,$viewData);
       $viewData["modeDesc"] .= $viewData["portafolionombre"];
-      $viewData["departamento"] = addSelectedCmbArray($viewData["departamento"],"codigo",$viewData["departamentocodigo"]);
+      $viewData["departamento"] = addSelectedCmbArray($viewData["departamento"],"departamentocodigo",$viewData["departamentocodigo"]);
       $viewData["estado"] = addSelectedCmbArray($viewData["estado"],"codigo",$viewData["portafolioestado"]);
     }
     // Cambia la seguridad del formulario para evitar ataques XHR.

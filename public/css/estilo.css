@@ -165,3 +165,43 @@ select{
   top: 15px;
   pointer-events: none;
  }
+
+
+.bigmenu{
+  clear:both;
+  list-style: none;
+}
+
+.bigmenu li{
+  font-size: 6em;
+  text-align: center;
+}
+.bigmenu li a{
+  display: inline-block;
+  background-color: #1C5679;
+  padding:0.2em 0.6em;
+  border-radius: 0.1em;
+  color:#eee;
+  text-decoration: none;
+}
+.bigmenu li a:hover{
+  background-color: #2874a2;
+}
+.bigmenu .small{
+  display: block;
+  font-size: 0.1666666667em;
+}
+.portfolio a{
+  color:#000;
+}
+.portfolio{
+  min-height:120px;
+  padding:0.5em;
+  margin:0 0.25em;
+}
+
+.portfolio.estPND{ background-color: rgba(208, 156, 0, 0.4)}
+.portfolio.estACT{ background-color: rgba(17, 84, 3, 0.4)}
+.portfolio.estCRR{ background-color: rgba(105, 106, 104, 0.4)}
+.portfolio.estSPS{ background-color: rgba(0, 132, 173,0.4)}
+.portfolio.estCNL{ background-color: rgba(145, 2, 28, 0.4)}
