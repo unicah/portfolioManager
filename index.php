@@ -1,5 +1,4 @@
 <?php
-
     session_start();
 
     require_once("libs/utilities.php");
@@ -37,10 +36,16 @@
     //Este switch se encarga de todo el enrutamiento que ocupa login
         $logged = mw_estaLogueado();
         if($logged)addToContext("layoutFile","verified_layout");
+        require_once("controllers/mw/support.mw.php");
         switch($pageRequest){
             case "admin":
               ($logged)?
                   require_once("controllers/admin/admin.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+              die();
+            case "mnt":
+              ($logged)?
+                  require_once("controllers/mantenimientos/mntmenu.control.php"):
                   mw_redirectToLogin($_SERVER["QUERY_STRING"]);
               die();
             case "users":
@@ -51,6 +56,51 @@
             case "user":
               ($logged)?
                 require_once("controllers/security/user.control.php"):
+                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+              die();
+            case "programas":
+              ($logged)?
+                require_once("controllers/mantenimientos/programas.control.php"):
+                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+              die();
+            case "programa":
+                ($logged)?
+                  require_once("controllers/mantenimientos/programa.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
+            case "departamentos":
+              ($logged)?
+                require_once("controllers/mantenimientos/departamentos.control.php"):
+                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+              die();
+            case "departamento":
+              ($logged)?
+                require_once("controllers/mantenimientos/departamento.control.php"):
+                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+              die();
+            case "bitacora":
+                ($logged)?
+                  require_once("controllers/support/bitacora.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
+            case "roles":
+              ($logged)?
+                require_once("controllers/mantenimientos/roles.control.php"):
+                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+              die();
+            case "rol":
+              ($logged)?
+                require_once("controllers/mantenimientos/rol.control.php"):
+                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+              die();
+           case "portafolios":
+              ($logged)?
+                require_once("controllers/portafolios/portafolios.control.php"):
+                mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+              die();
+           case "portafolio":
+              ($logged)?
+                require_once("controllers/portafolios/portafolio.control.php"):
                 mw_redirectToLogin($_SERVER["QUERY_STRING"]);
               die();
         }
