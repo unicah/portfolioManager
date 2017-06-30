@@ -111,6 +111,39 @@
      );
    }
 
+/*require_once("libs/dao.php");
+
+function obtenerPortafolioPorNombre($portafolioNombre){
+    $portafolio = array();
+    $sqlstr = sprintf("SELECT `portafoliocodigo`,`portafolionombre`,
+    UNIX_TIMESTAMP(`portafoliofechacreado`) as portafoliofechacreado, `portafolioobservacion`, `portafolioestado`,
+    `departamentocodigo`
+       FROM portafolio where portafolionombre = '%s';",$portafolionombre);
+    $portafolio = obtenerUnRegistro($sqlstr);
+    return $portafolio;
+}
+
+/*function obtenerUsuarioPorFiltro($portafolionombre, $userType){
+    $portafolio = array();
+    $sqlstr = sprintf("SELECT `portafoliocodigo`,`portafolionombre`, `portafolioobservacion`,
+    `portafolioestado`, `departamentocodigo`
+       FROM portafolio where portafolionombre like '%s' and portafolioestado like '%s';",
+       $portafolionombre.'%' , $userType);
+    $portafolio = obtenerRegistros($sqlstr);
+    return $portafolio;
+}/*
+
+/*function obtenerPortafolioPorCodigo($portafoliocodigo){
+    $portafolio = array();
+    $sqlstr = sprintf("SELECT `portafoliocodigo`,`portafolionombre`,
+    UNIX_TIMESTAMP(`portafoliofechacreado`) as portafoliofechacreado, `portafolioobservacion`, `portafolioestado`,
+    `departamentocodigo`
+       FROM portafolio where portafoliocodigo = %d;",$portafoliocodigo);
+    $portafolio = obtenerUnRegistro($sqlstr);
+    return $portafolio;
+}*/
+
+
 
 
    ?>

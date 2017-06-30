@@ -1,5 +1,4 @@
 <?php
-
     session_start();
 
     require_once("libs/utilities.php");
@@ -87,6 +86,16 @@
               case "rol":
                 ($logged)?
                   require_once("controllers/mantenimientos/rol.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
+             case "portafolio":
+                ($logged)?
+                  require_once("controllers/portafolios/portafolios.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
+             case "portafolios":
+                ($logged)?
+                  require_once("controllers/portafolios/portafolio.control.php"):
                   mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                 die();
         }
