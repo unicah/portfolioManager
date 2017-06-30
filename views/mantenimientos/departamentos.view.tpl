@@ -21,7 +21,7 @@
         <th>descripcion</th>
         <th class="sd-hide">Estado</th>
 
-        <th><a href="index.php?page=departamentos&departamentocodigo=0&mode=INS" class="btn depth-1 s-margin">
+        <th><a href="index.php?page=departamento&depcod=0&mode=INS" class="btn depth-1 s-margin">
           <span class="ion-plus-circled"></span>
           </a></th>
       </tr>
