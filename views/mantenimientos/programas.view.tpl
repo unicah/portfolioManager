@@ -19,7 +19,7 @@
         <th>Descripción</th>
         <th class="sd-hide">Estado</th>
         <th class="sd-hide">Tipo</th>
-        <th><a href="index.php?page=programa&programacod=0&mode=INS">
+        <th><a href="index.php?page=programa&programacod=0&mode=INS" class="btn depth-1 s-margin">
           <span class="ion-plus-circled"></span>
           </a></th>
       </tr>

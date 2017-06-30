@@ -19,7 +19,7 @@
         <th>Codigo</th>
         <th>Nombre</th>
         <th class="sd-hide">Estado</th>
-        <th><a href="index.php?page=rol&rolescod&mode=INS" >
+        <th><a href="index.php?page=rol&rolescod&mode=INS" class="btn depth-1 s-margin">
           <span class="ion-plus-circled"></span>
           </a></th>
       </tr>
