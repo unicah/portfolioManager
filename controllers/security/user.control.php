@@ -116,7 +116,7 @@
                   //Se obtiene el usuario
                   $usuario = obtenerUsuarioPorCodigo($viewData["usrcod"]);
                   $pswdSalted='';
-                  // Si no hay cambo de contraseña se usa la anterior
+                  // Si no hay cambio de contraseña se usa la anterior
                   if(isEmpty($viewData["usuariopswd"])){
                     $pswdSalted = $usuario["usuariopswd"];
                   }else{
