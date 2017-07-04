@@ -103,6 +103,11 @@
                 require_once("controllers/portafolios/portafolio.control.php"):
                 mw_redirectToLogin($_SERVER["QUERY_STRING"]);
               die();
+           case "portafolioww":
+                 ($logged)?
+                   require_once("controllers/portafolios/portafolioww.control.php"):
+                   mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                 die();
         }
     // Elimina el menu administrativo
 

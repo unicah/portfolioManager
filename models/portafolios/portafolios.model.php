@@ -34,7 +34,7 @@
 
      $portafolios = obtenerRegistros(sprintf($sqlstr, $usercod));
      return $portafolios;
-                    
+
    }
 
 /*   function obtenerUsuariosPorTipo($userType, $userEst='ACT', $userName ='%'){
@@ -111,7 +111,7 @@
            ejecutarNonQuery(sprintf($sqlstr , 'ACT', $portfolioid, 'Actas'));
 
            //llenamos los flujos predeterminados de los documentos
-           $sqlstr = "INSERT INTO `portfoliomanager`.`portafolio_flujo` (`flujoportafolio`, `portafoliocodigo`,
+           $sqlstr = "INSERT INTO `portafolio_flujo` (`flujoportafolio`, `portafoliocodigo`,
                               `flujoportafolionombre`, `flujoportafolioestado`)
                       VALUES ('%s', %d, '%s', 'ACT');";
            ejecutarNonQuery(sprintf($sqlstr , '010', $portfolioid, 'Borrador'));
@@ -150,7 +150,21 @@
       // return ($affected > 0);
       return false;
    }
-   //funciones adiciones para datos
+
+
+   function obtenerColaboradoresDelPortafolio($codigoPortafolio){
+     $colaboradores = array();
+
+     $sqlstr = "select b.usuarionom, b.usuariocod, a.rolportafolio
+	from portafolio_colaboradores a
+		inner join usuario b on a.usuariocod = b.usuariocod
+	where a.colaboradorestado = 'ACT' and b.usuarioest = 'ACT'
+    and a.portafoliocodigo = %d;";
+
+    $colaboradores = obtenerRegistros(sprintf($sqlstr,$codigoPortafolio));
+     return $colaboradores;
+   }
+
 
    function getEstadoPortafolio(){
      return array(
