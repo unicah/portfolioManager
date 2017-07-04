@@ -42,7 +42,7 @@
               $viewData["readonly"] = 'readonly="readonly"';
               break;
             default:
-              redirectWithMessage("Accion Solicitada no disponible.", "index.php?page=users");
+              redirectWithMessage("Accion Solicitada no disponible.", "index.php?page=departamentos");
               die();
           }
           // tocken para evitar ataques xhr
