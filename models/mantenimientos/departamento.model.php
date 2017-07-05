@@ -43,7 +43,15 @@ function insertardepartamento($departmanetodesc,$departamentoest){
   return 0;
 }
 
+function updateDerpartamento($depcod, $departmanetodesc,$departamentoest){
+      $strsql = "UPDATE `departamento` SET `departmanetodesc`='%s', `departamentoest`='%s' WHERE `departamentocodigo`= %d;";
+      //$strsql = "UPDATE `departamento` SET `departmanetodesc`='Mercadeo1', `departamentoest`='ACT' WHERE `departamentocodigo`= 4;";
 
+        $strsql = sprintf($strsql, $departmanetodesc, $departamentoest, $depcod);
+      $affected = ejecutarNonQuery($strsql);
+      return ($affected > 0);
+
+    }
 
 
  ?>

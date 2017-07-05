@@ -6,7 +6,7 @@
       <div class="row s-padding">
         <label class="col-md-1" for="fltDsc">codigo:&nbsp;</label>
         <input type="" name="fltDsc"  class="col-md-8"
-              id="fltDsc" placeholder="34782347023924" value="{{fltDsc}}" />
+              id="fltDsc" placeholder="Buscar departamentos" value="{{fltDsc}}" />
         <button class="col-md-3" id="btnFiltro"><span class="ion-refresh">&nbsp;Actualizar</span></button>
 
 
