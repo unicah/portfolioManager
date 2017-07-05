@@ -10,6 +10,12 @@
         <button class="col-md-3" id="btnFiltro"><span class="ion-refresh">&nbsp;Actualizar</span></button>
 
 
+=======
+        <label class="col-md-1" for="fltDescripcion">Buscar:&nbsp;</label>
+        <input type="text" name="fltDescripcion"  class="col-md-8"
+              id="fltDescripcion" placeholder="Descripción del departamento" value="{{fltDescripcion}}" />
+        <button class="col-md-3" id="btnFiltro"><span class="ion-refresh">&nbsp;Actualizar</span></button>
+>>>>>>> Auto stash before rebase of "origin/develop"
       </div>
   </form>
 </div>
@@ -17,16 +23,23 @@
   <table class="col-md-12">
     <thead>
       <tr>
+<<<<<<< refs/remotes/unicah/develop
         <th>codigo</th>
         <th>descripcion</th>
         <th class="sd-hide">Estado</th>
 
         <th><a href="index.php?page=departamento&depcod=0&mode=INS" class="btn depth-1 s-margin">
+=======
+        <th>Descripción</th>
+        <th class="sd-hide">Estado</th>
+        <th><a href="index.php?page=departamento&departamentocodigo=0&mode=INS">
+>>>>>>> Auto stash before rebase of "origin/develop"
           <span class="ion-plus-circled"></span>
           </a></th>
       </tr>
     </thead>
     <tbody class="zebra">
+<<<<<<< refs/remotes/unicah/develop
       {{foreach departamentos}}
       <tr>
         <td>{{departamentocodigo}}</td>
@@ -38,6 +51,18 @@
         </td>
       </tr>
       {{endfor departamentos}}
+=======
+      {{foreach departamento}}
+      <tr>
+        <td>{{departmanetodesc}}</td>
+        <td class="sd-hide">{{departamentoest}}</td>
+        <td class="center">
+          <a href="index.php?page=departamento&departamentocodigo={{departamentocodigo}}&mode=UPD" class="btn depth-1 s-margin"><span class="ion-edit"></span></a>
+          <a href="index.php?page=departamento&departamentocodigo={{departamentocodigo}}&mode=DSP" class="btn depth-1 s-margin"><span class="ion-eye"></span></a>
+        </td>
+      </tr>
+      {{endfor departamento}}
+>>>>>>> Auto stash before rebase of "origin/develop"
     </tbody>
   </table>
 </div>
@@ -55,3 +80,5 @@
 
     );
 </script>
+
+<<<<<<< refs/remotes/unicah/develop
