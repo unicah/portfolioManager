@@ -165,6 +165,23 @@
      return $colaboradores;
    }
 
+   function obtenerCategoriasPortafolio($codigoPortafolio){
+     $categorias = array();
+
+     $sqlstr = "select a.categoriaportafolio, a.categoriaportafolionombre from portafolio_categoria a
+                    where a.categoriaportafolioestado='ACT' and a.portafoliocodigo = %d;";
+
+    $categorias = obtenerRegistros(sprintf($sqlstr,$codigoPortafolio));
+     return $categorias;
+   }
+
+   function obtenerFlujosPortafolio($codigoPortafolio){
+    $flujos = array();
+    $sqlstr = "select flujoportafolio, flujoportafolionombre from portafolio_flujo
+                      where flujoportafolioestado='ACT' and portafoliocodigo = %d;";
+    $flujos = obtenerRegistros(sprintf($sqlstr,$codigoPortafolio));
+    return $flujos;
+   }
 
    function getEstadoPortafolio(){
      return array(
