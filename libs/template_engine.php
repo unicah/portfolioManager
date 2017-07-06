@@ -11,12 +11,16 @@
         $datos = array_merge($global_context, $datos);
         //union de variables de sessión
         $datos = array_merge($_SESSION, $datos);
-
+        if(isset($datos["layoutFile"])){
+          $layoutFile = $datos["layoutFile"];
+        }
+        if(strpos($layoutFile,".view.tpl")===false){
+          $layoutFile .= ".view.tpl";
+        }
 
         $viewsPath = "views/";
         $fileTemplate = $vista.".view.tpl";
         $htmlContent = "";
-        //die($layoutFile);
         if(file_exists($viewsPath.$layoutFile)){
             $htmlContent = file_get_contents($viewsPath.$layoutFile);
             if(file_exists($viewsPath.$fileTemplate)){
@@ -33,7 +37,6 @@
                     $htmlContent = str_replace("\t","",$htmlContent);
                     $htmlContent = str_replace("  ","",$htmlContent);
                 }
-
                 //obtiene un arreglo separando lo distintos tipos de nodos
                 $template_code = parseTemplate($htmlContent);
                 $htmlResult = renderTemplate($template_code, $datos);
@@ -135,7 +138,11 @@
             foreach($nodeReplace as $item){
                 if(strpos($item,"{{")  !== false){
                     $index = trim(str_replace("}}","",str_replace("{{","",$item)));
-                    $item = isset($context[$index])?$context[$index]:"";
+                    if($index === "this" && !(is_array($context))){
+                      $item = $context;
+                    }else{
+                      $item = isset($context[$index])?$context[$index]:"";
+                    }
                 }
                 $renderedHTML .= $item;
             }
