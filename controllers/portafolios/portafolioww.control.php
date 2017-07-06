@@ -10,6 +10,7 @@
     $viewData = array();
     $viewData["portafoliocodigo"] = 0;
     $viewData["colaboradores"] = array();
+    $viewData["flujos"]=array();
 
     if(isset($_SESSION["portafoliocodigo"])){
         $viewData["portafoliocodigo"] = $_SESSION["portafoliocodigo"];
@@ -29,6 +30,7 @@
       // Obtenemos los colaboradores
       $viewData["colaboradores"] = obtenerColaboradoresDelPortafolio($viewData["portafoliocodigo"]);
       $viewData["documentos"] = obtenerDocumentosDelPortafolio($viewData["portafoliocodigo"],'');
+      $viewData["flujos"]=obtenerFlujosPortafolio($viewData["portafoliocodigo"],'');
 
     }
 
