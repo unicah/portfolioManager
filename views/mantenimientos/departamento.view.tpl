@@ -1,4 +1,4 @@
-<h1>Gestión de departamento</h1>
+<h1>Gestión de Departamento</h1>
 <div class="row depth-1 m-padding">
   <h2>{{modeDesc}}</h2>
 </div>
@@ -42,7 +42,6 @@
       <div class="col-md-12 right">
 
         <button id="btnConfirm"><span class="icon "></span>Confirmar</button>
-
         <button id="btnCancel">Cancelar</button>
       </div>
     </div>
