@@ -22,7 +22,7 @@
     //Arreglo para el combo de Tipos de usuario
     $viewData["tipoUsuarios"]= getTiposUsuario();
     $viewData["estadoUsuarios"]= getEstadoUsuario();
-
+    
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         if(isset($_GET["mode"])){
           $viewData["mode"] = $_GET["mode"];
@@ -180,6 +180,7 @@
       $viewData["modeDesc"] .= $viewData["usuarionom"];
       $viewData["tipoUsuarios"] = addSelectedCmbArray($viewData["tipoUsuarios"],"codigo",$viewData["usuariotipo"]);
       $viewData["estadoUsuarios"] = addSelectedCmbArray($viewData["estadoUsuarios"],"codigo",$viewData["usuarioest"]);
+
     }
     // Cambia la seguridad del formulario para evitar ataques XHR.
     if($viewData["haserrores"]>0){

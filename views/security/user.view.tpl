@@ -34,13 +34,6 @@
       </select></span>
     </div>
     <div class="row s-padding">
-      <label class="col-sm-5">Departamento</label>
-        <span class="select col-sm-7"><select {{if readonly}}disabled readonly="readonly" {{endif readonly}} class="col-md-12" id="cmbDepto" name="cmbDepto">
-          <option value="0">Sin Asignar</option>
-
-      </select></span>
-    </div>
-    <div class="row s-padding">
       <label class="col-sm-5">Estado</label>
       <span class="select col-sm-7"><select {{if readonly}}disabled readonly="readonly" {{endif readonly}} class="col-md-12" id="cmbEstado" name="cmbEstado">
         {{foreach estadoUsuarios}}
