@@ -115,6 +115,12 @@
                    mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                  die();
 
+            case "editarflujos":
+                  ($logged)?
+                  require_once("controllers/portafolios/editarflujos.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                  die();
+
            case "categoria":
                  ($logged)?
                    require_once("controllers/mantenimientos/categoria.control.php"):
@@ -122,6 +128,7 @@
                  die();
 
         }
+
     // Elimina el menu administrativo
 
 

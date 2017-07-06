@@ -94,9 +94,18 @@
             </span>
         </header>
         <main>
-            <table>
-
-            </table>
+          <table class="full-width">
+            {{foreach flujos}}
+              <tr>
+                <td>
+                  {{flujoportafolionombre}}
+                </td>
+                <td class="center">
+                  <a href="index.php?page=editarflujos&mode=UPD&code={{flujoportafolio}}" class="btn"><span class="icon ion-edit"></span></a>
+                </td>
+              </tr>
+              {{endfor flujos}}
+          </table>
         </main>
       </section>
     </div>
