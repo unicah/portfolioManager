@@ -111,37 +111,31 @@
      );
    }
 
-/*require_once("libs/dao.php");
-
-function obtenerPortafolioPorNombre($portafolioNombre){
-    $portafolio = array();
-    $sqlstr = sprintf("SELECT `portafoliocodigo`,`portafolionombre`,
-    UNIX_TIMESTAMP(`portafoliofechacreado`) as portafoliofechacreado, `portafolioobservacion`, `portafolioestado`,
-    `departamentocodigo`
-       FROM portafolio where portafolionombre = '%s';",$portafolionombre);
-    $portafolio = obtenerUnRegistro($sqlstr);
-    return $portafolio;
-}
-
-/*function obtenerUsuarioPorFiltro($portafolionombre, $userType){
-    $portafolio = array();
-    $sqlstr = sprintf("SELECT `portafoliocodigo`,`portafolionombre`, `portafolioobservacion`,
-    `portafolioestado`, `departamentocodigo`
-       FROM portafolio where portafolionombre like '%s' and portafolioestado like '%s';",
-       $portafolionombre.'%' , $userType);
-    $portafolio = obtenerRegistros($sqlstr);
-    return $portafolio;
-}/*
-
-/*function obtenerPortafolioPorCodigo($portafoliocodigo){
-    $portafolio = array();
-    $sqlstr = sprintf("SELECT `portafoliocodigo`,`portafolionombre`,
-    UNIX_TIMESTAMP(`portafoliofechacreado`) as portafoliofechacreado, `portafolioobservacion`, `portafolioestado`,
-    `departamentocodigo`
-       FROM portafolio where portafoliocodigo = %d;",$portafoliocodigo);
-    $portafolio = obtenerUnRegistro($sqlstr);
-    return $portafolio;
-}*/
+   function obtenerRolesDisponibles($usercod){
+      $sqlstr = "select b.rolescod, b.rolesdsc, a.usuariocod
+from roles b left join roles_usuarios a
+on a.rolescod = b.rolescod and a.usuariocod=%d
+where a.usuariocod is null ;";
+      $roles = obtenerRegistros(sprintf($sqlstr, $usercod));
+      return $roles;
+   }
+   function obtenerRolesUsuario($usercod){
+      $sqlstr = "select b.rolescod, b.rolesdsc, a.usuariocod
+from roles b inner join roles_usuarios a
+on a.rolescod = b.rolescod
+where a.usuariocod = %d ;";
+      $roles = obtenerRegistros(sprintf($sqlstr, $usercod));
+      return $roles;
+   }
+   function agregarRolaUsuario($rolcod,$usercod){
+     $sqlstr = "INSERT INTO `roles_usuarios` (`usuariocod`, `rolescod`)
+                VALUES (%d, '%s' );";
+      return ejecutarNonQuery(sprintf($sqlstr, $usercod, $rolcod));
+   }
+   function eliminarRolaUsuario($rolcod,$usercod){
+      $sqlstr = "Delete from`roles_usuarios` where  `usuariocod`= %d and `rolescod` = '%s';";
+      return ejecutarNonQuery(sprintf($sqlstr, $usercod, $rolcod));
+   }
 
 
 
