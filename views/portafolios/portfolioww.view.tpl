@@ -4,12 +4,23 @@
   <div class="col-md-8 col-sm-12">
     <div class="card">
       <section class="panel">
-        <header>
+        <header style="position:relative">
             Documentos
+            <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
+              <a href="index.php?page=docupload&mode=INS" class="btn"><span class="icon ion-plus-circled"></span></a>
+            </span>
         </header>
         <main>
             <table>
-
+              <tbody>
+                {{foreach documentos}}
+                  <tr>
+                     <td>{{documentoportafoliocodigo}}</td>
+                     <td>{{documentodescripcion}}</td>
+                     <td>{{categoriaportafolionombre}}</td>
+                  </tr>
+                {{endfor documentos}}
+              </tbody>
             </table>
         </main>
       </section>
@@ -18,18 +29,21 @@
   <div class="col-md-4 col-sm-12">
     <div class="card">
       <section class="panel">
-        <header>
+        <header style="position:relative">
             Colaboradores
+            <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
+              <a href class="btn"><span class="icon ion-plus-circled"></span></a>
+            </span>
         </header>
         <main>
-            <table>
+            <table class="full-width">
               {{foreach colaboradores}}
                 <tr>
                   <td>
                     {{usuarionom}}
                   </td>
-                  <td>
-                    <a href><span class="icon ion-edit"></span></a>
+                  <td class="center">
+                    <a href class="btn"><span class="icon ion-edit"></span></a>
                   </td>
                 </tr>
                 {{endfor colaboradores}}
@@ -37,8 +51,11 @@
         </main>
       </section>
       <section class="panel">
-        <header>
+        <header style="position:relative">
             Alertas
+            <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
+              <a href class="btn"><span class="icon ion-plus-circled"></span></a>
+            </span>
         </header>
         <main>
             <table>
@@ -47,8 +64,11 @@
         </main>
       </section>
       <section class="panel">
-        <header>
+        <header style="position:relative">
             Categorías
+            <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
+              <a href class="btn"><span class="icon ion-plus-circled"></span></a>
+            </span>
         </header>
         <main>
             <table>
@@ -57,8 +77,11 @@
         </main>
       </section>
       <section class="panel">
-        <header>
+        <header style="position:relative">
             Flujos
+            <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
+              <a href class="btn"><span class="icon ion-plus-circled"></span></a>
+            </span>
         </header>
         <main>
             <table>
