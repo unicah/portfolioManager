@@ -28,7 +28,7 @@ require_once("models/portafolios/documentos/documentos.model.php");
     if($_SERVER["REQUEST_METHOD"] == "GET"){
       if(isset($_GET["mode"])){
         $viewData["mode"] = $_GET["mode"];
-        $viewData["doccod"] =$_GET["doccod"];
+        $viewData["doccod"] =0;//$_GET["doccod"];
         switch ($viewData["mode"]) {
           case 'INS':
              $viewData["modeDesc"] = "Nuevo Documento";

@@ -18,6 +18,7 @@
                      <td>{{documentoportafoliocodigo}}</td>
                      <td>{{documentodescripcion}}</td>
                      <td>{{categoriaportafolionombre}}</td>
+                     <td><a href="index.php?page=docuview" class="btn depth-1 s-margin"><span class="ion-eye"></span></a></td>
                   </tr>
                 {{endfor documentos}}
               </tbody>
@@ -32,7 +33,7 @@
         <header style="position:relative">
             Colaboradores
             <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
-              <a href class="btn"><span class="icon ion-plus-circled"></span></a>
+              <a href="index.php?page=colaboradores" class="btn"><span class="icon ion-plus-circled"></span></a>
             </span>
         </header>
         <main>
@@ -72,6 +73,16 @@
         </header>
         <main>
             <table>
+              {{foreach categorias}}
+                <tr>
+                  <td>
+                    {{categoriaportafolionombre}}
+                  </td>
+                  <td class="center">
+                    <a href="index.php?page=categoria&mode=UPD&code={{categoriaportafolio}}" class="btn"><span class="icon ion-edit"></span></a>
+                  </td>
+                </tr>
+                {{endfor categorias}}
 
             </table>
         </main>
@@ -84,9 +95,18 @@
             </span>
         </header>
         <main>
-            <table>
-
-            </table>
+          <table class="full-width">
+            {{foreach flujos}}
+              <tr>
+                <td>
+                  {{flujoportafolionombre}}
+                </td>
+                <td class="center">
+                  <a href="index.php?page=editarflujos&mode=UPD&code={{flujoportafolio}}" class="btn"><span class="icon ion-edit"></span></a>
+                </td>
+              </tr>
+              {{endfor flujos}}
+          </table>
         </main>
       </section>
     </div>

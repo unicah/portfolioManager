@@ -1,4 +1,4 @@
-<h1>Gestión de departamento</h1>
+<h1>Gestión de Departamento</h1>
 <div class="row depth-1 m-padding">
   <h2>{{modeDesc}}</h2>
 </div>
@@ -22,14 +22,10 @@
       <input class="col-sm-7" {{readonly}} type="text" name="txtCodigo" value="{{depcod}}" placeholder="1213123122" />
     </div>
     <div class="row s-padding">
-      <label class="col-sm-5">descripcion</label>
+      <label class="col-sm-5">Descripcion</label>
       <input class="col-sm-7" {{readonly}} type="text" name="txtdescripcion" id="txtdescripcion" value="{{departmanetodesc}}" placeholder="Descripcion" />
     </div>
     <div class="row s-padding">
-
-
-      </select></span>
-    </div>
     <label class="col-sm-5">Estado</label>
     <span class="select col-sm-7"><select {{if readonly}}disabled readonly="readonly" {{endif readonly}} class="col-md-12" id="cmbEstado" name="cmbEstado">
       {{foreach estadoUsuarios}}
@@ -37,12 +33,12 @@
       {{endfor estadoUsuarios}}
     </select> </span>
     </div>
-
+  <!--/div-->
     <div class="row s-padding">
       <div class="col-md-12 right">
-
+        {{ifnot readonly}}
         <button id="btnConfirm"><span class="icon "></span>Confirmar</button>
-
+        {{endifnot readonly}}
         <button id="btnCancel">Cancelar</button>
       </div>
     </div>
