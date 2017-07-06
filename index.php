@@ -115,9 +115,9 @@
                    mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                  die();
 
-           case "categorias":
+           case "categoria":
                  ($logged)?
-                   require_once("controllers/mantenimientos/categorias.control.php"):
+                   require_once("controllers/mantenimientos/categoria.control.php"):
                    mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                  die();
 

@@ -22,9 +22,9 @@ function obtenerCategoriasPorFiltro($categorianombre, $Typ){
     return $programas;
 }
 
-function obtenerProgramaPorCodigo($programacod){
+function obtenerCategoriaPorCodigo($programacod){
     $programa = array();
-    $sqlstr = sprintf("SELECT *FROM programas where programacod = '%s';",valstr($programacod));
+    $sqlstr = sprintf("SELECT *FROM portafolio_categoria where categoriaportafolio = '%s';",valstr($programacod));
     $programa = obtenerUnRegistro($sqlstr);
     return $programa;
 }
@@ -42,38 +42,22 @@ function insertPrograma($programacod,$programadsc, $programaest,
 }
 
 
-function updatePrograma($programacod, $programadsc, $programaest,
-                       $programatyp){
+function updateCategoria($categoriaportafolio,
+              $categoriaportafolioestado){
 
-    /*
-    update programas set programadsc= 'prueba de update', programaest='ACT', programatyp='ADM'
-where programacod= 'gabo'
-    */
-
-    $strsql = "UPDATE `programas` set
-                `programadsc` = '%s', `programaest` = '%s', `programatyp` = '%s'
+    $strsql = "UPDATE `portafolio_categoria` set
+                `categoriaportafolioestado` = '%s'
                 where `programacod` = '%s';";
-    $strsql = sprintf($strsql, $programadsc, $programaest,$programatyp, valstr($programacod));
+    $strsql = sprintf($strsql, $categoriaportafolioestado, $categoriaportafolio);
 
     $affected = ejecutarNonQuery($strsql);
     return ($affected > 0);
 }
 
 
-function getTiposProgramas(){
+function getEstadoCategoria(){
   return array(
-    array("codigo"=>"ADM","valor"=>"Administrador"),
-    array("codigo"=>"USR","valor"=>"Usuario"),
-    array("codigo"=>"CNS","valor"=>"Consultor"),
-    array("codigo"=>"CLT","valor"=>"Cliente")
-  );
-}
-
-function getEstadoProgramas(){
-  return array(
-    array("codigo"=>"PND","valor"=>"Sin Activar"),
     array("codigo"=>"ACT","valor"=>"Activo"),
-    array("codigo"=>"SPD","valor"=>"Suspendido"),
     array("codigo"=>"INA","valor"=>"Inactivo")
   );
 }
