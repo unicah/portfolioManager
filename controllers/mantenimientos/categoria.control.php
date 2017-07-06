@@ -1,7 +1,7 @@
 <?php
 
   /* programa Controller
-   * 2017-06-20
+   * 2017-07-06
    * Created By JCHR14
    * Bitacora de Cambios:
    * -----------------------------------------------------------------------
@@ -30,13 +30,14 @@
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         if(isset($_GET["mode"])){
           $viewData["mode"] = $_GET["mode"];
-          $viewData["categoriaportafolio"] =$_GET["categoriaportafolio"];
+          $viewData["categoriaportafolio"] =$_GET["code"];
           switch ($viewData["mode"]) {
             case 'INS':
               $viewData["modeDesc"] = "Nueva Categoria";
               break;
             case 'UPD':
               $viewData["modeDesc"] = "Editar ";
+              $viewData["readonly"] = 'readonly="readonly"';
               break;
             case 'DEL':
               $viewData["modeDesc"] = "Eliminar ";
@@ -46,7 +47,7 @@
               $viewData["readonly"] = 'readonly="readonly"';
               break;
             default:
-              redirectWithMessage("Accion Solicitada no disponible.", "index.php?page=admin");
+              redirectWithMessage("Accion Solicitada no disponible.", "index.php?page=portafolioww");
               die();
           }
           // tocken para evitar ataques xhr
@@ -87,7 +88,7 @@
                     }*/
 
                   if($lastId){
-                    redirectWithMessage("Programa Creado Satisfactoriamente.", "index.php?page=programas");
+                    redirectWithMessage("Programa Creado Satisfactoriamente.", "index.php?page=portafolioww");
                     die();
                   }else{
                     $viewData["errores"][] = "Error al crear el programa";
@@ -98,6 +99,7 @@
                 break;
 
               case 'UPD':
+                $viewData["readonly"] = 'readonly="readonly"';
                 if(!$viewData["haserrores"] && !empty($viewData["categoriaportafolio"])){
                   //Se obtiene el usuario
                   //$programa = obtenerProgramaPorCodigo($viewData["programacod"]);
@@ -107,7 +109,7 @@
                               );
                   // Si no hay error se redirige a la lista de usuarios
                   if($affected){
-                    redirectWithMessage("Programa Actualizado Satisfactoriamente.", "index.php?page=programas");
+                    redirectWithMessage("Programa Actualizado Satisfactoriamente.", "index.php?page=portafolioww");
                     die();
                   }else{
                   // Se muestra un error sobre la edicion del usuario
@@ -126,7 +128,7 @@
                 $viewData["readonly"] = 'readonly="readonly"';
                 break;
               default:
-                redirectWithMessage("Acción Solicitada no disponible.", "index.php?page=programas");
+                redirectWithMessage("Acción Solicitada no disponible.", "index.php?page=portafolioww");
                 die();
             }
 
@@ -143,7 +145,7 @@
     if(!empty($viewData["categoriaportafolio"])){
       $programa = obtenerCategoriaPorCodigo($viewData["categoriaportafolio"]);
       mergeFullArrayTo($programa,$viewData);
-      $viewData["modeDesc"] .= $viewData["categoriaportafolio"];
+      $viewData["modeDesc"] .= $viewData["categoriaportafolionombre"];
       $viewData["estadoCategoria"] = addSelectedCmbArray($viewData["estadoCategoria"],"codigo",$viewData["categoriaportafolioestado"]);
     }
     // Cambia la seguridad del formulario para evitar ataques XHR.

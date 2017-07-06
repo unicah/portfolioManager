@@ -1,14 +1,6 @@
 <?php
 require_once("libs/dao.php");
-/*
-select portafolio_categoria.categoriaportafolio,
-portafolio_categoria.categoriaportafolionombre,
-portafolio_categoria.categoriaportafolioestado,
-portafolio.portafolionombre
-from portafolio_categoria  inner join portafolio
-on portafolio_categoria.portafoliocodigo = portafolio.portafoliocodigo;
 
-*/
 function obtenerCategoriasPorFiltro($categorianombre, $Typ){
     $programas = array();
     $sqlstr = sprintf("SELECT portafolio_categoria.categoriaportafolio,

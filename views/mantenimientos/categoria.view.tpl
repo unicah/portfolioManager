@@ -29,21 +29,17 @@
     </div>
     <div class="row s-padding">
       <label class="col-sm-5">Estado de la Categoria</label>
-      <span class="select col-sm-7"><select {{if readonly}}disabled readonly="readonly" {{endif readonly}} class="col-md-12" id="cmbEstado" name="cmbEstado">
-        {{foreach categoriaportafolioestado}}
+      <span class="select col-sm-7"><select class="col-md-12" id="cmbEstado" name="cmbEstado">
+        {{foreach estadoCategoria}}
           <option value="{{codigo}}" {{selected}}>{{valor}}</option>
-        {{endfor categoriaportafolioestado}}
+        {{endfor estadoCategoria}}
       </select> </span>
     </div>
 
 
-    {{ifnot readonly}}
-    {{endifnot readonly}}
     <div class="row s-padding">
       <div class="col-md-12 right">
-        {{ifnot readonly}}
         <button id="btnConfirm"><span class=""></span>Confirmar</button>
-        {{endifnot readonly}}
         <button id="btnCancel">Cancelar</button>
       </div>
     </div>
@@ -60,7 +56,7 @@
       $("#btnCancel").click(function(e){
           e.preventDefault();
           e.stopPropagation();
-          window.location.assign("index.php?page=programas");
+          window.location.assign("index.php?page=portafolioww");
           });
     });
 </script>
