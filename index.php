@@ -113,6 +113,12 @@
                    require_once("controllers/portafolios/documentos/docupload.control.php"):
                    mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                  die();
+          case 'docuview':
+                 ($logged)?
+                  require_once("controllers/portafolios/documentos/docuview.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
+            break;
 
         }
     // Elimina el menu administrativo
