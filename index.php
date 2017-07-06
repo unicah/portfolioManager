@@ -133,7 +133,7 @@
 
           case "categoria":
                  ($logged)?
-                   require_once("controllers/mantenimientos/categoria.control.php"):
+                   require_once("controllers/portafolios/categoria.control.php"):
                    mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                  die();
 

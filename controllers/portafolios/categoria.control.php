@@ -8,7 +8,7 @@
    *| Fecha   | Usuario | Descripción                                      |
    * -----------------------------------------------------------------------
    */
-  require_once('models/mantenimientos/categorias.model.php');
+  require_once('models/portafolios/categorias.model.php');
   require_once("libs/validadores.php");
   function run(){
     $viewData =array();
@@ -126,7 +126,7 @@
                 $viewData["readonly"] = 'readonly="readonly"';
                 break;
               default:
-                redirectWithMessage("Acción Solicitada no disponible.", "index.php?page=programas");
+                redirectWithMessage("Acción Solicitada no disponible.", "index.php?page=portafolioww");
                 die();
             }
 
@@ -151,7 +151,7 @@
       $viewData["tocken"] = md5(time()+"usertr");
       $_SESSION["user_tocken"] = $viewData["tocken"];
     }
-    renderizar("mantenimientos/categoria", $viewData);
+    renderizar("portafolios/categoria", $viewData);
   }
 
   run();
