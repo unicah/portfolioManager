@@ -32,7 +32,7 @@
         <header style="position:relative">
             Colaboradores
             <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
-              <a href class="btn"><span class="icon ion-plus-circled"></span></a>
+              <a href="index.php?page=colaboradores" class="btn"><span class="icon ion-plus-circled"></span></a>
             </span>
         </header>
         <main>
