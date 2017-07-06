@@ -114,19 +114,24 @@
                    require_once("controllers/portafolios/documentos/docupload.control.php"):
                    mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                  die();
-            case "colaboradores":
-                       ($logged)?
-                         require_once("controllers/portafolios/colaboradores.control.php"):
-                         mw_redirectToLogin($_SERVER["QUERY_STRING"]);
-                       die();
+          case 'docuview':
+                 ($logged)?
+                  require_once("controllers/portafolios/documentos/docuview.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
+          case "colaboradores":
+                 ($logged)?
+                   require_once("controllers/portafolios/colaboradores.control.php"):
+                   mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                 die();
 
-            case "editarflujos":
+          case "editarflujos":
                   ($logged)?
                   require_once("controllers/portafolios/editarflujos.control.php"):
                   mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                   die();
 
-           case "categoria":
+          case "categoria":
                  ($logged)?
                    require_once("controllers/mantenimientos/categoria.control.php"):
                    mw_redirectToLogin($_SERVER["QUERY_STRING"]);
