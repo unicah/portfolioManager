@@ -26,11 +26,13 @@
                 e.stopPropagation();
                 var x = document.createElement("FORM");
                 x.action = "index.php?page=portafolioww";
+                x.style="display:none";
                 x.method="POST";
                 var y = document.createElement("INPUT");
                 y.name="prtfcod";
                 y.value=$(this).data('prtfcod');
                 x.appendChild(y);
+                document.body.append(x);
                 x.submit();
               }
           );

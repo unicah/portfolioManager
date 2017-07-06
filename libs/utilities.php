@@ -70,4 +70,25 @@
         }
         return $arreglo;
     }
+
+    function sendFile($source,$filename){
+      $fp = @fopen($source, 'rb');
+      header('Content-Type: "application/octet-stream"');
+      header('Content-Disposition: attachment; filename="'.$filename.'"');
+      header('Expires: 0');
+      header("Content-Transfer-Encoding: binary");
+      if (strstr($_SERVER['HTTP_USER_AGENT'], "MSIE"))
+      {
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Pragma: public');
+      }
+      else
+      {
+        header('Pragma: no-cache');
+      }
+      header("Content-Length: ".filesize($yourfile));
+      fpassthru($fp);
+      fclose($fp);
+      die();
+    }
 ?>

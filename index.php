@@ -108,6 +108,12 @@
                    require_once("controllers/portafolios/portafolioww.control.php"):
                    mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                  die();
+           case "docupload":
+                 ($logged)?
+                   require_once("controllers/portafolios/documentos/docupload.control.php"):
+                   mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                 die();
+
         }
     // Elimina el menu administrativo
 
