@@ -1,6 +1,6 @@
 
 <h1>
-  Gestion de Roles
+  Gestión de Roles
 </h1>
 <div class="row depth-1 m-padding">
   <form action="index.php?page=roles" method="post" class="col-md-8 col-offset-2">
@@ -31,9 +31,6 @@
         <td>{{rolesdsc}}</td>
         <td class="sd-hide">{{rolesest}}</td>
         <td class="center">
-
-
-
           <a href="index.php?page=rol&rolescod={{rolescod}}&mode=UPD" class="btn depth-1 s-margin"><span class="ion-edit"></span></a>
           <a href="index.php?page=rol&rolescod={{rolescod}}&mode=DSP" class="btn depth-1 s-margin"><span class="ion-eye"></span></a>
         </td>
