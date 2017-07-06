@@ -17,7 +17,7 @@ Gestión de colaboradores
     <tr>
       <th>Correo</th>
       <th>Nombre</th>
-      <th class="sd-hide">Roles</th>
+      <th class="sd-hide">Rol</th>
 
     </tr>
   </thead>

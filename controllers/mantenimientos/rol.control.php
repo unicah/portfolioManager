@@ -5,10 +5,7 @@
 *
 */
 
-
-
-
-  require_once('models/mantenimientos/mantenimiento.model.php');
+  require_once('models/mantenimientos/roles.model.php');
   require_once("libs/validadores.php");
   function run(){
     $viewData =array();
@@ -18,6 +15,7 @@
     $viewData["errores"] = array();
     $viewData["haserrores"] = false;
     $viewData["readonly"] = false;
+    $viewData["isupdate"] = false;
 
     //Arreglo para el combo de Estado de roles
     $viewData["estadoRol"]= getEstadoRol();
@@ -32,6 +30,7 @@
               $viewData["modeDesc"] = "Nuevo Rol";
               break;
             case 'UPD':
+              $viewData["isupdate"] = 'readonly="readonly"';
               $viewData["modeDesc"] = "Editar ";
               break;
             case 'DEL':
@@ -83,6 +82,7 @@
                break;
 
              case 'UPD':
+                 $viewData["isupdate"] = 'readonly="readonly"';
                if(!$viewData["haserrores"] && !empty($viewData["rolescod"])){
                  $affected = updateRoles($viewData["rolescod"],
                                $viewData["rolesdsc"],
