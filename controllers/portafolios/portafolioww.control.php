@@ -31,6 +31,7 @@
       $viewData["colaboradores"] = obtenerColaboradoresDelPortafolio($viewData["portafoliocodigo"]);
       $viewData["documentos"] = obtenerDocumentosDelPortafolio($viewData["portafoliocodigo"],'');
       $viewData["flujos"]=obtenerFlujosPortafolio($viewData["portafoliocodigo"],'');
+      $viewData["categorias"]= obtenerCategoriasPortafolio($viewData["portafoliocodigo"],'');
 
     }
 

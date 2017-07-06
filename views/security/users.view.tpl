@@ -11,6 +11,7 @@
       </div>
   </form>
 </div>
+
 <div class="row depth-1">
   <table class="col-md-12">
     <thead>
@@ -19,7 +20,6 @@
         <th>Nombre</th>
         <th class="sd-hide">Tipo</th>
         <th class="sd-hide">Estado</th>
-        <th class="sd-hide">Departamento</th>
         <th><a href="index.php?page=user&usrcod=0&mode=INS" class="btn depth-1 s-margin">
           <span class="ion-plus-circled"></span>
           </a></th>
@@ -32,7 +32,6 @@
         <td>{{usuarionom}}</td>
         <td class="sd-hide">{{usuariotipo}}</td>
         <td class="sd-hide">{{usuarioest}}</td>
-        <td class="sd-hide">Depto</td>
         <td class="center">
           <a href="index.php?page=user&usrcod={{usuariocod}}&mode=UPD" class="btn depth-1 s-margin"><span class="ion-edit"></span></a>
           <a href="index.php?page=user&usrcod={{usuariocod}}&mode=DSP" class="btn depth-1 s-margin"><span class="ion-eye"></span></a>
@@ -42,6 +41,8 @@
     </tbody>
   </table>
 </div>
+
+
 <script>
     $().ready(
     function(){

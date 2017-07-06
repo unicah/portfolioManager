@@ -72,6 +72,16 @@
         </header>
         <main>
             <table>
+              {{foreach categorias}}
+                <tr>
+                  <td>
+                    {{categoriaportafolionombre}}
+                  </td>
+                  <td class="center">
+                    <a href="index.php?page=categoria&mode=UPD&code={{categoriaportafolio}}" class="btn"><span class="icon ion-edit"></span></a>
+                  </td>
+                </tr>
+                {{endfor categorias}}
 
             </table>
         </main>
