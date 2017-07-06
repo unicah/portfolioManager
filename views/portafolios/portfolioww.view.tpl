@@ -18,7 +18,7 @@
                      <td>{{documentoportafoliocodigo}}</td>
                      <td>{{documentodescripcion}}</td>
                      <td>{{categoriaportafolionombre}}</td>
-                     <td><a href="" class="btn depth-1 s-margin"><span class="ion-eye"></span></a></td>
+                     <td><a href="index.php?page=docuview" class="btn depth-1 s-margin"><span class="ion-eye"></span></a></td>
                   </tr>
                 {{endfor documentos}}
               </tbody>
