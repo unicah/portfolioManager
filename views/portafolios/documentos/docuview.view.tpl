@@ -23,15 +23,36 @@
         </main>
       </section>
     </div>
+    <div class="col-md-12 col-sm-12">
+      <div class="card">
+        <section class="panel">
+          <header style="position:relative">
+              Comentarios
+          </header>
+          <main>
+              <table>
+                <tbody>
+                  {{foreach documentos}}
+                    <tr>
+                       <td>{{documentoportafoliocodigo}}</td>
+                       <td>{{documentodescripcion}}</td>
+                       <td>{{categoriaportafolionombre}}</td>
+                       <td><a href="" class="btn depth-1 s-margin"><span class="ion-eye"></span></a></td>
+                    </tr>
+                  {{endfor documentos}}
+                </tbody>
+              </table>
+          </main>
+        </section>
+      </div>
+    </div>
   </div>
+
   <div class="col-md-4 col-sm-12">
     <div class="card">
       <section class="panel">
         <header style="position:relative">
-            Descargas
-            <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
-              <a href class="btn"><span class="icon ion-ios-cloud-download"></span></a>
-            </span>
+            Resumen
         </header>
         <main>
             <table class="full-width">
@@ -40,9 +61,6 @@
                   <td>
                     {{usuarionom}}
                   </td>
-                  <td class="center">
-                    <a href class="btn"><span class="icon ion-eye"></span></a>
-                  </td>
                 </tr>
                 {{endfor colaboradores}}
             </table>
@@ -50,23 +68,16 @@
       </section>
       <section class="panel">
         <header style="position:relative">
-            Cambios Realizados
-            <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
-              <a href class="btn"><span class="icon ion-eye"></span></a>
-            </span>
+            Colaboradores
         </header>
         <main>
             <table>
-
             </table>
         </main>
       </section>
       <section class="panel">
         <header style="position:relative">
             Lectura de Documento
-            <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
-              <a href class="btn"><span class="icon ion-eye"></span></a>
-            </span>
         </header>
         <main>
             <table>
