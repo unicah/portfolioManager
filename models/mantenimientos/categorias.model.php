@@ -39,7 +39,7 @@ function updateCategoria($categoriaportafolio,
 
     $strsql = "UPDATE `portafolio_categoria` set
                 `categoriaportafolioestado` = '%s'
-                where `programacod` = '%s';";
+                where `categoriaportafolio` = '%s';";
     $strsql = sprintf($strsql, $categoriaportafolioestado, $categoriaportafolio);
 
     $affected = ejecutarNonQuery($strsql);

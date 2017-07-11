@@ -109,7 +109,7 @@
                               );
                   // Si no hay error se redirige a la lista de usuarios
                   if($affected){
-                    redirectWithMessage("Programa Actualizado Satisfactoriamente.", "index.php?page=portafolioww");
+                    redirectWithMessage("Categoria Actualizado Satisfactoriamente.", "index.php?page=portafolioww");
                     die();
                   }else{
                   // Se muestra un error sobre la edicion del usuario
