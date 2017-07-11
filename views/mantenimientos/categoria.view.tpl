@@ -18,7 +18,7 @@
     <input type="hidden" name="categoriaportafolio" value="{{categoriaportafolio}}"  />
     <div class="row">
 
-      <div class="row s-padding">
+      <div class="row s-padding" {{if readonly}} style=" visibility:hidden" {{endif readonly}} >
         <label class="col-sm-5">Código del Categoria: </label>
         <input class="col-sm-7" {{readonly}} type="text" name="txtCodigoCategoria" id="txtCodigoCategoria" value="{{categoriaportafolio}}" placeholder="Código del categoria portafolio" />
       </div>

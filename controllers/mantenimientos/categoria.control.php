@@ -60,6 +60,7 @@
         if(isset($_POST["tocken"]) && $_POST["tocken"] === $_SESSION["user_tocken"]){
           if(isset($_POST["mode"])){
             $viewData["mode"] = $_POST["mode"];
+            $viewData["portafoliocodigo"] =$_SESSION["portafoliocodigo"];
             $viewData["categoriaportafolio"] = $_POST["txtCodigoCategoria"];
             $viewData["categoriaportafolionombre"] = $_POST["txtNombre"];
             $viewData["categoriaportafolioestado"] =  $_POST["cmbEstado"];
@@ -73,14 +74,9 @@
 
             switch ($viewData["mode"]) {
               case 'INS':
-                /*    $codigo=$viewData["programacod"];
-                    $viewData["codigo"]="";
-                    $viewData["codigo"]=obtenerProgramaPorCodigo($codigo);*/
-
-                    /*if(empty($viewData["codigo"])){*/
-                      $lastId = insertPrograma($viewData["programacod"],$viewData["programadsc"],
-                                    $viewData["programaest"],
-                                    $viewData["programatyp"]
+                      $lastId = insertCategoria($viewData["categoriaportafolio"], $viewData["portafoliocodigo"],
+                                    $viewData["categoriaportafolionombre"],
+                                    $viewData["categoriaportafolioestado"]
                                   );
                   /*  }
                     else{
@@ -88,7 +84,7 @@
                     }*/
 
                   if($lastId){
-                    redirectWithMessage("Programa Creado Satisfactoriamente.", "index.php?page=portafolioww");
+                    redirectWithMessage("Categoria Creado Satisfactoriamente.", "index.php?page=portafolioww");
                     die();
                   }else{
                     $viewData["errores"][] = "Error al crear el programa";

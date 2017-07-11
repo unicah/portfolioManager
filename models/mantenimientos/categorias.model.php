@@ -21,11 +21,19 @@ function obtenerCategoriaPorCodigo($programacod){
     return $programa;
 }
 
-function insertPrograma($programacod,$programadsc, $programaest,
-                       $programatyp){
-    $strsql = "INSERT INTO `programas` (
-        `programacod`,`programadsc`, `programaest`, `programatyp`) VALUES ('%s','%s', '%s','%s');";
-    $strsql = sprintf($strsql,valstr($programacod) , $programadsc, $programaest, $programatyp);
+/*
+INSERT INTO `portfoliomanager`.`portafolio_categoria` (`categoriaportafolio`,
+`portafoliocodigo`, `categoriaportafolionombre`,
+`categoriaportafolioestado`) VALUES (NULL, NULL, NULL, NULL);
+
+*/
+
+function insertCategoria($categoriaportafolio,$portafoliocodigo,
+                       $categoriaportafolionombre,$categoriaportafolioestado ){
+    $strsql = "INSERT INTO `portfoliomanager`.`portafolio_categoria` (`categoriaportafolio`,
+    `portafoliocodigo`, `categoriaportafolionombre`,
+    `categoriaportafolioestado`) VALUES ('%s',%d, '%s','%s');";
+    $strsql = sprintf($strsql, valstr($categoriaportafolio) , intval($portafoliocodigo), $categoriaportafolionombre, $categoriaportafolioestado);
 
     if(ejecutarNonQuery($strsql)){
         return true;
