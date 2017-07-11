@@ -20,7 +20,7 @@
           $viewData["code"] =$_GET["code"];
           switch ($viewData["mode"]) {
             case 'INS':
-              $viewData["modeDesc"] = "Nuevo Rol";
+              $viewData["modeDesc"] = "Nuevo flujo";
               break;
             case 'UPD':
               $viewData["modeDesc"] = "Editar ";
@@ -46,11 +46,11 @@
          if(isset($_POST["mode"])){
            $viewData["mode"] = $_POST["mode"];
            $viewData["code"] = $_POST["code"];
-           $viewData["rolesdsc"] = $_POST["txtName"];
-           $viewData["rolesest"] =  $_POST["cmbEstado"];
+           $viewData["flujosdsc"] = $_POST["txtName"];
+           $viewData["flujosest"] =  $_POST["cmbEstado"];
 
 
-           if(isEmpty($viewData["rolesdsc"])){
+           if(isEmpty($viewData["flujosdsc"])){
                $viewData["errores"][] = "Descripción en formato Incorrecto";
            }
 
@@ -58,34 +58,34 @@
 
            switch ($viewData["mode"]) {
              case 'INS':
-                     $lastId = insertRol($viewData["code"],$viewData["rolesdsc"],
-                                   $viewData["rolesest"]
+                     $lastId = insertRol($viewData["code"],$viewData["flujosdsc"],
+                                   $viewData["flujosest"]
                                  );
 
                  if($lastId){
-                   redirectWithMessage("Rol Creado Satisfactoriamente.", "index.php?page=portafolioww");
+                   redirectWithMessage("Flujo Creado Satisfactoriamente.", "index.php?page=portafolioww");
                    die();
                  }else{
-                   $viewData["errores"][] = "Error al crear el rol";
+                   $viewData["errores"][] = "Error al cambiar el flujo";
                    $viewData["haserrores"] = true;
                  }
 
-               $viewData["modeDesc"] = "Nuevo Rol";
+               $viewData["modeDesc"] = "Nuevo flujo";
                break;
 
              case 'UPD':
                if(!$viewData["haserrores"] && !empty($viewData["code"])){
                  $affected = updateRoles($viewData["code"],
-                               $viewData["rolesdsc"],
-                               $viewData["rolesest"]
+                               $viewData["flujosdsc"],
+                               $viewData["flujosest"]
                              );
                  // Si no hay error se redirige a la lista de usuarios
                  if($affected){
-                   redirectWithMessage("rol Actualizado Satisfactoriamente.", "index.php?page=portafolioww");
+                   redirectWithMessage("Flujos Actualizado Satisfactoriamente.", "index.php?page=portafolioww");
                    die();
                  }else{
                  // Se muestra un error sobre la edicion del usuario
-                   $viewData["errores"][] = "Error al editar el Rol";
+                   $viewData["errores"][] = "Error al editar el flujo";
                    $viewData["haserrores"] = true;
                  }
                }
@@ -119,8 +119,8 @@
 
     //Obtiene los datos del usuario y gestiona los valores de los arreglos
     if(!empty($viewData["code"])){
-      $roles = obtenerRolesPorCodigo($viewData["code"]);
-      mergeFullArrayTo($roles,$viewData);
+      $flujos = obtenerflujosPorCodigo($viewData["code"]);
+      mergeFullArrayTo($flujos,$viewData);
       $viewData["modeDesc"] .= $viewData["code"];
     //  $viewData["estadoRol"] = addSelectedCmbArray($viewData["estadoRol"],"codigo",$viewData["rolesest"]);
     }
