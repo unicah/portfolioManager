@@ -90,7 +90,7 @@
         <header style="position:relative">
             Flujos
             <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
-              <a href class="btn"><span class="icon ion-plus-circled"></span></a>
+              <a href="index.php?page=editarflujos&mode=INS&code={{flujoportafolio}}" class="btn"><span class="icon ion-plus-circled"></span></a>
             </span>
         </header>
         <main>

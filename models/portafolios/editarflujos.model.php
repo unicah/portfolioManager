@@ -3,43 +3,42 @@
 
     require_once("libs/dao.php");
 
-    function obtenerflujos($flujoCodigo){
+    function obtenerflujos($Code){
       $flujo = array();
-      $sqlstr = sprintf("SELECT 'portafoliocodigo','flujoportafolionombre','flujoportafolioestado' FROM portafolio_flujo WHERE flujoportafolio = %d;",$rolCodigo);
-      $rol = obtenerUnRegistro($sqlstr);
-      return $rol;
+      $sqlstr = sprintf("SELECT 'portafoliocodigo','flujoportafolionombre','flujoportafolioestado' FROM portafolio_flujo WHERE flujoportafolio = %d;",$Code);
+      $flujo = obtenerUnRegistro($sqlstr);
+      return $flujo;
     }
-    function obtenerRolesDsc($rolDsc){
-      $rol = array();
-      $sqlstr = sprintf("SELECT 'portafoliocodigo','flujoportafolionombre','flujoportafolioestado' FROM roles WHERE rolesdsc = %d;",$rolDsc);
-      $rol = obtenerUnRegistro($sqlstr);
-      return $rol;
+    function obtenerflujosDsc($flujosDsc){
+      $flujo = array();
+      $sqlstr = sprintf("SELECT 'portafoliocodigo','flujoportafolionombre','flujoportafolioestado' FROM portafolio_flujo WHERE flujoportafolionombre = %d;",$flujosDsc);
+      $flujo = obtenerUnRegistro($sqlstr);
+      return $flujo;
     }
 
-    function obtenerRolesPorFiltro($rolesdsc, $userType){
+    function obtenerflujosPorFiltro($flujosdsc, $userType){
         $usuario = array();
-        $sqlstr = sprintf("SELECT `portafoliocodigo`,`flujoportafolionombre`, `flujoportafolioestado`
+        $sqlstr = sprintf("SELECT 'portafoliocodigo','flujoportafolionombre', 'flujoportafolioestado'
 
-           FROM roles where rolescod like '%s' and rolesdsc like '%s';", $rolesdsc.'%' , $userType);
+           FROM portafolio_flujo where flujoportafolio like '%s' and flujoportafolionombre like '%s';", $flujosdsc.'%' , $userType);
         $usuarios = obtenerRegistros($sqlstr);
         return $usuarios;
     }
-    function getEstadoRol(){
+    function getEstadoflujo(){
       return array(
-        array("codigo"=>"PND","valor"=>"Sin Activar"),
         array("codigo"=>"ACT","valor"=>"Activo"),
         array("codigo"=>"INA","valor"=>"Inactivo")
       );
     }
-    function obtenerRolesPorCodigo($rolescod){
-        $roles = array();
-        $sqlstr = sprintf("SELECT rolescod, rolesdsc, rolesest FROM roles WHERE rolescod = '%s'",$rolescod);
-        $roles = obtenerUnRegistro($sqlstr);
-        return $roles;
+    function obtenerflujosPorCodigo($code){
+        $flujos = array();
+        $sqlstr = sprintf("SELECT *FROM portafolio_flujo WHERE flujoportafolio = '%s'",$code);
+        $flujos = obtenerUnRegistro($sqlstr);
+        return $flujos;
     }
-    function insertRol($rolescod,$rolesdsc, $rolesest){
-        $strsql = "INSERT INTO `roles` (`rolescod`, `rolesdsc`, `rolesest`) VALUES ('%s','%s', '%s');";
-        $strsql = sprintf($strsql,valstr($rolescod) , $rolesdsc, $rolesest);
+    function insertflujo($code,$flujosdsc, $flujosest){
+        $strsql = "INSERT INTO `portafolio_flujo` (`portafoliocodigo`, `flujoportafolionombre`, `flujoportafolioestado`) VALUES ('%s','%s', '%s');";
+        $strsql = sprintf($strsql,valstr($code) , $flujosdsc, $flujosest);
 
         if(ejecutarNonQuery($strsql)){
             return true;
@@ -47,22 +46,28 @@
         return 0;
     }
 
-    function insertRol2($rolescod, $rolesdsc, $rolesest ){
+    /*
+INSERT INTO `portfoliomanager`.`portafolio_flujo` (`flujoportafolio`,
+`portafoliocodigo`, `flujoportafolionombre`,
+ `flujoportafolioestado`) VALUES (NULL, NULL, NULL, NULL);
+    */
 
-      $strsql = " INSERT INTO `roles` (`rolescod`, `rolesdsc`, `rolesest`) VALUES ('%s', '%s', '%s');";
+    function insertflujo2($flujoportafolio, $portafoliocodigo, $flujoportafolionombre, $flujoportafolioestado ){
 
-      $strsql = sprintf($strsql, valstr($rolescod), ($rolesdsc),  $rolesest);
+      $strsql = " INSERT INTO `portfoliomanager`.`portafolio_flujo` (`flujoportafolio`,
+      `portafoliocodigo`, `flujoportafolionombre`,
+       `flujoportafolioestado`) VALUES ('%s', %d, '%s', '%s');";
+
+      $strsql = sprintf($strsql, valstr($flujoportafolio), intval($portafoliocodigo), ($flujoportafolionombre),  $flujoportafolioestado);
         if(ejecutarNonQuery($strsql)){
           return true;
         }
         return 0;
     }
 
-    function updateRoles($rolescod, $rolesdsc, $rolesest){
-      $strsql = "UPDATE `roles` SET `rolesdsc`='%s', `rolesest`='%s' WHERE `rolescod`='%s';";
-        $strsql = sprintf($strsql,  $rolesdsc,   $rolesest, valstr($rolescod));
+    function updateflujo($code, $flujosest){
+      $strsql = "UPDATE `portafolio_flujo` SET  `flujoportafolioestado`='%s' WHERE `flujoportafolio`='%s';";
+        $strsql = sprintf($strsql, $flujosest, valstr($code));
       $affected = ejecutarNonQuery($strsql);
       return ($affected > 0);
-    }
-
     }
