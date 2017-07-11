@@ -107,13 +107,13 @@
                   $affected = updateCategoria($viewData["categoriaportafolio"],
                                 $viewData["categoriaportafolioestado"]
                               );
-                  // Si no hay error se redirige a la lista de usuarios
+                  // Si no hay error se redirige a la lista de categorias
                   if($affected){
                     redirectWithMessage("Categoria Actualizado Satisfactoriamente.", "index.php?page=portafolioww");
                     die();
                   }else{
-                  // Se muestra un error sobre la edicion del usuario
-                    $viewData["errores"][] = "Error al editar el usuario";
+                  // Se muestra un error sobre la edicion de la categoria
+                    $viewData["errores"][] = "Error al editar la categoria";
                     $viewData["haserrores"] = true;
                   }
                 }
