@@ -17,7 +17,8 @@ Gestión de colaboradores
     <tr>
       <th>Correo</th>
       <th>Nombre</th>
-      <th class="sd-hide">Roles</th>
+      <th class="sd-hide">Rol</th>
+      <th>Añadir</th>
 
     </tr>
   </thead>
@@ -26,12 +27,17 @@ Gestión de colaboradores
     <tr>
       <td>{{usuarioemail}}</td>
       <td>{{usuarionom}}</td>
-
-
+      <td>
+        <span class="select col-sm-12"><select {{if readonly}}disabled readonly="readonly" {{endif readonly}} class="col-md-12" id="cmbEstado" name="cmbEstado">
+          {{foreach rolUsuarios}}
+        <option value="{{codigo}}" {{selected}}>{{valor}}</option>
+          {{endfor rolUsuarios}}
+    </select> </span>
+      </td>
       <td class="center">
-        <th><a href class="btn depth-1 s-margin">
+        <a href class="btn depth-1 s-margin">
           <span class="ion-plus-circled"></span>
-          </a></th>
+          </a>
         </td>
     </tr>
     {{endfor usuarios}}
