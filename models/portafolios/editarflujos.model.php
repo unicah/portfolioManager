@@ -36,16 +36,6 @@
         $flujos = obtenerUnRegistro($sqlstr);
         return $flujos;
     }
-    function insertflujo($code,$flujosdsc, $flujosest){
-        $strsql = "INSERT INTO `portafolio_flujo` (`portafoliocodigo`, `flujoportafolionombre`, `flujoportafolioestado`) VALUES ('%s','%s', '%s');";
-        $strsql = sprintf($strsql,valstr($code) , $flujosdsc, $flujosest);
-
-        if(ejecutarNonQuery($strsql)){
-            return true;
-        }
-        return 0;
-    }
-
     /*
 INSERT INTO `portfoliomanager`.`portafolio_flujo` (`flujoportafolio`,
 `portafoliocodigo`, `flujoportafolionombre`,
@@ -54,7 +44,7 @@ INSERT INTO `portfoliomanager`.`portafolio_flujo` (`flujoportafolio`,
 
     function insertflujo2($flujoportafolio, $portafoliocodigo, $flujoportafolionombre, $flujoportafolioestado ){
 
-      $strsql = " INSERT INTO `portfoliomanager`.`portafolio_flujo` (`flujoportafolio`,
+      $strsql = " INSERT INTO `portafolio_flujo` (`flujoportafolio`,
       `portafoliocodigo`, `flujoportafolionombre`,
        `flujoportafolioestado`) VALUES ('%s', %d, '%s', '%s');";
 
@@ -65,9 +55,9 @@ INSERT INTO `portfoliomanager`.`portafolio_flujo` (`flujoportafolio`,
         return 0;
     }
 
-    function updateflujo($code, $flujosest){
-      $strsql = "UPDATE `portafolio_flujo` SET  `flujoportafolioestado`='%s' WHERE `flujoportafolio`='%s';";
-        $strsql = sprintf($strsql, $flujosest, valstr($code));
+    function updateflujo($flujoportafolio, $portafoliocodigo, $flujoportafolioestado){
+      $strsql = "UPDATE `portafolio_flujo` SET  `flujoportafolioestado`='%s' WHERE `flujoportafolio`='%s' and `portafoliocodigo`=%d;";
+        $strsql = sprintf($strsql, $flujoportafolioestado, valstr($flujoportafolio), intval($portafoliocodigo));
       $affected = ejecutarNonQuery($strsql);
       return ($affected > 0);
     }

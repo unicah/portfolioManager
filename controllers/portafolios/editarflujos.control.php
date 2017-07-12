@@ -38,12 +38,12 @@
             die();
         }
         // tocken para evitar ataques xhr
-        $viewData["tocken"] = md5(time()+"usertr");
-      $_SESSION["user_tocken"] = $viewData["tocken"];
+        $viewData["tocken"] = md5(time()+"flujotr");
+      $_SESSION["flujo_tocken"] = $viewData["tocken"];
       }
     }
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-       if(isset($_POST["tocken"]) && $_POST["tocken"] === $_SESSION["user_tocken"]){
+       if(isset($_POST["tocken"]) && $_POST["tocken"] === $_SESSION["flujo_tocken"]){
          if(isset($_POST["mode"])){
            $viewData["mode"] = $_POST["mode"];
            $viewData["portafoliocodigo"]=$_SESSION["portafoliocodigo"];
@@ -77,8 +77,7 @@
              case 'UPD':
                 $viewData["readonly"] = 'readonly="readonly"';
                if(!$viewData["haserrores"] && !empty($viewData["flujoportafolio"])){
-                 $affected = updateflujo($viewData["flujoportafolio"],
-                               $viewData["flujoportafolioestado"]
+                 $affected = updateflujo($viewData["flujoportafolio"],$viewData["portafoliocodigo"],$viewData["flujoportafolioestado"]
                              );
                  // Si no hay error se redirige a la lista de usuarios
                  if($affected){
@@ -108,8 +107,8 @@
          }
        }else{
          //Cambia la seguridad del formulario
-         $viewData["tocken"] = md5(time()+"usertr");
-         $_SESSION["user_tocken"] = $viewData["tocken"];
+         $viewData["tocken"] = md5(time()+"flujotr");
+         $_SESSION["flujo_tocken"] = $viewData["tocken"];
          $viewData["errores"][] = "Error para validar información.";
        }
    }
@@ -127,8 +126,8 @@
     }
     // Cambia la seguridad del formulario para evitar ataques XHR.
     if($viewData["haserrores"]>0){
-      $viewData["tocken"] = md5(time()+"usertr");
-      $_SESSION["user_tocken"] = $viewData["tocken"];
+      $viewData["tocken"] = md5(time()+"flujotr");
+      $_SESSION["flujo_tocken"] = $viewData["tocken"];
     }
     renderizar("portafolios/editarflujos", $viewData);
   }
