@@ -50,4 +50,16 @@
     return $newDocId;
   }
 
+
+
+/*
+
+  function obtenerDocumentoPorCodigo($portcod){
+    $doctc =array();
+    $sqlstr = sprintf("SELECT `documentodescripcion`
+    FROM `portafolio_documento` WHERE `documentoportafoliocodigo` = '%s'; ", $portcod,'%' );
+    $doctc = obtenerRegistros($sqlstr);
+    return $doctc;
+
+  }*/
 ?>
