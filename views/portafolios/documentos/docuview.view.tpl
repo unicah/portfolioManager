@@ -54,17 +54,16 @@
         <header style="position:relative">
             Resumen
         </header>
-        <main>
-            <table class="full-width">
-              {{foreach colaboradores}}
-                <tr>
-                  <td>
-                    {{usuarionom}}
-                  </td>
-                </tr>
-                {{endfor colaboradores}}
-            </table>
-        </main>
+        <div class="row">
+            <div class="col-sm-3">
+              <div class="center"><span class="ion-android-chat"></span>&nbsp;{{portafolio_colaboradores}}</div>
+              <div class="center"><span class="icon ion-fork-repo"></span>&nbsp;{{portafolio_documentos}}</div>
+            </div>
+            <div class="col-sm-8">
+                <div><span class="icon ion-ios-people"></span>&nbsp;{{departmanetodesc}}</div>
+                <div><span class="icon ion-android-download"></span>&nbsp;{{departmanetodesc}}</div>
+            </div>
+        </div>
       </section>
       <section class="panel">
         <header style="position:relative">
