@@ -10,9 +10,18 @@
               <a href="index.php?page=docupload&mode=INS" class="btn"><span class="icon ion-plus-circled"></span></a>
             </span>
         </header>
-        <main>
+        <main >
             <table>
-              <tbody>
+              <thead>
+              <tr>
+                  <th>Codigo</th>
+                  <th>Descripcion</th>
+                  <th>Categoria</th>
+                  <th>Ver</th>
+                </tr>
+              </thead>
+              <tbody class="zebra">
+
                 {{foreach documentos}}
                   <tr>
                      <td>{{documentoportafoliocodigo}}</td>
