@@ -27,7 +27,7 @@
                      <td>{{documentoportafoliocodigo}}</td>
                      <td>{{documentodescripcion}}</td>
                      <td>{{categoriaportafolionombre}}</td>
-                     <td><a href="index.php?page=docuview&docod={{documentodescripcion}}" class="btn depth-1 s-margin"><span class="ion-eye"></span></a></td>
+                     <td><a href class="btnpw btn depth-1 s-margin" data-docod="{{documentoportafoliocodigo}}"><span class="ion-eye"></span></a></td>
                   </tr>
                 {{endfor documentos}}
               </tbody>
@@ -100,7 +100,7 @@
         <header style="position:relative">
             Flujos
             <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
-              <a href class="btn"><span class="icon ion-plus-circled"></span></a>
+              <a href="index.php?page=editarflujos&mode=INS&code={{flujoportafolio}}" class="btn"><span class="icon ion-plus-circled"></span></a>
             </span>
         </header>
         <main>
@@ -121,3 +121,26 @@
     </div>
   </div>
 </div>
+<script>
+  $().ready(
+      function(){
+        $(".btnpw").click(
+          function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            var x = document.createElement("FORM");
+            x.action = "index.php?page=docuview";
+            x.style= "display:none";
+            x.method="POST";
+            var y = document.createElement("INPUT");
+            y.name="docod";
+            y.value=$(this).data('docod');
+            x.appendChild(y);
+            document.body.append(x);
+            x.submit();
+          }
+        );
+      }
+  );
+
+</script>
