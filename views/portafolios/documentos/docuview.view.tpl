@@ -1,4 +1,4 @@
-<h1><span class="icon ion-ios-briefcase"></span>&nbsp;{{documentodescripcion}}</h1>
+<h1><span class="icon ion-ios-briefcase"></span>&nbsp;{{documentodescripcion}} ({{flujoportafolionombre}})</h1>
 <hr />
 <div class="row">
   <div class="col-md-8 col-sm-12">
