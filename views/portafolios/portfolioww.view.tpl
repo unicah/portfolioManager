@@ -18,6 +18,7 @@
                      <td>{{documentoportafoliocodigo}}</td>
                      <td>{{documentodescripcion}}</td>
                      <td>{{categoriaportafolionombre}}</td>
+                     <td><a href="index.php?page=docuview" class="btn depth-1 s-margin"><span class="ion-eye"></span></a></td>
                   </tr>
                 {{endfor documentos}}
               </tbody>
@@ -42,7 +43,7 @@
                   <td>
                     {{usuarionom}}
                   </td>
-                  <td class="center">
+                  <td class="center" style="width:70px">
                     <a href class="btn"><span class="icon ion-edit"></span></a>
                   </td>
                 </tr>
@@ -77,7 +78,7 @@
                   <td>
                     {{categoriaportafolionombre}}
                   </td>
-                  <td class="center">
+                  <td class="center" style="width:70px">
                     <a href="index.php?page=categoria&mode=UPD&code={{categoriaportafolio}}" class="btn"><span class="icon ion-edit"></span></a>
                   </td>
                 </tr>
@@ -100,7 +101,7 @@
                 <td>
                   {{flujoportafolionombre}}
                 </td>
-                <td class="center">
+                <td class="center" style="width:70px">
                   <a href="index.php?page=editarflujos&mode=UPD&code={{flujoportafolio}}" class="btn"><span class="icon ion-edit"></span></a>
                 </td>
               </tr>

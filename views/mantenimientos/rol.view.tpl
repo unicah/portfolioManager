@@ -19,7 +19,7 @@
     <div class="row">
       <div class="row s-padding">
         <label class="col-sm-5">Codigo del rol </label>
-        <input class="col-sm-7" {{readonly}} type="text" name="txtCodigo" id="txtCodigo" value="{{rolescod}}" placeholder="Codigo" />
+        <input class="col-sm-7" {{readonly}} {{isupdate}} type="text" name="txtCodigo" id="txtCodigo" value="{{rolescod}}" placeholder="Codigo" />
       </div>
     <div class="row s-padding">
       <label class="col-sm-5">Descripción</label>
