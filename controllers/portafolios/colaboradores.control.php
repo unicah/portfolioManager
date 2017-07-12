@@ -11,9 +11,19 @@
    require_once('models/portafolios/colaborador.model.php');
    require_once("libs/validadores.php");
   function run(){
+
+      $viewData =array();
+      $viewData["mode"] = "";
+      $viewData["modeDesc"] = "";
+      $viewData["tocken"] = "";
+      $viewData["errores"] = array();
+      $viewData["haserrores"] = false;
+      $viewData["readonly"] = false;
+
+
+      //$viewData = array();
       $viewData["rolUsuarios"]= getTiposUsuario();
-      $data = array();
-      $data["fltEmail"] = "";
+    //  $viewData["fltEmail"] = "";
       $filter = '';
       if(isset($_SESSION["users_context"])){
         $filter = $_SESSION["users_context"]["filter"];
@@ -22,9 +32,13 @@
       if($_SERVER["REQUEST_METHOD"] == "POST"){
         $filter = $_POST["fltEmail"];
         $_SESSION["users_context"] = array("filter"=>$filter);
+        redirectWithMessage("Actualizado Satisfactoriamente.", "index.php?page=colaboradores");
       }
-      $data["fltEmail"] = $filter;
-      $data["usuarios"] = obtenerUsuarioPorFiltro($filter,'%');
+      $viewData["fltEmail"] = $filter;
+      $viewData["usuarios"] = obtenerUsuarioPorFiltro($filter,'%');
+      //$viewData["rolUsuarios"]= getTiposUsuario();
+
+      //if($_SERVER["REQUEST_METHOD"] == "POST")
 
 
       //if(!empty($viewData["depcod"])){
@@ -37,7 +51,7 @@
 
 
 
-      renderizar("portafolios/colaborador", $data );
+      renderizar("portafolios/colaborador", $viewData );
 
 
 

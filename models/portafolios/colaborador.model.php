@@ -137,6 +137,24 @@ where a.usuariocod = %d ;";
       return ejecutarNonQuery(sprintf($sqlstr, $usercod, $rolcod));
    }
 
+   function getEstadoCategoria(){
+     return array(
+       array("codigo"=>"ACT","valor"=>"Activo"),
+       array("codigo"=>"INA","valor"=>"Inactivo")
+     );
+   }
+
+   function insertarColaborador($portafolioid, $iduser, $rol){
+     $sqlstr = "INSERT INTO `portafolio_colaboradores` (`portafoliocodigo`, `usuariocod`, `rolportafolio`,
+       `colaboradorestado`, `colaboradorfechaexpira`)
+       VALUES (%d, %d, 'ADM', 'ACT', '%s1231');";
+
+     ejecutarNonQuery(sprintf($sqlstr , $portfolioid, $iduser, $rol, intval(date('Y'))+5));
+
+
+
+   }
+
 
 
 
