@@ -147,9 +147,9 @@ where a.usuariocod = %d ;";
    function insertarColaborador($portafolioid, $iduser, $rol){
      $sqlstr = "INSERT INTO `portafolio_colaboradores` (`portafoliocodigo`, `usuariocod`, `rolportafolio`,
        `colaboradorestado`, `colaboradorfechaexpira`)
-       VALUES (%d, %d, 'ADM', 'ACT', '%s1231');";
+       VALUES (%d, %d, '%s', 'ACT', '%s1231');";
 
-     $sqlstr = (sprintf($sqlstr , $portafolioid, $iduser, intval(date('Y'))+5));
+     $sqlstr = (sprintf($sqlstr , $portafolioid, $iduser, $rol, intval(date('Y'))+5));
 
      if(ejecutarNonQuery($sqlstr)){
          return getLastInserId();
