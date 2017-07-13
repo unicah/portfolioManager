@@ -149,12 +149,44 @@ where a.usuariocod = %d ;";
        `colaboradorestado`, `colaboradorfechaexpira`)
        VALUES (%d, %d, 'ADM', 'ACT', '%s1231');";
 
-     ejecutarNonQuery(sprintf($sqlstr , $portfolioid, $iduser, $rol, intval(date('Y'))+5));
+     $sqlstr = (sprintf($sqlstr , $portafolioid, $iduser, intval(date('Y'))+5));
 
+     if(ejecutarNonQuery($sqlstr)){
+         return getLastInserId();
+     }
+     return 0;
 
 
    }
 
+   function obtenerUsuarioNotAdded($codport){
+       $usuario = array();
+       $sqlstr = sprintf("select  a.usuariocod,a.usuarioemail, a.usuarionom, a.usuarioest,
+       a.usuariotipo from usuario as a where usuariocod not in
+       (select usuariocod from portafolio_colaboradores where portafoliocodigo = 2)", $codport);
+       $usuarios = obtenerRegistros($sqlstr);
+       return $usuarios;
+   }
+
+   function obtenerXCodorol($usuariocod, $rolport){
+       $usuario = array();
+       $sqlstr = sprintf("SELECT `portafoliocodigo`, `usuariocod`, `rolportafolio` FROM portafolio_colaboradores
+         where usuariocod like '%s' and rolportafolio like '%s';",
+         $usuariocod.'%' , $rolport.'%');
+         $usuarios = obtenerRegistros($sqlstr);
+         return $usuarios;
+   }
+
+   function updateColaboradores($portafoliocod, $colaboradorcod, $rolport, $rolest, $rolfecha){
+         $strsql = "UPDATE `portafolio_colaboradores`
+         SET `portafoliocodigo`='%d', `rolportafolio`='%s', `colaboradorestado`='%s', `colaboradorfechaexpira`='%s'
+         WHERE `usuariocod`= %d;";
+
+         $strsql = sprintf($strsql, $portafoliocod, $rolport, $rolest, $rolfecha, $colaboradorcod);
+         $affected = ejecutarNonQuery($strsql);
+         return ($affected > 0);
+
+       }
 
 
 

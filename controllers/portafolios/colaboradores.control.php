@@ -10,51 +10,68 @@
    */
    require_once('models/portafolios/colaborador.model.php');
    require_once("libs/validadores.php");
-  function run(){
+   function run(){
 
       $viewData =array();
       $viewData["mode"] = "";
-      $viewData["modeDesc"] = "";
       $viewData["tocken"] = "";
       $viewData["errores"] = array();
       $viewData["haserrores"] = false;
       $viewData["readonly"] = false;
+      $viewData["action"] = "UPLOAD1";
+      $iduser = "";
+      $idpor = 2;
 
-
-      //$viewData = array();
       $viewData["rolUsuarios"]= getTiposUsuario();
-    //  $viewData["fltEmail"] = "";
+      $viewData["fltEmail"] = "";
       $filter = '';
       if(isset($_SESSION["users_context"])){
         $filter = $_SESSION["users_context"]["filter"];
       }
 
-      if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $filter = $_POST["fltEmail"];
-        $_SESSION["users_context"] = array("filter"=>$filter);
-        redirectWithMessage("Actualizado Satisfactoriamente.", "index.php?page=colaboradores");
+     if($_SERVER["REQUEST_METHOD"] == "GET"){
+        if(isset($_GET["portacod"])){
+
+          $viewData["portacod"] = intval($_GET["portacod"]);
+        }
+        else {
+        $viewData["action"] = "u";
+        }
+
+        $idpor = intval($_GET["portacod"]);
+
       }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+if(true){
+  if(true){
+       $viewData["mode"] = "INS";
+        $iduser = $_POST["gg"];
+        $rol = "ADM";
+       switch ($viewData["mode"]) {
+         case 'INS':
+                 $lastId = insertarColaborador(1, 2, $rol);
+                 redirectWithMessage("Usuario añadido Satisfactoriamente.", "index.php?page=portafolioww");
+           break;
+       }
+     }
+   }else{
+     //Cambia la seguridad del formulario
+     $viewData["tocken"] = md5(time()+"usertr");
+     $_SESSION["user_tocken"] = $viewData["tocken"];
+     $viewData["errores"][] = "Error para validar información.";
+     redirectWithMessage("Invalido", "index.php?page=colaboradores&portacod=".$idpor);
+   }
+}
+
       $viewData["fltEmail"] = $filter;
-      $viewData["usuarios"] = obtenerUsuarioPorFiltro($filter,'%');
-      //$viewData["rolUsuarios"]= getTiposUsuario();
 
-      //if($_SERVER["REQUEST_METHOD"] == "POST")
-
-
-      //if(!empty($viewData["depcod"])){
-      //$roles = obtenerDepartamentoPorCodigo($viewData["depcod"]);
-      //mergeFullArrayTo($roles,$viewData);
-      //$viewData["modeDesc"] .= $viewData["departmanetodesc"];
-    //$viewData["rolUsuarios"] = addSelectedCmbArray($viewData["rolUsuarios"],"0","0");
-      //}
-
-
-
+      $viewData["usuarios"] = obtenerUsuarioNotAdded(1);
 
       renderizar("portafolios/colaborador", $viewData );
-
-
-
 
   }
 
