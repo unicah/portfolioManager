@@ -55,7 +55,7 @@ if(true){
         $rol = "ADM";
        switch ($viewData["mode"]) {
          case 'INS':
-                 $lastId = insertarColaborador(2, 6, $rol);
+                 $lastId = insertarColaborador($_SESSION["portafoliocodigo"], 6, $rol);
                  redirectWithMessage("Usuario añadido Satisfactoriamente.", "index.php?page=portafolioww");
            break;
        }
@@ -77,7 +77,7 @@ if(true){
 
       $x = '<select class="col-md-12" id="cmbRol" name="cmbRol">';
       foreach($viewData["rolUsuarios"] as $rol){
-        $x .= '<option value="'.$rol["rolportafolio"].'">'.$rol["rolportafolionombre"].'</option>';
+      $x .= '<option value="'.$rol["rolportafolio"].'">'.$rol["rolportafolionombre"].'</option>';
       }
       $x .= '</select>';
 
