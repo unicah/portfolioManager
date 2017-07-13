@@ -18,12 +18,12 @@
     <input type="hidden" name="flujoportafolio" value="{{flujoportafolio}}"  />
     <div class="row">
       <div class="row s-padding">
-        <label class="col-sm-5">Codigo</label>
-        <input class="col-sm-7" {{readonly}} type="text" name="txtCodigo" id="txtCodigo" value="{{flujoportafolio}}" placeholder="Codigo" />
+        <label class="col-sm-5">Código</label>
+        <input class="col-sm-7" {{readonly}} type="text" name="txtCodigo" id="txtCodigo" value="{{flujoportafolio}}" placeholder="Código" />
       </div>
     <div class="row s-padding">
       <label class="col-sm-5">Descripción</label>
-      <input class="col-sm-7" {{readonly}} type="text" name="txtName" id="txtName" value="{{flujoportafolionombre}}" placeholder="Descripcion" />
+      <input class="col-sm-7" {{readonly}} type="text" name="txtName" id="txtName" value="{{flujoportafolionombre}}" placeholder="Descripción" />
     </div>
     <div class="row s-padding">
       <label class="col-sm-5">Estado</label>
@@ -55,7 +55,7 @@
       $("#btnCancel").click(function(e){
           e.preventDefault();
           e.stopPropagation();
-          window.location.assign("index.php?page=editarflujos");
+          window.location.assign("index.php?page=portafolioww");
           });
     });
 </script>
