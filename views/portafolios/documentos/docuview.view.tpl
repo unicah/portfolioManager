@@ -5,7 +5,7 @@
     <div class="card">
       <section class="panel">
         <header style="position:relative">
-            Versiones del Documento
+            Observaciones
         </header>
         <main>
             <table>
@@ -76,7 +76,7 @@
       </section>
       <section class="panel">
         <header style="position:relative">
-            Lectura de Documento
+            Versiones
         </header>
         <main>
             <table>
