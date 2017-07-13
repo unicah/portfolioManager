@@ -51,12 +51,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 if(true){
   if(true){
        $viewData["mode"] = "INS";
-        $iduser = $_POST["gg"];
-        $rol = "ADM";
+        $iduser = $_POST["usercod"];
+        $rol = $_POST["cmbRol"];
        switch ($viewData["mode"]) {
          case 'INS':
-                 $lastId = insertarColaborador($_SESSION["portafoliocodigo"], 6, $rol);
-                 redirectWithMessage("Usuario añadido Satisfactoriamente.", "index.php?page=portafolioww");
+                 $lastId = insertarColaborador($_SESSION["portafoliocodigo"], $iduser, $rol);
+                 redirectWithMessage("Usuario ".$iduser  ." añadido como ".$rol ." Satisfactoriamente.", "index.php?page=portafolioww");
            break;
        }
      }
