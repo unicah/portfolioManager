@@ -10,8 +10,8 @@
               <a href="index.php?page=docupload&mode=INS" class="btn"><span class="icon ion-plus-circled"></span></a>
             </span>
         </header>
-        <main >
-            <table>
+        <main>
+            <table style="width:100%">
               <thead>
               <tr>
                   <th>Codigo</th>
