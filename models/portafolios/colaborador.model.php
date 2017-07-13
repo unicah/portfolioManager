@@ -163,7 +163,7 @@ where a.usuariocod = %d ;";
        $usuario = array();
        $sqlstr = sprintf("select  a.usuariocod,a.usuarioemail, a.usuarionom, a.usuarioest,
        a.usuariotipo from usuario as a where usuariocod not in
-       (select usuariocod from portafolio_colaboradores where portafoliocodigo = 2)", $codport);
+       (select usuariocod from portafolio_colaboradores where portafoliocodigo = %d)", $codport);
        $usuarios = obtenerRegistros($sqlstr);
        return $usuarios;
    }

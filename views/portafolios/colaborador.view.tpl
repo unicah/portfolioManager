@@ -20,14 +20,12 @@ Gestión de colaboradores
       <td class="">{{usuarioemail}}</td>
       <td class="">{{usuarionom}}</td>
       <td class="">
-        <span class="select col-sm-12"><select class="col-md-12" id="cmbRol" name="cmbRol">
-          {{foreach rolUsuarios}}
-        <option value="{{codigo}}" {{selected}}>{{valor}}</option>
-          {{endfor rolUsuarios}}
-    </select> </span>
+        <span class="select col-sm-12">
+          {{cmb}}
+        </span>
       </td>
       <td class="center">
-        
+
           <label for="gg"></label>
           <input type="hidden" name="gg" value="{{usuariocod}}" id="{{usuariocod}}"  />
           <button id="{{usuariocod}}" class="btn depth-1 s-margin" name="gg" value="{{usuariocod}}">

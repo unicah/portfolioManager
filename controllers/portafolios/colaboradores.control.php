@@ -9,6 +9,7 @@
    * -----------------------------------------------------------------------
    */
    require_once('models/portafolios/colaborador.model.php');
+   require_once('models/portafolios/portafolios.model.php');
    require_once("libs/validadores.php");
    function run(){
 
@@ -22,7 +23,8 @@
       $iduser = "";
       $idpor = 2;
 
-      $viewData["rolUsuarios"]= getTiposUsuario();
+      $viewData["rolUsuarios"]= obtenerRolesPortafolio($_SESSION["portafoliocodigo"]);
+
       $viewData["fltEmail"] = "";
       $filter = '';
       if(isset($_SESSION["users_context"])){
@@ -53,7 +55,7 @@ if(true){
         $rol = "ADM";
        switch ($viewData["mode"]) {
          case 'INS':
-                 $lastId = insertarColaborador(1, 2, $rol);
+                 $lastId = insertarColaborador(2, 6, $rol);
                  redirectWithMessage("Usuario añadido Satisfactoriamente.", "index.php?page=portafolioww");
            break;
        }
@@ -69,7 +71,23 @@ if(true){
 
       $viewData["fltEmail"] = $filter;
 
-      $viewData["usuarios"] = obtenerUsuarioNotAdded(1);
+    //  $viewData["usuarios"] = obtenerUsuarioNotAdded($_SESSION["portafoliocodigo"]);
+
+      $temporalarray = obtenerUsuarioNotAdded($_SESSION["portafoliocodigo"]);
+
+      $x = '<select class="col-md-12" id="cmbRol" name="cmbRol">';
+      foreach($viewData["rolUsuarios"] as $rol){
+        $x .= '<option value="'.$rol["rolportafolio"].'">'.$rol["rolportafolionombre"].'</option>';
+      }
+      $x .= '</select>';
+
+      foreach ($temporalarray as $value) {
+        $value["cmb"] = $x;
+        $viewData["usuarios"][] = $value;
+
+
+
+      }
 
       renderizar("portafolios/colaborador", $viewData );
 
