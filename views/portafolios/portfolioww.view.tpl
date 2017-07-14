@@ -44,7 +44,7 @@
                     {{usuarionom}}
                   </td>
                   <td class="center" style="width:70px">
-                    <a href="index.php?page=colaboradoreditar" class="btn"><span class="icon ion-edit"></span></a>
+                    <a href="index.php?page=colaboradoreditar&usrcod={{usuariocod}}&mode=UPD" class="btn"><span class="icon ion-edit"></span></a>
                   </td>
                 </tr>
                 {{endfor colaboradores}}
