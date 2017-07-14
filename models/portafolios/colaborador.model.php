@@ -111,6 +111,16 @@
      );
    }
 
+   function getRolUsuario(){
+     return array(
+       array("codigo"=>"ADM","valor"=>"Administrador"),
+       array("codigo"=>"PUB","valor"=>"Publico"),
+       array("codigo"=>"CNS","valor"=>"Consultor"),
+       array("codigo"=>"CLT","valor"=>"Cliente"),
+       array("codigo"=>"AUD","valor"=>"Auditor")
+     );
+   }
+
    function obtenerRolesDisponibles($usercod){
       $sqlstr = "select b.rolescod, b.rolesdsc, a.usuariocod
 from roles b left join roles_usuarios a
@@ -177,12 +187,12 @@ where a.usuariocod = %d ;";
          return $usuarios;
    }
 
-   function updateColaboradores($portafoliocod, $colaboradorcod, $rolport, $rolest, $rolfecha){
+   function updateColaboradores($portafoliocod, $colaboradorcod, $rolport, $rolest){
          $strsql = "UPDATE `portafolio_colaboradores`
-         SET `portafoliocodigo`='%d', `rolportafolio`='%s', `colaboradorestado`='%s', `colaboradorfechaexpira`='%s'
-         WHERE `usuariocod`= %d;";
+         SET `rolportafolio`='%s', `colaboradorestado`='%s'
+         WHERE `usuariocod`= %d and `portafoliocodigo`='%d';";
 
-         $strsql = sprintf($strsql, $portafoliocod, $rolport, $rolest, $rolfecha, $colaboradorcod);
+         $strsql = sprintf($strsql, $rolport, $rolest, $colaboradorcod, $portafoliocod);
          $affected = ejecutarNonQuery($strsql);
          return ($affected > 0);
 
