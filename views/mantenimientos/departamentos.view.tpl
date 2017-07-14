@@ -4,7 +4,6 @@
 <div class="row depth-1 m-padding">
   <form action="index.php?page=departamentos" method="post" class="col-md-8 col-offset-2">
       <div class="row s-padding">
-<<<<<<< refs/remotes/unicah/develop
         <label class="col-md-1" for="fltDsc">codigo:&nbsp;</label>
         <input type="" name="fltDsc"  class="col-md-8"
               id="fltDsc" placeholder="Buscar departamentos" value="{{fltDsc}}" />

@@ -68,7 +68,7 @@
         <header style="position:relative">
             Categorías
             <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
-              <a href class="btn"><span class="icon ion-plus-circled"></span></a>
+              <a href="index.php?page=categoria&mode=INS&code=" class="btn"><span class="icon ion-plus-circled"></span></a>
             </span>
         </header>
         <main>
