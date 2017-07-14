@@ -52,14 +52,13 @@
 
 
 
-/*
+function obtenerFlujoNombre($cod, $portcod){
+  $docuFlujo = Array();
+  $sqlstr = "SELECT a.documentodescripcion, b.flujoportafolionombre
+FROM portafolio_documento a inner join portafolio_flujo b on a.documentoportafolioflujoactual = b.flujoportafolio
+where a.documentoportafoliocodigo = '%s' and b.portafoliocodigo='%d';";
 
-  function obtenerDocumentoPorCodigo($portcod){
-    $doctc =array();
-    $sqlstr = sprintf("SELECT `documentodescripcion`
-    FROM `portafolio_documento` WHERE `documentoportafoliocodigo` = '%s'; ", $portcod,'%' );
-    $doctc = obtenerRegistros($sqlstr);
-    return $doctc;
-
-  }*/
+$docuFlujo = obtenerUnRegistro(sprintf($sqlstr,$cod, $portcod));
+return $docuFlujo;
+}
 ?>

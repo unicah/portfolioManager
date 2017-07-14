@@ -2,53 +2,55 @@
 Gestión de colaboradores
 </h1>
 <div class="row depth-1 m-padding">
-<form action="index.php?page=colaboradores" method="post" class="col-md-8 col-offset-2">
-    <div class="row s-padding">
-      <label class="col-md-1" for="fltEmail">Correo:&nbsp;</label>
-      <input type="email" name="fltEmail"  class="col-md-8"
-            id="fltEmail" placeholder="correo@electron.ico" value="{{fltEmail}}" />
-      <button class="col-md-3" id="btnFiltro"><span class="ion-refresh">&nbsp;Actualizar</span></button>
-    </div>
-</form>
+<!--form action="index.php?page=colaboradores" method="post" class="col-md-8 col-offset-2"-->
 </div>
 <div class="row depth-1">
 <table class="col-md-12">
   <thead>
     <tr>
-      <th>Correo</th>
-      <th>Nombre</th>
-      <th class="sd-hide">Rol</th>
-
+      <th class="">Correo</th>
+      <th class="">Nombre</th>
+      <th class="">Rol</th>
+      <th class="">Añadir</th>
     </tr>
   </thead>
   <tbody class="zebra">
     {{foreach usuarios}}
-    <tr>
-      <td>{{usuarioemail}}</td>
-      <td>{{usuarionom}}</td>
-
-
+    <form action="index.php?page=colaboradores" method="post" class="col-md-8 col-offset-2">
+    <tr class="">
+      <td class="">{{usuarioemail}}</td>
+      <td class="">{{usuarionom}}</td>
+      <td class="">
+        <span class="select col-sm-12">
+          {{cmb}}
+        </span>
+      </td>
       <td class="center">
-        <th><a href class="btn depth-1 s-margin">
+
+          <label for="usercod"></label>
+          <!--input type="hidden" name="gg" value="{{usuariocod}}" id="{{usuariocod}}"  /-->
+          <button id="{{usuariocod}}" class="btn depth-1 s-margin" name="usercod" value="{{usuariocod}}">
           <span class="ion-plus-circled"></span>
-          </a></th>
-        </td>
+          </button>
+
+      </td>
     </tr>
+    </form>
     {{endfor usuarios}}
+
   </tbody>
 </table>
 </div>
+{{foreach usuarios}}
 <script>
   $().ready(
   function(){
-    $("#btnFiltro").click(
-      function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        document.forms[0].submit();
-      }
-    );
+    $(".{{usuariocod}}").click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      document.forms[0].submit();
+      });
   }
-
   );
 </script>
+{{endfor usuarios}}

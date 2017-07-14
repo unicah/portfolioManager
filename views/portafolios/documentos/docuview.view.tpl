@@ -1,11 +1,11 @@
-<h1><span class="icon ion-ios-briefcase"></span>&nbsp;{{documentodescripcion}}</h1>
+<h1><span class="icon ion-ios-briefcase"></span>&nbsp;{{documentodescripcion}} ({{flujoportafolionombre}})</h1>
 <hr />
 <div class="row">
   <div class="col-md-8 col-sm-12">
     <div class="card">
       <section class="panel">
         <header style="position:relative">
-            Versiones del Documento
+            Observaciones
         </header>
         <main>
             <table>
@@ -76,7 +76,7 @@
       </section>
       <section class="panel">
         <header style="position:relative">
-            Lectura de Documento
+            Versiones
         </header>
         <main>
             <table>
