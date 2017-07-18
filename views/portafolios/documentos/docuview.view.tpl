@@ -80,6 +80,15 @@
         </header>
         <main>
             <table>
+              {{foreach versiones}}
+                <tr>
+                  <td>
+                    {{versionobservacion}}
+                  </td>
+                    <td class="center" style="width:70px"><a href={{versionurl}} class="btn"><span class="icon ion-android-download"></span></a>
+                  </td>
+                </tr>
+                {{endfor versiones}}
 
             </table>
         </main>
