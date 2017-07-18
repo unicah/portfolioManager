@@ -50,4 +50,15 @@
     return $newDocId;
   }
 
+
+
+function obtenerFlujoNombre($cod, $portcod){
+  $docuFlujo = Array();
+  $sqlstr = "SELECT a.documentodescripcion, b.flujoportafolionombre
+FROM portafolio_documento a inner join portafolio_flujo b on a.documentoportafolioflujoactual = b.flujoportafolio
+where a.documentoportafoliocodigo = '%s' and b.portafoliocodigo='%d';";
+
+$docuFlujo = obtenerUnRegistro(sprintf($sqlstr,$cod, $portcod));
+return $docuFlujo;
+}
 ?>

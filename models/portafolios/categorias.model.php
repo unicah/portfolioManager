@@ -1,14 +1,6 @@
 <?php
 require_once("libs/dao.php");
-/*
-select portafolio_categoria.categoriaportafolio,
-portafolio_categoria.categoriaportafolionombre,
-portafolio_categoria.categoriaportafolioestado,
-portafolio.portafolionombre
-from portafolio_categoria  inner join portafolio
-on portafolio_categoria.portafoliocodigo = portafolio.portafoliocodigo;
 
-*/
 function obtenerCategoriasPorFiltro($categorianombre, $Typ){
     $programas = array();
     $sqlstr = sprintf("SELECT portafolio_categoria.categoriaportafolio,
@@ -29,11 +21,19 @@ function obtenerCategoriaPorCodigo($programacod){
     return $programa;
 }
 
-function insertPrograma($programacod,$programadsc, $programaest,
-                       $programatyp){
-    $strsql = "INSERT INTO `programas` (
-        `programacod`,`programadsc`, `programaest`, `programatyp`) VALUES ('%s','%s', '%s','%s');";
-    $strsql = sprintf($strsql,valstr($programacod) , $programadsc, $programaest, $programatyp);
+/*
+INSERT INTO `portfoliomanager`.`portafolio_categoria` (`categoriaportafolio`,
+`portafoliocodigo`, `categoriaportafolionombre`,
+`categoriaportafolioestado`) VALUES (NULL, NULL, NULL, NULL);
+
+*/
+
+function insertCategoria($categoriaportafolio,$portafoliocodigo,
+                       $categoriaportafolionombre,$categoriaportafolioestado ){
+    $strsql = "INSERT INTO `portfoliomanager`.`portafolio_categoria` (`categoriaportafolio`,
+    `portafoliocodigo`, `categoriaportafolionombre`,
+    `categoriaportafolioestado`) VALUES ('%s',%d, '%s','%s');";
+    $strsql = sprintf($strsql, valstr($categoriaportafolio) , intval($portafoliocodigo), $categoriaportafolionombre, $categoriaportafolioestado);
 
     if(ejecutarNonQuery($strsql)){
         return true;
@@ -47,7 +47,7 @@ function updateCategoria($categoriaportafolio,
 
     $strsql = "UPDATE `portafolio_categoria` set
                 `categoriaportafolioestado` = '%s'
-                where `programacod` = '%s';";
+                where `categoriaportafolio` = '%s';";
     $strsql = sprintf($strsql, $categoriaportafolioestado, $categoriaportafolio);
 
     $affected = ejecutarNonQuery($strsql);
