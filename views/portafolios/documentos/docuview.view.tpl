@@ -4,26 +4,11 @@
 </div>
 <div class="col-md-4 col-sm-12">
   <div class="card">
-    <section class="panel">
-        <header>
-          Aqui iran los iconos :D
-        </header>
         <div class="row">
-            <a href="#bajar" class="col-sm-6 btn depth-1">
-                <div class="panel ">
-              <div class="center"><p>Descargar</p></div>
-              <div class="center"><span class="ion-android-download"></span></div>
-            </div>
-          </a>
-            <a href="#subir" class="col-sm-6 btn depth-1 ">
-              <div class="panel ">
-                <div class="center"><p>Subir</p></div>
-                <div class="center"><span class="ion-android-upload"></span>&nbsp;{{departmanetodesc}}</div>
-                </div>
-            </a>
+          <button class="col-sm-6 " id="btnDescargar"><span class="ion-android-download">&nbsp;Descargar</span></button>
+          <button class="col-sm-6 " id="btnSubir"><span class="ion-android-upload">&nbsp;Subir</span></button>
         </div>
-    </section>
-</div>
+      </div>
 </div>
 </div>
 <hr />
@@ -105,12 +90,6 @@
         <header style="position:relative">
             Versiones
         </header>
-        <main>
-            <table>
-
-            </table>
-        </main>
-      </section>
         <main>
             <table>
 
