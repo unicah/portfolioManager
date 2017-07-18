@@ -80,7 +80,7 @@
             </span>
         </header>
         <main>
-            <table>
+            <table class="full-width">
               {{foreach categorias}}
                 <tr>
                   <td>
@@ -91,7 +91,6 @@
                   </td>
                 </tr>
                 {{endfor categorias}}
-
             </table>
         </main>
       </section>
