@@ -1,14 +1,14 @@
 <?php
 
   /* programa Controller
-   * 2017-06-20
+   * 2017-07-06
    * Created By JCHR14
    * Bitacora de Cambios:
    * -----------------------------------------------------------------------
    *| Fecha   | Usuario | Descripción                                      |
    * -----------------------------------------------------------------------
    */
-  require_once('models/mantenimientos/categorias.model.php');
+  require_once('models/portafolios/categorias.model.php');
   require_once("libs/validadores.php");
   function run(){
     $viewData =array();
@@ -30,13 +30,14 @@
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         if(isset($_GET["mode"])){
           $viewData["mode"] = $_GET["mode"];
-          $viewData["categoriaportafolio"] =$_GET["categoriaportafolio"];
+          $viewData["categoriaportafolio"] =$_GET["code"];
           switch ($viewData["mode"]) {
             case 'INS':
               $viewData["modeDesc"] = "Nueva Categoria";
               break;
             case 'UPD':
               $viewData["modeDesc"] = "Editar ";
+              $viewData["readonly"] = 'readonly="readonly"';
               break;
             case 'DEL':
               $viewData["modeDesc"] = "Eliminar ";
@@ -46,7 +47,7 @@
               $viewData["readonly"] = 'readonly="readonly"';
               break;
             default:
-              redirectWithMessage("Accion Solicitada no disponible.", "index.php?page=admin");
+              redirectWithMessage("Accion Solicitada no disponible.", "index.php?page=portafolioww");
               die();
           }
           // tocken para evitar ataques xhr
@@ -59,6 +60,7 @@
         if(isset($_POST["tocken"]) && $_POST["tocken"] === $_SESSION["user_tocken"]){
           if(isset($_POST["mode"])){
             $viewData["mode"] = $_POST["mode"];
+            $viewData["portafoliocodigo"] =$_SESSION["portafoliocodigo"];
             $viewData["categoriaportafolio"] = $_POST["txtCodigoCategoria"];
             $viewData["categoriaportafolionombre"] = $_POST["txtNombre"];
             $viewData["categoriaportafolioestado"] =  $_POST["cmbEstado"];
@@ -72,14 +74,9 @@
 
             switch ($viewData["mode"]) {
               case 'INS':
-                /*    $codigo=$viewData["programacod"];
-                    $viewData["codigo"]="";
-                    $viewData["codigo"]=obtenerProgramaPorCodigo($codigo);*/
-
-                    /*if(empty($viewData["codigo"])){*/
-                      $lastId = insertPrograma($viewData["programacod"],$viewData["programadsc"],
-                                    $viewData["programaest"],
-                                    $viewData["programatyp"]
+                      $lastId = insertCategoria($viewData["categoriaportafolio"], $viewData["portafoliocodigo"],
+                                    $viewData["categoriaportafolionombre"],
+                                    $viewData["categoriaportafolioestado"]
                                   );
                   /*  }
                     else{
@@ -87,7 +84,7 @@
                     }*/
 
                   if($lastId){
-                    redirectWithMessage("Programa Creado Satisfactoriamente.", "index.php?page=programas");
+                    redirectWithMessage("Categoria Creado Satisfactoriamente.", "index.php?page=portafolioww");
                     die();
                   }else{
                     $viewData["errores"][] = "Error al crear el programa";
@@ -98,6 +95,7 @@
                 break;
 
               case 'UPD':
+                $viewData["readonly"] = 'readonly="readonly"';
                 if(!$viewData["haserrores"] && !empty($viewData["categoriaportafolio"])){
                   //Se obtiene el usuario
                   //$programa = obtenerProgramaPorCodigo($viewData["programacod"]);
@@ -105,13 +103,13 @@
                   $affected = updateCategoria($viewData["categoriaportafolio"],
                                 $viewData["categoriaportafolioestado"]
                               );
-                  // Si no hay error se redirige a la lista de usuarios
+                  // Si no hay error se redirige a la lista de categorias
                   if($affected){
-                    redirectWithMessage("Programa Actualizado Satisfactoriamente.", "index.php?page=programas");
+                    redirectWithMessage("Categoria Actualizado Satisfactoriamente.", "index.php?page=portafolioww");
                     die();
                   }else{
-                  // Se muestra un error sobre la edicion del usuario
-                    $viewData["errores"][] = "Error al editar el usuario";
+                  // Se muestra un error sobre la edicion de la categoria
+                    $viewData["errores"][] = "Error al editar la categoria";
                     $viewData["haserrores"] = true;
                   }
                 }
@@ -126,7 +124,7 @@
                 $viewData["readonly"] = 'readonly="readonly"';
                 break;
               default:
-                redirectWithMessage("Acción Solicitada no disponible.", "index.php?page=programas");
+                redirectWithMessage("Acción Solicitada no disponible.", "index.php?page=portafolioww");
                 die();
             }
 
@@ -143,7 +141,7 @@
     if(!empty($viewData["categoriaportafolio"])){
       $programa = obtenerCategoriaPorCodigo($viewData["categoriaportafolio"]);
       mergeFullArrayTo($programa,$viewData);
-      $viewData["modeDesc"] .= $viewData["categoriaportafolio"];
+      $viewData["modeDesc"] .= $viewData["categoriaportafolionombre"];
       $viewData["estadoCategoria"] = addSelectedCmbArray($viewData["estadoCategoria"],"codigo",$viewData["categoriaportafolioestado"]);
     }
     // Cambia la seguridad del formulario para evitar ataques XHR.
@@ -151,7 +149,7 @@
       $viewData["tocken"] = md5(time()+"usertr");
       $_SESSION["user_tocken"] = $viewData["tocken"];
     }
-    renderizar("mantenimientos/categoria", $viewData);
+    renderizar("portafolios/categoria", $viewData);
   }
 
   run();

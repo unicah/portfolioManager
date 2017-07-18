@@ -193,6 +193,15 @@
      );
    }
 
+   function obtenerRolesPortafolio($codigoPortafolio){
+    $roles = array();
+    $sqlstr = "select `rolportafolio`, `portafoliocodigo`, `rolportafolionombre`,
+             `rolportafolioestado`, `roledicion`, `rolvisualiza`
+              from portafolio_rol
+              where rolportafolioestado='ACT' and portafoliocodigo = %d;";
+    $roles = obtenerRegistros(sprintf($sqlstr,$codigoPortafolio));
+    return $roles;
+   }
 
 
    ?>
