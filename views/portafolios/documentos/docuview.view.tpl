@@ -1,4 +1,31 @@
-<h1><span class="icon ion-ios-briefcase"></span>&nbsp;{{documentodescripcion}} ({{flujoportafolionombre}})</h1>
+<div class="row">
+  <div class="col-md-8 col-sm-12">
+    <h1><span class=" icon ion-ios-briefcase "></span>&nbsp;{{documentodescripcion}} ({{flujoportafolionombre}})</h1>
+</div>
+<div class="col-md-4 col-sm-12">
+  <div class="card">
+    <section class="panel">
+        <header>
+          Aqui iran los iconos :D
+        </header>
+        <div class="row">
+            <a href="#bajar" class="col-sm-6 btn depth-1">
+                <div class="panel ">
+              <div class="center"><p>Descargar</p></div>
+              <div class="center"><span class="ion-android-download"></span></div>
+            </div>
+          </a>
+            <a href="#subir" class="col-sm-6 btn depth-1 ">
+              <div class="panel ">
+                <div class="center"><p>Subir</p></div>
+                <div class="center"><span class="ion-android-upload"></span>&nbsp;{{departmanetodesc}}</div>
+                </div>
+            </a>
+        </div>
+    </section>
+</div>
+</div>
+</div>
 <hr />
 <div class="row">
   <div class="col-md-8 col-sm-12">
