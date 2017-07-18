@@ -111,6 +111,33 @@
      );
    }
 
+   function obtenerRolesDisponibles($usercod){
+      $sqlstr = "select b.rolescod, b.rolesdsc, a.usuariocod
+from roles b left join roles_usuarios a
+on a.rolescod = b.rolescod and a.usuariocod=%d
+where a.usuariocod is null ;";
+      $roles = obtenerRegistros(sprintf($sqlstr, $usercod));
+      return $roles;
+   }
+   function obtenerRolesUsuario($usercod){
+      $sqlstr = "select b.rolescod, b.rolesdsc, a.usuariocod
+from roles b inner join roles_usuarios a
+on a.rolescod = b.rolescod
+where a.usuariocod = %d ;";
+      $roles = obtenerRegistros(sprintf($sqlstr, $usercod));
+      return $roles;
+   }
+   function agregarRolaUsuario($rolcod,$usercod){
+     $sqlstr = "INSERT INTO `roles_usuarios` (`usuariocod`, `rolescod`)
+                VALUES (%d, '%s' );";
+      return ejecutarNonQuery(sprintf($sqlstr, $usercod, $rolcod));
+   }
+   function eliminarRolaUsuario($rolcod,$usercod){
+      $sqlstr = "Delete from`roles_usuarios` where  `usuariocod`= %d and `rolescod` = '%s';";
+      return ejecutarNonQuery(sprintf($sqlstr, $usercod, $rolcod));
+   }
+
+
 
 
    ?>
