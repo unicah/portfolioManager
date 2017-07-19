@@ -203,5 +203,18 @@
     return $roles;
    }
 
+   function obtenerColaboradoresDelDocumento($codigoDocumento){
+     $colaboradores = array();
+
+     $sqlstr = "select b.usuarionom, b.usuariocod
+ from portafolio_documento_colaboradores a
+   inner join usuario b on a.usuariocod = b.usuariocod
+ where a.documentocolaboradorestado = 'ACT' and b.usuarioest = 'ACT'
+    and a.documentoportafolio = %d;";
+
+    $colaboradores = obtenerRegistros(sprintf($sqlstr,$codigoDocumento));
+     return $colaboradores;
+   }
+
 
    ?>

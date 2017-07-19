@@ -68,9 +68,22 @@
       <section class="panel">
         <header style="position:relative">
             Colaboradores
+            <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
+              <a href="index.php?page=colaboradores&portacod={{portafoliocodigo}}&mode=INS" class="btn"><span class="icon ion-plus-circled"></span></a>
+            </span>
         </header>
         <main>
-            <table>
+            <table class="full-width">
+              {{foreach colaboradores}}
+                <tr>
+                  <td>
+                    {{usuarionom}}
+                  </td>
+                  <td class="center" style="width:70px">
+                    <a href="index.php?page=colaboradoreditar&usrcod={{usuariocod}}&mode=UPDD" class="btn"><span class="icon ion-edit"></span></a>
+                  </td>
+                </tr>
+                {{endfor colaboradores}}
             </table>
         </main>
       </section>
