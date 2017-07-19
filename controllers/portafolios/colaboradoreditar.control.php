@@ -71,29 +71,29 @@
 
                   switch ($viewData["mode"]) {
                     case 'UPDD':
-                            $lastId = insertCategoria($viewData["categoriaportafolio"], $viewData["portafoliocodigo"],
-                                          $viewData["categoriaportafolionombre"],
-                                          $viewData["categoriaportafolioestado"]
-                                        );
+                    $viewData["readonly"] = 'readonly="readonly"';
+                    if(!$viewData["haserrores"] && !empty($viewData["rolportafolionombre"])){
+                      $affected = updateColaboradoresDocumento($_SESSION["documentoportafolio"], $viewData["usrcod"],
+                                    $viewData["colaboradorportafolioestado"]
+                                  );
+
+                      if($affected){
+                        redirectWithMessage("Colaborador de Documento Actualizado Satisfactoriamente.", "index.php?page=docuview");
+                        die();
+                      }else{
+
+                        $viewData["errores"][] = "Error al editar el colaborador";
+                        $viewData["haserrores"] = true;
+                      }
 
 
-                        if($lastId){
-                          redirectWithMessage("Colaborador de Documento Actualizado Satisfactoriamente.", "index.php?page=portafolioww");
-                          die();
-                        }else{
-                          $viewData["errores"][] = "Error al crear el programa";
-                          $viewData["haserrores"] = true;
-                        }
-
-                      $viewData["modeDesc"] = "Nuevo Usuario";
+                    }
+                    //redirectWithMessage("Colaborador ".$viewData["usrcod"] ." de Documento ". $_SESSION["documentoportafolio"]  ." Actualizado a " .$viewData["colaboradorportafolioestado"], "index.php?page=docuview");
                       break;
                     //____________________________________________________________//
                     case 'UPD':
                       $viewData["readonly"] = 'readonly="readonly"';
                       if(!$viewData["haserrores"] && !empty($viewData["rolportafolionombre"])){
-                        //Se obtiene el usuario
-                        //$programa = obtenerProgramaPorCodigo($viewData["programacod"]);
-                        // Se actualiza los datos del usuario
                         $affected = updateColaboradores($viewData["portafoliocodigo"], $viewData["usrcod"], $viewData["rolportafolionombre"],
                                       $viewData["colaboradorportafolioestado"]
                                     );

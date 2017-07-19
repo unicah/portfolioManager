@@ -222,5 +222,16 @@ where a.usuariocod = %d ;";
 
    }
 
+   function updateColaboradoresDocumento($documentoid, $colaboradorcod, $est){
+         $strsql = "UPDATE `portfoliomanager`.`portafolio_documento_colaboradores`
+                    SET `documentocolaboradorestado`='%s'
+                    WHERE `documentoportafolio`=%d and`usuariocod`=%d; ";
+
+         $strsql = sprintf($strsql, $est, $documentoid, $colaboradorcod);
+         $affected = ejecutarNonQuery($strsql);
+         return ($affected > 0);
+
+       }
+
 
    ?>
