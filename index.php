@@ -136,11 +136,12 @@
                    require_once("controllers/portafolios/categoria.control.php"):
                    mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                  die();
-                 case "colaboradoreditar":
-                        ($logged)?
-                          require_once("controllers/portafolios/colaboradoreditar.control.php"):
-                          mw_redirectToLogin($_SERVER["QUERY_STRING"]);
-                        die();
+
+          case "colaboradoreditar":
+                ($logged)?
+                  require_once("controllers/portafolios/colaboradoreditar.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
 
         }
 

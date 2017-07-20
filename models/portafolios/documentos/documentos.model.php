@@ -54,9 +54,9 @@
 
 function obtenerFlujoNombre($cod, $portcod){
   $docuFlujo = Array();
-  $sqlstr = "SELECT a.documentodescripcion, b.flujoportafolionombre
+  $sqlstr = "SELECT a.documentodescripcion, b.flujoportafolionombre, a.documentoportafolioobservacion
 FROM portafolio_documento a inner join portafolio_flujo b on a.documentoportafolioflujoactual = b.flujoportafolio
-where a.documentoportafoliocodigo = '%s' and b.portafoliocodigo='%d';";
+where a.documentoportafolio = %d and b.portafoliocodigo=%d;";
 
 $docuFlujo = obtenerUnRegistro(sprintf($sqlstr,$cod, $portcod));
 return $docuFlujo;
