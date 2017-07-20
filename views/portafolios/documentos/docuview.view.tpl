@@ -120,7 +120,6 @@
           x.appendChild(y);
           document.body.append(x);
           x.submit();
-          alert("I am an alert box!");
         }
       );
     }
