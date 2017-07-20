@@ -61,4 +61,12 @@ where a.documentoportafolio = %d and b.portafoliocodigo= %d;";
 $docuFlujo = obtenerUnRegistro(sprintf($sqlstr,$cod, $portcod));
 return $docuFlujo;
 }
+
+function obtenerDocumento($cod){
+  $docu = array();
+  $sqlstr = "SELECT documentodescripcion, documentoportafoliocodigo as documentoportafoliocodigo2, documentoportafolioflujoactual FROM portafolio_documento
+  WHERE documentoportafolio = %d;";
+  $docu = obtenerunRegistro(sprintf($sqlstr,$cod));
+  return $docu;
+}
 ?>

@@ -20,26 +20,16 @@
 
       <div class="row s-padding">
         <label class="col-sm-5">Código</label>
-        <input class="col-sm-7" type="text" name="documentoportafoliocodigo" id="documentoportafoliocodigo" value="{{documentoportafoliocodigo}}" placeholder="Código Documento" readonly/>
+        <input class="col-sm-7" type="text" name="documentoportafoliocodigo" id="documentoportafoliocodigo" value="{{documentoportafoliocodigo2}}" placeholder="Código Documento" readonly/>
       </div>
 
       <div class="row s-padding">
         <label class="col-sm-5">Descripción</label>
-        <input class="col-sm-7"  type="text" name="documentodescripcion" id="documentodescripcion" value="{{documentodescripcion}}" placeholder="Descripción Corta del Documento" max="120" readonly />
+        <input class="col-sm-7" type="text" name="documentodescripcion" id="documentodescripcion" value="{{documentodescripcion}}" placeholder="Descripción Corta del Documento" max="120" readonly />
       </div>
-
-      <div class="row s-padding">
-        <label class="col-sm-5">Categoría</label>
-        <span class="select col-sm-7"><select class="col-md-12" id="categoriaportafolio" name="categoriaportafolio " readonly>
-        {{foreach categorias}}
-          <option value="{{categoriaportafolio}}" {{selected}}>{{categoriaportafolionombre}}</option>
-        {{endfor categorias}}
-      </select> </span>
-      </div>
-
       <div class="row s-padding">
         <label class="col-sm-5">Estado</label>
-        <span class="select col-sm-7"><select {{if readonly}}disabled readonly="readonly" {{endif readonly}} class="col-md-12" id="documentoportafolioflujoactual" name="documentoportafolioflujoactual">
+        <span class="select col-sm-7"><select class="col-md-12" id="documentoportafolioflujoactual" name="documentoportafolioflujoactual">
         {{foreach flujos}}
           <option value="{{flujoportafolio}}" {{selected}}>{{flujoportafolionombre}}</option>
         {{endfor flujos}}
