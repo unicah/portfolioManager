@@ -7,6 +7,7 @@
     $viewData = array();
     $viewData["documentoportafoliocodigo"]="";
     $viewData["portafoliocodigo"]=0;
+    $viewData["versiones"]=array();
     if(isset($_SESSION["portafoliocodigo"])){
       $viewData["portafoliocodigo"] = $_SESSION["portafoliocodigo"];
     }
@@ -25,6 +26,17 @@
     $folioDocumento = obtenerFlujoNombre($viewData["documentoportafoliocodigo"], $viewData["portafoliocodigo"]);
     mergeFullArrayTo($folioDocumento,$viewData);
   //  print_r($viewData);
+
+
+  if($viewData["documentoportafoliocodigo"] > 0){
+    $tmp = obtenerversionPorCodigo($viewData["documentoportafoliocodigo"]);
+    mergeFullArrayTo($tmp, $viewData);
+    $viewData["versiones"]=obtenerVersionesPortafolio($viewData["documentoportafoliocodigo"],'');
+
+  }
+
+
+
     renderizar("portafolios/documentos/docuview", $viewData);
   }
   run();
