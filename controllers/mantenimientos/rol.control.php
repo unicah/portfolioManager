@@ -5,6 +5,7 @@
 *
 */
 
+
   require_once('models/mantenimientos/roles.model.php');
   require_once("libs/validadores.php");
   function run(){
@@ -16,6 +17,8 @@
     $viewData["haserrores"] = false;
     $viewData["readonly"] = false;
     $viewData["isupdate"] = false;
+    $viewData["isinsert"] = false;
+    $viewData["isPgmEdit"] = false;
 
     //Arreglo para el combo de Estado de roles
     $viewData["estadoRol"]= getEstadoRol();
@@ -28,6 +31,7 @@
           switch ($viewData["mode"]) {
             case 'INS':
               $viewData["modeDesc"] = "Nuevo Rol";
+              $viewData["isinsert"] = true;
               break;
             case 'UPD':
               $viewData["isupdate"] = 'readonly="readonly"';
@@ -45,21 +49,30 @@
             die();
         }
         // tocken para evitar ataques xhr
-        $viewData["tocken"] = md5(time()+"usertr");
-        $_SESSION["user_tocken"] = $viewData["tocken"];
+        $viewData["tocken"] = md5(time()+"roltr");
+        $_SESSION["rol_tocken"] = $viewData["tocken"];
       }
     }
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-       if(isset($_POST["tocken"]) && $_POST["tocken"] === $_SESSION["user_tocken"]){
+       if(isset($_POST["tocken"]) && $_POST["tocken"] === $_SESSION["rol_tocken"]){
          if(isset($_POST["mode"])){
+
            $viewData["mode"] = $_POST["mode"];
-           $viewData["rolescod"] = $_POST["txtCodigo"];
-           $viewData["rolesdsc"] = $_POST["txtName"];
-           $viewData["rolesest"] =  $_POST["cmbEstado"];
+           $viewData["tocken"] = $_POST["tocken"];
+           $viewData["rolescod"] = $_POST["rolescod"];
 
 
-           if(isEmpty($viewData["rolesdsc"])){
-               $viewData["errores"][] = "Descripción en formato Incorrecto";
+           if($viewData["mode"]=="UPD" && (isset($_POST["btnDelPgm"]) || isset($_POST["btnAddPgm"]))){
+               $viewData["isPgmEdit"] = true;
+           }else{
+             $viewData["rolescod"] = $_POST["txtCodigo"];
+             $viewData["rolesdsc"] = $_POST["txtName"];
+             $viewData["rolesest"] =  $_POST["cmbEstado"];
+
+
+             if(isEmpty($viewData["rolesdsc"])){
+                 $viewData["errores"][] = "Descripción en formato Incorrecto";
+             }
            }
 
            $viewData["haserrores"] = count($viewData["errores"]) && true;
@@ -82,21 +95,30 @@
                break;
 
              case 'UPD':
-                 $viewData["isupdate"] = 'readonly="readonly"';
+               $viewData["isupdate"] = 'readonly="readonly"';
                if(!$viewData["haserrores"] && !empty($viewData["rolescod"])){
-                 $affected = updateRoles($viewData["rolescod"],
-                               $viewData["rolesdsc"],
-                               $viewData["rolesest"]
-                             );
-                 // Si no hay error se redirige a la lista de usuarios
-                 if($affected){
-                   redirectWithMessage("rol Actualizado Satisfactoriamente.", "index.php?page=roles");
-                   die();
-                 }else{
-                 // Se muestra un error sobre la edicion del usuario
-                   $viewData["errores"][] = "Error al editar el Rol";
-                   $viewData["haserrores"] = true;
-                 }
+                 if(!$viewData["isPgmEdit"]){
+                   $affected = updateRoles($viewData["rolescod"],
+                                 $viewData["rolesdsc"],
+                                 $viewData["rolesest"]
+                               );
+                   // Si no hay error se redirige a la lista de usuarios
+                   if($affected){
+                     redirectWithMessage("Rol Actualizado Satisfactoriamente.", "index.php?page=roles");
+                     die();
+                   }else{
+                   // Se muestra un error sobre la edicion del usuario
+                     $viewData["errores"][] = "Error al editar el Rol";
+                     $viewData["haserrores"] = true;
+                   }
+                }else{
+                  if(isset($_POST["btnAddPgm"])){
+                    agregarProgramaARol($_POST["programacod"], $viewData["rolescod"]);
+                  }
+                  if(isset($_POST["btnDelPgm"])){
+                    eliminarProgramaARol($_POST["programacod"], $viewData["rolescod"]);
+                  }
+                }
                }
                $viewData["modeDesc"] = "Editar ";
                break;
@@ -116,8 +138,8 @@
          }
        }else{
          //Cambia la seguridad del formulario
-         $viewData["tocken"] = md5(time()+"usertr");
-         $_SESSION["user_tocken"] = $viewData["tocken"];
+         $viewData["tocken"] = md5(time()+"roltr");
+         $_SESSION["rol_tocken"] = $viewData["tocken"];
          $viewData["errores"][] = "Error para validar información.";
        }
    }
@@ -132,11 +154,21 @@
       mergeFullArrayTo($roles,$viewData);
       $viewData["modeDesc"] .= $viewData["rolescod"];
       $viewData["estadoRol"] = addSelectedCmbArray($viewData["estadoRol"],"codigo",$viewData["rolesest"]);
+      $viewData["prgavailable"] =  obtenerProgramasDisponibles($viewData["rolescod"]);
+      $viewData["prgassign"] = obtenerProgramasAsignados($viewData["rolescod"]);
+      $tmpRole=Array();
+      foreach($viewData["prgassign"] as $rol ){
+        $rol["readonly"] = $viewData["readonly"] && true;
+        $rol["mode"] = $viewData["mode"];
+        $rol["tocken"] = $viewData["tocken"];
+        $tmpRole[] = $rol;
+      }
+      $viewData["prgassign"] = $tmpRole;
     }
     // Cambia la seguridad del formulario para evitar ataques XHR.
     if($viewData["haserrores"]>0){
-      $viewData["tocken"] = md5(time()+"usertr");
-      $_SESSION["user_tocken"] = $viewData["tocken"];
+      $viewData["tocken"] = md5(time()+"roltr");
+      $_SESSION["rol_tocken"] = $viewData["tocken"];
     }
     renderizar("mantenimientos/rol", $viewData);
   }

@@ -67,4 +67,33 @@
       return ($affected > 0);
     }
 
+    function agregarProgramaARol($pgmcod,$rolcod){
+      $sqlstr = "INSERT INTO `programa_roles` (`programacod`, `rolescod`)
+                 VALUES ('%s', '%s' );";
+        return ejecutarNonQuery(sprintf($sqlstr, $pgmcod, $rolcod));
+    }
+
+    function eliminarProgramaARol($pgmcod,$rolcod){
+      $sqlstr = "Delete from`programa_roles` where  `programacod`= '%s' and `rolescod` = '%s';";
+      return ejecutarNonQuery(sprintf($sqlstr, $pgmcod, $rolcod));
+
+    }
+
+    function obtenerProgramasDisponibles($rolcod){
+      $sqlstr = "select b.programacod, b.programadsc, a.rolescod
+from programas b left join programa_roles a
+on a.programacod = b.programacod and a.rolescod='%s'
+where a.programacod is null ;";
+      $pgms = obtenerRegistros(sprintf($sqlstr, $rolcod));
+      return $pgms;
+    }
+    function obtenerProgramasAsignados($rolcod){
+      $sqlstr = "select b.programacod, b.programadsc, a.rolescod
+from programas b inner join programa_roles a
+on a.programacod = b.programacod
+where a.rolescod = '%s' ;";
+      $pgms = obtenerRegistros(sprintf($sqlstr, $rolcod));
+      return $pgms;
+    }
+
  ?>

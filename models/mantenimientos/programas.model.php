@@ -49,18 +49,14 @@ where programacod= 'gabo'
 
 function getTiposProgramas(){
   return array(
-    array("codigo"=>"ADM","valor"=>"Administrador"),
-    array("codigo"=>"USR","valor"=>"Usuario"),
-    array("codigo"=>"CNS","valor"=>"Consultor"),
-    array("codigo"=>"CLT","valor"=>"Cliente")
+    array("codigo"=>"PGR","valor"=>"Programa"),
+    array("codigo"=>"FNC","valor"=>"Función")
   );
 }
 
 function getEstadoProgramas(){
   return array(
-    array("codigo"=>"PND","valor"=>"Sin Activar"),
     array("codigo"=>"ACT","valor"=>"Activo"),
-    array("codigo"=>"SPD","valor"=>"Suspendido"),
     array("codigo"=>"INA","valor"=>"Inactivo")
   );
 }

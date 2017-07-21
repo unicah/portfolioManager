@@ -35,7 +35,7 @@
     </div>
 
     <div class="row s-padding">
-      <label class="col-sm-5">Tipo de proyecto</label>
+      <label class="col-sm-5">Tipo de Programa</label>
         <span class="select col-sm-7"><select {{if readonly}}disabled readonly="readonly" {{endif readonly}} class="col-md-12" id="cmbTipo" name="cmbTipo">
           {{foreach tipoProgramas}}
             <option value="{{codigo}}" {{selected}}>{{valor}}</option>
