@@ -27,7 +27,7 @@
                      <td>{{documentoportafoliocodigo}}</td>
                      <td>{{documentodescripcion}}</td>
                      <td>{{categoriaportafolionombre}}</td>
-                     <!--documentoportafoliocodigo es un varchar, y esta no funciona con la tabla documentos-colaborador, por eso hice este cambio aqui-->
+
                      <td><a href class="btnpw btn depth-1 s-margin" data-docod="{{documentoportafolio}}"><span class="ion-eye"></span></a></td>
                   </tr>
                 {{endfor documentos}}
