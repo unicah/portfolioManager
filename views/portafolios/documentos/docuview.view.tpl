@@ -1,4 +1,17 @@
-<h1><span class="icon ion-ios-briefcase"></span>&nbsp;{{documentodescripcion}} ({{flujoportafolionombre}})</h1>
+<div class="row">
+  <div class="col-md-8 col-sm-12">
+    <h1><span class=" icon ion-ios-briefcase "></span>&nbsp;{{documentodescripcion}} ({{flujoportafolionombre}})</h1>
+  </div>
+  <div class="col-md-4 col-sm-12">
+    <div class="card">
+        <div class="row">
+          <button class="col-sm-6 " id="btnFiltro"><span class="ion-android-download">&nbsp;Descargar</span></button>
+          <button class="col-sm-6 "data-docodd="{{documentoportafoliocodigo}}" id="btnSubir"><span class="ion-android-upload">&nbsp;Subir</span></button>
+        </div>
+    </div>
+  </div>
+</div>
+
 <hr />
 <div class="row">
   <div class="col-md-8 col-sm-12">
@@ -42,14 +55,14 @@
 
                 </div>
                 <tbody>
-                  {{foreach documentos}}
+                  {{foreach comentarios}}
                     <tr>
-                       <td>{{documentoportafoliocodigo}}</td>
-                       <td>{{documentodescripcion}}</td>
-                       <td>{{categoriaportafolionombre}}</td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
                        <td><a  href="" class="btn depth-1 s-margin"><span class="ion-eye"></span></a></td>
                     </tr>
-                  {{endfor documentos}}
+                  {{endfor comentarios}}
                 </tbody>
               </table>
             </form>
@@ -117,12 +130,6 @@
             </table>
         </main>
       </section>
-        <main>
-            <table>
-
-            </table>
-        </main>
-      </section>
     </div>
   </div>
 </div>
@@ -134,6 +141,22 @@
         e.stopPropagation();
         document.forms[0].submit();
         });
-
+        
+       $("#btnSubir").click(
+        function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var x = document.createElement("FORM");
+          x.action = "index.php?page=docuversion";
+          x.style= "display:none";
+          x.method="POST";
+          var y = document.createElement("INPUT");
+          y.name="docodd";
+          y.value=$(this).data('docodd');
+          x.appendChild(y);
+          document.body.append(x);
+          x.submit();
+        }
+      );
     });
 </script>
