@@ -59,14 +59,32 @@
 
 
 
+
+  function obtenerversionPorCodigo($portafoliocodigo){
+      $portafolio = array();
+      $sqlstr = sprintf("SELECT * FROM portafolio_documento_version where `documentoportafolio` = %d;",$portafoliocodigo);
+      $portafolio = obtenerUnRegistro($sqlstr);
+      return $portafolio;
+  }
+
+  function obtenerVersionesPortafolio($codigoPortafolio){
+   $versiones = array();
+   $sqlstr = "select documentoversion, versionobservacion, versionurl from portafolio_documento_version
+                     where documentoportafolio = %d;";
+   $versiones = obtenerRegistros(sprintf($sqlstr,$codigoPortafolio));
+   return $versiones;
+  }
+
+
+
 function obtenerFlujoNombre($cod, $portcod){
   $docuFlujo = Array();
   $sqlstr = "SELECT a.documentodescripcion, b.flujoportafolionombre, a.documentoportafolioobservacion
 FROM portafolio_documento a inner join portafolio_flujo b on a.documentoportafolioflujoactual = b.flujoportafolio
-where a.documentoportafolio = %d and b.portafoliocodigo= %d;";
+where a.documentoportafolio=%d and b.portafoliocodigo=%d;";
 
-$docuFlujo = obtenerUnRegistro(sprintf($sqlstr,$cod, $portcod));
-return $docuFlujo;
+  $docuFlujo = obtenerUnRegitro(sprintf($sqlstr,$cod, $portcod));
+  return $docuFlujo;
 }
 
 function obtenerDocumento($cod){
