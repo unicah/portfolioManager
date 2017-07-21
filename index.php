@@ -124,6 +124,11 @@
                    require_once("controllers/portafolios/colaboradores.control.php"):
                    mw_redirectToLogin($_SERVER["QUERY_STRING"]);
                  die();
+         case "colaboradoresD":
+                ($logged)?
+                  require_once("controllers/portafolios/colaboradoresD.control.php"):
+                  mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+                die();
 
           case "editarflujos":
                   ($logged)?

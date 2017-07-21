@@ -27,6 +27,7 @@
                      <td>{{documentoportafoliocodigo}}</td>
                      <td>{{documentodescripcion}}</td>
                      <td>{{categoriaportafolionombre}}</td>
+
                      <td><a href class="btnpw btn depth-1 s-margin" data-docod="{{documentoportafolio}}"><span class="ion-eye"></span></a></td>
                   </tr>
                 {{endfor documentos}}
