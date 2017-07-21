@@ -198,6 +198,40 @@ where a.usuariocod = %d ;";
 
        }
 
+   function obtenerUsuarioNotAddedDocumento($codport){
+       $usuario = array();
+       $sqlstr = sprintf("select  a.usuariocod,a.usuarioemail, a.usuarionom, a.usuarioest,
+       a.usuariotipo from usuario as a where usuariocod not in
+       (select usuariocod from portafolio_documento_colaboradores where documentoportafolio = %d)", $codport);
+       $usuarios = obtenerRegistros($sqlstr);
+       return $usuarios;
+   }
+
+   function insertarColaboradorDocumento($documentoid, $iduser){
+     $sqlstr = "INSERT INTO `portfoliomanager`.`portafolio_documento_colaboradores`
+               (`documentoportafolio`, `usuariocod`, `documentocolaboradorfechaexpira`, `documentocolaboradorestado`)
+               VALUES (%d, %d, '%s1231', 'ACT');";
+
+     $sqlstr = (sprintf($sqlstr , $documentoid, $iduser, intval(date('Y'))+5));
+
+     if(ejecutarNonQuery($sqlstr)){
+         return getLastInserId();
+     }
+     return 0;
+
+
+   }
+
+   function updateColaboradoresDocumento($documentoid, $colaboradorcod, $est){
+         $strsql = "UPDATE `portfoliomanager`.`portafolio_documento_colaboradores`
+                    SET `documentocolaboradorestado`='%s'
+                    WHERE `documentoportafolio`=%d and`usuariocod`=%d; ";
+
+         $strsql = sprintf($strsql, $est, $documentoid, $colaboradorcod);
+         $affected = ejecutarNonQuery($strsql);
+         return ($affected > 0);
+
+       }
 
 
    ?>

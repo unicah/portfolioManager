@@ -19,6 +19,13 @@
 
     return $documentos;
   }
+  function updateDocumentosPortfolio(){
+    $sqlstr = "UPDATE `portafolio_documento`
+    SET documentoportafolioflujoactual = %d,documentoportafolioobservacion='%s', documentofechamodificado='%s',documentoversionactual='%s',documentoeditoractual=%d,
+       documentofichero='%s', documentousuariomodifica=%d, documentoultimaversion=%d,
+       documentourl='%s' WHERE `documentoportafolio`=%d;";
+       $sqlstr = sprintf();
+  }
 
   function insertarNuevoDocumentoPortafolio( $codPortafolio, $documentoportafoliocodigo ,
   $documentodescripcion, $documentoportafolioobservacion, $categoriaportafolio,
@@ -52,13 +59,39 @@
 
 
 
+
+  function obtenerversionPorCodigo($portafoliocodigo){
+      $portafolio = array();
+      $sqlstr = sprintf("SELECT * FROM portafolio_documento_version where `documentoportafolio` = %d;",$portafoliocodigo);
+      $portafolio = obtenerUnRegistro($sqlstr);
+      return $portafolio;
+  }
+
+  function obtenerVersionesPortafolio($codigoPortafolio){
+   $versiones = array();
+   $sqlstr = "select documentoversion, versionobservacion, versionurl from portafolio_documento_version
+                     where documentoportafolio = %d;";
+   $versiones = obtenerRegistros(sprintf($sqlstr,$codigoPortafolio));
+   return $versiones;
+  }
+
+
+
 function obtenerFlujoNombre($cod, $portcod){
   $docuFlujo = Array();
-  $sqlstr = "SELECT a.documentodescripcion, b.flujoportafolionombre
+  $sqlstr = "SELECT a.documentodescripcion, b.flujoportafolionombre, a.documentoportafolioobservacion
 FROM portafolio_documento a inner join portafolio_flujo b on a.documentoportafolioflujoactual = b.flujoportafolio
-where a.documentoportafoliocodigo = '%s' and b.portafoliocodigo='%d';";
+where a.documentoportafolio=%d and b.portafoliocodigo=%d;";
 
-$docuFlujo = obtenerUnRegistro(sprintf($sqlstr,$cod, $portcod));
-return $docuFlujo;
+  $docuFlujo = obtenerUnRegitro(sprintf($sqlstr,$cod, $portcod));
+  return $docuFlujo;
+}
+
+function obtenerDocumento($cod){
+  $docu = array();
+  $sqlstr = "SELECT documentodescripcion, documentoportafoliocodigo as documentoportafoliocodigo2, documentoportafolioflujoactual FROM portafolio_documento
+  WHERE documentoportafolio = %d;";
+  $docu = obtenerunRegistro(sprintf($sqlstr,$cod));
+  return $docu;
 }
 ?>

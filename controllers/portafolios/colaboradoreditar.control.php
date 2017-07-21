@@ -27,11 +27,11 @@
            $viewData["mode"] = $_GET["mode"];
            $viewData["usrcod"] =$_GET["usrcod"];
            switch ($viewData["mode"]) {
-             case 'INS':
-               $viewData["modeDesc"] = "Nueva Colaborador";
+             case 'UPDD':
+               $viewData["modeDesc"] = "Editar colaborador de documento ";
                break;
              case 'UPD':
-               $viewData["modeDesc"] = "Editar ";
+               $viewData["modeDesc"] = "Editar colaborador de portafolio ";
                //$viewData["readonly"] = 'readonly="readonly"';
                break;
              case 'DEL':
@@ -57,7 +57,7 @@
                 if(isset($_POST["mode"])){
                   $viewData["mode"] = $_POST["mode"];
                   $viewData["portafoliocodigo"] =$_SESSION["portafoliocodigo"];
-                  //$viewData["categoriaportafolio"] = $_POST["txtCodigoCategoria"];
+
                   $viewData["usrcod"] = intval($_POST["usrcod"]);
                   $viewData["rolportafolionombre"] = $_POST["cmbTipo"];
                   $viewData["colaboradorportafolioestado"] =  $_POST["cmbEstado"];
@@ -70,47 +70,43 @@
                   $viewData["haserrores"] = count($viewData["errores"]) && true;
 
                   switch ($viewData["mode"]) {
-                    case 'INS':
-                            $lastId = insertCategoria($viewData["categoriaportafolio"], $viewData["portafoliocodigo"],
-                                          $viewData["categoriaportafolionombre"],
-                                          $viewData["categoriaportafolioestado"]
-                                        );
-                        /*  }
-                          else{
-                            $viewData["errores"][] = "Código de programa ya existe";
-                          }*/
+                    case 'UPDD':
+                    $viewData["readonly"] = 'readonly="readonly"';
+                    if(!$viewData["haserrores"] && !empty($viewData["rolportafolionombre"])){
+                      $affected = updateColaboradoresDocumento($_SESSION["documentoportafolio"], $viewData["usrcod"],
+                                    $viewData["colaboradorportafolioestado"]
+                                  );
 
-                        if($lastId){
-                          redirectWithMessage("Categoria Creado Satisfactoriamente.", "index.php?page=portafolioww");
-                          die();
-                        }else{
-                          $viewData["errores"][] = "Error al crear el programa";
-                          $viewData["haserrores"] = true;
-                        }
+                      if($affected){
+                        redirectWithMessage("Colaborador de Documento Actualizado Satisfactoriamente.", "index.php?page=docuview");
+                        die();
+                      }else{
 
-                      $viewData["modeDesc"] = "Nuevo Usuario";
+                        $viewData["errores"][] = "Error al editar el colaborador";
+                        $viewData["haserrores"] = true;
+                      }
+
+
+                    }
+                    //redirectWithMessage("Colaborador ".$viewData["usrcod"] ." de Documento ". $_SESSION["documentoportafolio"]  ." Actualizado a " .$viewData["colaboradorportafolioestado"], "index.php?page=docuview");
                       break;
                     //____________________________________________________________//
                     case 'UPD':
                       $viewData["readonly"] = 'readonly="readonly"';
                       if(!$viewData["haserrores"] && !empty($viewData["rolportafolionombre"])){
-                        //Se obtiene el usuario
-                        //$programa = obtenerProgramaPorCodigo($viewData["programacod"]);
-                        // Se actualiza los datos del usuario
                         $affected = updateColaboradores($viewData["portafoliocodigo"], $viewData["usrcod"], $viewData["rolportafolionombre"],
                                       $viewData["colaboradorportafolioestado"]
                                     );
-                        // Si no hay error se redirige a la lista de categorias
+
                         if($affected){
-                          redirectWithMessage("Categoria Actualizado Satisfactoriamente.", "index.php?page=portafolioww");
+                          redirectWithMessage("Colaborador de Portafolio Actualizado Satisfactoriamente.", "index.php?page=portafolioww");
                           die();
                         }else{
-                        // Se muestra un error sobre la edicion de la categoria
-                          $viewData["errores"][] = "Error al editar la categoria";
+
+                          $viewData["errores"][] = "Error al editar el colaborador";
                           $viewData["haserrores"] = true;
                         }
 
-                      //  redirectWithMessage("Categoria Actualizado Satisfactoriamente.".$viewData["portafoliocodigo"].$viewData["usrcod"].$viewData["rolportafolionombre"].$viewData["colaboradorportafolioestado"], "index.php?page=portafolioww");
 
                       }
 

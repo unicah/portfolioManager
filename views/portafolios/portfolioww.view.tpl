@@ -14,20 +14,19 @@
             <table style="width:100%">
               <thead>
               <tr>
-                  <th>Codigo</th>
-                  <th>Descripcion</th>
-                  <th>Categoria</th>
-                  <th>Ver</th>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>&nbsp;</th>
                 </tr>
               </thead>
               <tbody class="zebra">
-
                 {{foreach documentos}}
                   <tr>
                      <td>{{documentoportafoliocodigo}}</td>
                      <td>{{documentodescripcion}}</td>
                      <td>{{categoriaportafolionombre}}</td>
-                     <td><a href class="btnpw btn depth-1 s-margin" data-docod="{{documentoportafoliocodigo}}"><span class="ion-eye"></span></a></td>
+                     <td class="center"><a href class="btnpw btn depth-1 s-margin" data-docod="{{documentoportafolio}}"><span class="ion-eye"></span></a></td>
                   </tr>
                 {{endfor documentos}}
               </tbody>
@@ -81,7 +80,7 @@
             </span>
         </header>
         <main>
-            <table>
+            <table class="full-width">
               {{foreach categorias}}
                 <tr>
                   <td>
@@ -92,7 +91,6 @@
                   </td>
                 </tr>
                 {{endfor categorias}}
-
             </table>
         </main>
       </section>
