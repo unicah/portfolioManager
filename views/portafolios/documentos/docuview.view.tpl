@@ -4,13 +4,10 @@
   </div>
   <div class="col-md-4 col-sm-12">
     <div class="card">
-      <section class="panel">
         <div class="row">
           <button class="col-sm-6 " id="btnFiltro"><span class="ion-android-download">&nbsp;Descargar</span></button>
-          <button class="col-sm-6 "data-docod="{{documentoportafoliocodigo}}" id="btnSubir"><span class="ion-android-upload">&nbsp;Subir</span></button>
-
+          <button class="col-sm-6 "data-docodd="{{documentoportafoliocodigo}}" id="btnSubir"><span class="ion-android-upload">&nbsp;Subir</span></button>
         </div>
-      </section>
     </div>
   </div>
 </div>
@@ -115,8 +112,8 @@
           x.style= "display:none";
           x.method="POST";
           var y = document.createElement("INPUT");
-          y.name="docod";
-          y.value=$(this).data('docod');
+          y.name="docodd";
+          y.value=$(this).data('docodd');
           x.appendChild(y);
           document.body.append(x);
           x.submit();

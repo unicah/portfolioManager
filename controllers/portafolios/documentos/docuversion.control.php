@@ -10,13 +10,23 @@
 
 function run(){
   $viewData = array();
-  $docu = array();
-  $viewData["flujos"]=obtenerFlujosPortafolio($_SESSION["documentoportafoliocodigo"]);
-  $docu=obtenerDocumento($_SESSION["documentoportafoliocodigo"]);
-  mergeFullArrayTo($docu,$viewData);
-  $viewData["flujos"] = addSelectedCmbArray($viewData["flujos"],"flujoportafolio", $viewData["documentoportafolioflujoactual"]);
+  $viewData["tocken"]="";
+  $viewData["errores"]="";
+  $viewData["haserrores"]=false;
 
+  if($_SESSION["documentoportafoliocodigo"]>0){
+    $viewData["tocken"] = md5(time()+"docuploadtrn");
+    $_SESSION["docupload_tocken"] = $viewData["tocken"];
+    $viewData["flujos"]=obtenerFlujosPortafolio($_SESSION["documentoportafoliocodigo"]);
+    $docu=obtenerDocumento($_SESSION["documentoportafoliocodigo"]);
+    mergeFullArrayTo($docu,$viewData);
+    $viewData["flujos"] = addSelectedCmbArray($viewData["flujos"],"flujoportafolio", $viewData["documentoportafolioflujoactual"]);
+
+    $affected = updateDocumentosPortfolio();
+  }
   renderizar("portafolios/documentos/docuversion",$viewData);
+  //print_r($viewData);
+  //print_r($_SESSION);
 }
 run();
  ?>

@@ -19,6 +19,13 @@
 
     return $documentos;
   }
+  function updateDocumentosPortfolio(){
+    $sqlstr = "UPDATE `portafolio_documento`
+    SET documentoportafolioflujoactual = %d,documentoportafolioobservacion='%s', documentofechamodificado='%s',documentoversionactual='%s',documentoeditoractual=%d,
+       documentofichero='%s', documentousuariomodifica=%d, documentoultimaversion=%d,
+       documentourl='%s' WHERE `documentoportafolio`=%d;";
+       $sqlstr = sprintf();
+  }
 
   function insertarNuevoDocumentoPortafolio( $codPortafolio, $documentoportafoliocodigo ,
   $documentodescripcion, $documentoportafolioobservacion, $categoriaportafolio,
