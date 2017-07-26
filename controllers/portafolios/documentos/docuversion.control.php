@@ -27,8 +27,8 @@ function run(){
     $affected = updateDocumentosPortfolio();
   }
   renderizar("portafolios/documentos/docuversion",$viewData);
-  print_r($viewData);
-  print_r($_SESSION);
+//  print_r($viewData);
+//  print_r($_SESSION);
 }
 run();
  ?>
