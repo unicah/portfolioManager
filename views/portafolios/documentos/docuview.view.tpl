@@ -6,7 +6,7 @@
     <div class="card">
         <div class="row">
           <button class="col-sm-6 " id="btnFiltro"><span class="ion-android-download">&nbsp;Descargar</span></button>
-          <button class="col-sm-6 "data-docodd="{{documentoportafoliocodigo}}" id="btnSubir"><span class="ion-android-upload">&nbsp;Subir</span></button>
+          <button class="col-sm-6 "data-docodd="{{documentoportafolio}}" id="btnSubir"><span class="ion-android-upload">&nbsp;Subir</span></button>
         </div>
     </div>
   </div>
@@ -21,19 +21,7 @@
             Observaciones
         </header>
         <main>
-            <table>
-              <tbody>
-                {{foreach documentos}}
-                  <tr>
-                    <td>{{documentoportafolio}}</td>
-                     <td>{{documentoportafoliocodigo}}</td>
-                     <td>{{documentodescripcion}}</td>
-                     <td>{{categoriaportafolionombre}}</td>
-                     <td><a href="" class="btn depth-1 s-margin"><span class="ion-eye"></span></a></td>
-                  </tr>
-                {{endfor documentos}}
-              </tbody>
-            </table>
+          {{documentoportafolioobservacion}}
         </main>
       </section>
     </div>
@@ -93,7 +81,7 @@
         <header style="position:relative">
             Colaboradores
             <span class="push-right" style="position:absolute;right:1em;top:0.5em;">
-              <a href="index.php?page=colaboradoresD&portacod={{documentoportafolio}}&mode=INS" class="btn"><span class="icon ion-plus-circled"></span></a>
+              <a href="index.php?page=colaboradoresD" class="btn"><span class="icon ion-edit"></span></a>
             </span>
         </header>
         <main>
@@ -102,9 +90,6 @@
                 <tr>
                   <td>
                     {{usuarionom}}
-                  </td>
-                  <td class="center" style="width:70px">
-                    <a href="index.php?page=colaboradoreditar&usrcod={{usuariocod}}&mode=UPDD" class="btn"><span class="icon ion-edit"></span></a>
                   </td>
                 </tr>
                 {{endfor colaboradores}}
@@ -141,19 +126,14 @@
         e.stopPropagation();
         document.forms[0].submit();
         });
-        
+
        $("#btnSubir").click(
         function(e) {
           e.preventDefault();
           e.stopPropagation();
           var x = document.createElement("FORM");
           x.action = "index.php?page=docuversion";
-          x.style= "display:none";
-          x.method="POST";
-          var y = document.createElement("INPUT");
-          y.name="docodd";
-          y.value=$(this).data('docodd');
-          x.appendChild(y);
+          x.method="GET";
           document.body.append(x);
           x.submit();
         }

@@ -198,36 +198,47 @@ where a.usuariocod = %d ;";
 
        }
 
-   function obtenerUsuarioNotAddedDocumento($codport){
+   function obtenerUsuarioNotAddedDocumento($coddoc,$codport){
        $usuario = array();
-       $sqlstr = sprintf("select  a.usuariocod,a.usuarioemail, a.usuarionom, a.usuarioest,
-       a.usuariotipo from usuario as a where usuariocod not in
-       (select usuariocod from portafolio_documento_colaboradores where documentoportafolio = %d)", $codport);
+       $sqlstr = sprintf("select  a.usuariocod, a.usuarioemail, a.usuarionom, a.usuarioest, a.usuariotipo,
+        ifnull(c.documentoedicion,'*NO') as documentoedicion,
+	      ifnull(c.documentocolaboradorestado,'DSP') as clbEst
+	from usuario as a
+       inner join portafolio_colaboradores b on a.usuariocod = b.usuariocod and b.colaboradorestado = 'ACT'
+       left join portafolio_documento_colaboradores c on b.usuariocod = c.usuariocod and c.documentoportafolio = %d
+       where b.portafoliocodigo=%d;",$coddoc ,$codport);
        $usuarios = obtenerRegistros($sqlstr);
        return $usuarios;
    }
 
-   function insertarColaboradorDocumento($documentoid, $iduser){
-     $sqlstr = "INSERT INTO `portfoliomanager`.`portafolio_documento_colaboradores`
-               (`documentoportafolio`, `usuariocod`, `documentocolaboradorfechaexpira`, `documentocolaboradorestado`)
-               VALUES (%d, %d, '%s1231', 'ACT');";
+   function insertarColaboradorDocumento($documentoid,$rol, $iduser){
+     $sqlstr = "INSERT INTO `portafolio_documento_colaboradores`
+               (`documentoportafolio`, `usuariocod`, `documentocolaboradorfechaexpira`, `documentocolaboradorestado`, `documentoedicion`)
+               VALUES (%d, %d, '%s1231', 'ACT','%s')";
 
-     $sqlstr = (sprintf($sqlstr , $documentoid, $iduser, intval(date('Y'))+5));
+     $sqlstr = sprintf($sqlstr,$documentoid, $iduser, intval(date('Y'))+5,$rol);
 
      if(ejecutarNonQuery($sqlstr)){
          return getLastInserId();
      }
      return 0;
-
-
    }
 
    function updateColaboradoresDocumento($documentoid, $colaboradorcod, $est){
          $strsql = "UPDATE `portfoliomanager`.`portafolio_documento_colaboradores`
-                    SET `documentocolaboradorestado`='%s'
+                    SET `documentoedicion`='%s'
                     WHERE `documentoportafolio`=%d and`usuariocod`=%d; ";
 
          $strsql = sprintf($strsql, $est, $documentoid, $colaboradorcod);
+         $affected = ejecutarNonQuery($strsql);
+         return ($affected > 0);
+
+       }
+   function inactivarColaboradoresDocumento($documentoid, $colaboradorcod){
+         $strsql = "DELETE from `portafolio_documento_colaboradores`
+                    WHERE `documentoportafolio`=%d and`usuariocod`=%d; ";
+
+         $strsql = sprintf($strsql, $documentoid, $colaboradorcod);
          $affected = ejecutarNonQuery($strsql);
          return ($affected > 0);
 

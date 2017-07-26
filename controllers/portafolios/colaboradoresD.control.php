@@ -23,72 +23,65 @@
       $iduser = "";
       $idpor = 2;
 
-      $viewData["rolUsuarios"]= obtenerRolesPortafolio($_SESSION["portafoliocodigo"]);
+      $viewData["rolUsuarios"]= array("*NO"=>"Lector","*SI"=>"Editor");
 
       $viewData["fltEmail"] = "";
       $filter = '';
       if(isset($_SESSION["users_context"])){
         $filter = $_SESSION["users_context"]["filter"];
       }
-
-     if($_SERVER["REQUEST_METHOD"] == "GET"){
-        if(isset($_GET["portacod"])){
-
-          $viewData["portacod"] = intval($_GET["portacod"]);
-        }
-        else {
-        $viewData["action"] = "u";
-        }
-
-        $idpor = intval($_GET["portacod"]);
-
+      if(isset($_SESSION["documentoportafolio"])){
+          $viewData["documentoportafolio"] = $_SESSION["documentoportafolio"];
+          $viewData["portafoliocodigo"] = $_SESSION["portafoliocodigo"];
       }
 
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-if(true){
-  if(true){
-       $viewData["mode"] = "INS";
-        $iduser = $_POST["usercod"];
-        $rol = $_POST["cmbRol"];
-       switch ($viewData["mode"]) {
-         case 'INS':
-                 $lastId = insertarColaboradorDocumento($_SESSION["documentoportafolio"], $iduser);
-                 redirectWithMessage("Usuario ".$iduser  ." añadido al documento ".$_SESSION["documentoportafolio"] ." Satisfactoriamente.", "index.php?page=docuview");
-           break;
-       }
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+      $viewData["mode"] = "INS";
+      $iduser = $_POST["usercod"];
+      $rol = $_POST["cmbRol"];
+      $act = $_POST["mode"];
+      switch ($act) {
+        case 'INS':
+        
+          $lastId = insertarColaboradorDocumento($_SESSION["documentoportafolio"], $rol,$iduser);
+          break;
+        case 'UPD':
+          updateColaboradoresDocumento($_SESSION["documentoportafolio"], $iduser, $rol);
+          break;
+        case 'DEL':
+          inactivarColaboradoresDocumento($_SESSION["documentoportafolio"], $iduser);
+          break;
      }
-   }else{
-     //Cambia la seguridad del formulario
-     $viewData["tocken"] = md5(time()+"usertr");
-     $_SESSION["user_tocken"] = $viewData["tocken"];
-     $viewData["errores"][] = "Error para validar información.";
-     redirectWithMessage("Invalido", "index.php?page=colaboradores&portacod=".$idpor);
-   }
-}
+    }
+
 
       $viewData["fltEmail"] = $filter;
 
-    //  $viewData["usuarios"] = obtenerUsuarioNotAdded(7);
 
-      $temporalarray = obtenerUsuarioNotAddedDocumento($_SESSION["documentoportafolio"]);
+      $temporalarray = obtenerUsuarioNotAddedDocumento($_SESSION["documentoportafolio"],$_SESSION["portafoliocodigo"]);
 
-      $x = '<select class="col-md-12" id="cmbRol" name="cmbRol">';
-      foreach($viewData["rolUsuarios"] as $rol){
-      $x .= '<option value="'.$rol["rolportafolio"].'">'.$rol["rolportafolionombre"].'</option>';
-      }
-      $x .= '</select>';
+
 
       foreach ($temporalarray as $value) {
+        $x = '<select class="col-md-12" id="cmbRol" name="cmbRol">';
+        foreach($viewData["rolUsuarios"] as $key=>$ovalue){
+          $slct = ($key==$value["documentoedicion"])?" selected":"";
+          $x .= '<option value="'.$key.'"'.$slct.'>'.$ovalue.'</option>';
+        }
+
+        $x .= '</select>';
         $value["cmb"] = $x;
+        if($value["clbEst"]=="DSP"){
+          $value["isUPD"] = false;
+        }else{
+          $value["isUPD"] = true;
+        }
         $viewData["usuarios"][] = $value;
-
-
-
       }
-
       renderizar("portafolios/colaboradorD", $viewData );
 
   }

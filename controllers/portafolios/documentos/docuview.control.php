@@ -15,13 +15,9 @@
     $viewData["colaboradores"] = array();
     $viewData["versiones"]=array();
 
-    
+
     if(isset($_SESSION["portafoliocodigo"])){
       $viewData["portafoliocodigo"] = $_SESSION["portafoliocodigo"];
-    }
-    //TODO: Refizar las referencias a documentoportafoliocodigo este es solo visual no llave
-    if(isset($_SESSION["documentoportafoliocodigo"])){
-      $viewData["documentoportafoliocodigo"] = $_SESSION["documentoportafoliocodigo"];
     }
 
     if(isset($_SESSION["documentoportafolio"])){
@@ -62,12 +58,11 @@
     if($_SERVER["REQUEST_METHOD"]=="POST"){
       if(isset($_POST["docod"])){
         $_SESSION["documentoportafolio"] = $_POST["docod"];
-        $viewData["documentoportafolio"] = $_SESSION["documentoportafolio"];
-        redirectToUrl("index.php?page=docuview");//esto para que es?
+        redirectToUrl("index.php?page=docuview");
       }
     }
 
-    $folioDocumento = obtenerFlujoNombre($viewData["documentoportafoliocodigo"], $viewData["portafoliocodigo"]);
+    $folioDocumento = obtenerFlujoNombre($viewData["documentoportafolio"], $viewData["portafoliocodigo"]);
     mergeFullArrayTo($folioDocumento,$viewData);
   //  print_r($viewData);
 
@@ -80,9 +75,8 @@
 //     }
 //TODO: Eliminar esto cuando quede los del la llave corregido
   if($viewData["documentoportafoliocodigo"] > 0){
-    $tmp = obtenerversionPorCodigo($viewData["documentoportafoliocodigo"]);
-    mergeFullArrayTo($tmp, $viewData);
-    $viewData["versiones"]=obtenerVersionesPortafolio($viewData["documentoportafoliocodigo"],'');
+    $viewData["versiones"]=obtenerVersionesPortafolio($viewData["documentoportafolio"],'');
+     $viewData["colaboradores"] = obtenerColaboradoresDelDocumento($_SESSION["documentoportafolio"]);
 
   }
 
