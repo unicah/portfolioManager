@@ -6,7 +6,7 @@
     <div class="card">
         <div class="row">
           <button class="col-sm-6 " id="btnFiltro"><span class="ion-android-download">&nbsp;Descargar</span></button>
-          <button class="col-sm-6 "data-docodd="{{documentoportafolio}}" id="btnSubir"><span class="ion-android-upload">&nbsp;Subir</span></button>
+          <button class="col-sm-6 " id="btnSubir"><span class="ion-android-upload">&nbsp;Subir</span></button>
         </div>
     </div>
   </div>
@@ -133,7 +133,7 @@
           e.stopPropagation();
           var x = document.createElement("FORM");
           x.action = "index.php?page=docuversion";
-          x.method="GET";
+          x.method="POST";
           document.body.append(x);
           x.submit();
         }
