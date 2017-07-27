@@ -38,8 +38,8 @@
                 <div class="row s-padding">
                   <textarea style="width:100%" placeholder="Escribe tu comentario" class="col-sm-12" maxlength="500"  name="comentarioNuevo" id="comentarioNuevo"></textarea>
                   </div>
-                  <div>
-                    <button style="position:relative;" class="" id="btnComentar">
+                  <div class="row" style="text-align:right">
+                    <button style="position:relative;"class="right" id="btnComentar">
                     <span class="ion-plus-circled">&nbsp;Comentar</span></button>
                 </div>
                 <tbody>
