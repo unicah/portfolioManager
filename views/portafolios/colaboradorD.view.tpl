@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-8">
-    <h1>Gestión de colaboradores</h1>
+    <h1>Gestión de Colaboradores</h1>
   </div>
   <div class="col-sm-4 right" >
     <h1>

@@ -2,17 +2,15 @@
   <div class="col-md-8 col-sm-12">
     <h1><span class=" icon ion-ios-briefcase "></span>&nbsp;{{documentodescripcion}} ({{flujoportafolionombre}})</h1>
   </div>
-  <div class="col-md-4 col-sm-12">
-    <div class="card">
-        <div class="row">
-          <button class="col-sm-6 " id="btnFiltro"><span class="ion-android-download">&nbsp;Descargar</span></button>
-          <button class="col-sm-6 "data-docodd="{{documentoportafolio}}" id="btnSubir"><span class="ion-android-upload">&nbsp;Subir</span></button>
-        </div>
-    </div>
+  <div class="col-sm-4 right" >
+    <h1>
+    <a href="index.php?page=portafolioww" class="btn">
+      <span class="ion-arrow-return-left"></span>
+    </a>
+    </h1>
   </div>
 </div>
-
-<hr />
+<hr/>
 <div class="row">
   <div class="col-md-8 col-sm-12">
     <div class="card">
@@ -31,16 +29,18 @@
           <header style="position:relative">
               Comentarios
           </header>
+          <div class="row">
           <main>
-            <form action="index.php?page=docuview" method="post" class="col-sm-8 col-sm-offset-2 col-md-6 col-offset-3">
+            <form action="index.php?page=docuview" method="post" class="col-sm-12">
               <input type="hidden" name="btnComentar" value="INS"  />
               <input type="hidden" name="tocken" value=""  />
               <table>
                 <div class="row s-padding">
                   <textarea style="width:100%" placeholder="Escribe tu comentario" class="col-sm-12" maxlength="500"  name="comentarioNuevo" id="comentarioNuevo"></textarea>
-                  <button style="position:relative; left:82.5%;" class="" id="btnComentar">
+                  </div>
+                  <div class="row" style="text-align:right">
+                    <button style="position:relative;"class="right" id="btnComentar">
                     <span class="ion-plus-circled">&nbsp;Comentar</span></button>
-
                 </div>
                 <tbody>
                   {{foreach comentarios}}
@@ -55,6 +55,7 @@
               </table>
             </form>
           </main>
+        </div>
         </section>
       </div>
     </div>
@@ -62,6 +63,10 @@
 
   <div class="col-md-4 col-sm-12">
     <div class="card">
+      <div class="row">
+        <button class="col-sm-6 " id="btnFiltro"><span class="ion-android-download">&nbsp;Descargar</span></button>
+        <button class="col-sm-6" id="btnSubir"><span class="ion-android-upload">&nbsp;Subir</span></button>
+      </div>
       <section class="panel">
         <header style="position:relative">
             Resumen
@@ -133,7 +138,7 @@
           e.stopPropagation();
           var x = document.createElement("FORM");
           x.action = "index.php?page=docuversion";
-          x.method="GET";
+          x.method="POST";
           document.body.append(x);
           x.submit();
         }
