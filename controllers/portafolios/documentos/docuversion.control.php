@@ -16,6 +16,25 @@ function run(){
   $viewData["haserrores"]=false;
 
   $viewData["flujos"]=obtenerFlujosPortafolio($_SESSION["documentoportafolio"]);
+
+  if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(isset($_FILES["uploadfile"])){
+      //Obtenemos los datos necesarios para generar el registro
+      $udir = "uploads/"; // directorio a donde guardaremos el documento
+      $fname = basename($_FILES["uploadfile"]["name"]); //El nombre del archivo
+      $fsize = $_FILES["uploadfile"]["size"]; //tamaño en bytes
+      //Se puede validar el tamano del archivo
+      $tfil =  $udir . md5($fname.time()); //guardamos el archivo con  hash para evitar intruciones directas
+      move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $tfil);
+
+      if(updateDocumentosPortfolio($_POST["documentoportafolioflujoactual"],$_POST["documentoportafolioobservacion"],$_SESSION["userCode"], $tfil, $_SESSION["documentoportafolio"] )){
+        redirectWithMessage("Documento Actualizado Satisfactóriamente","index.php?page=docuview");
+      }else{
+        //TODO: Manejar los Errores en la vista.
+      }
+    }//end if upload
+  }
+
   if($_SESSION["documentoportafolio"]>0){
     $viewData["tocken"] = md5(time()+"docuploadtrn");
     $_SESSION["docupload_tocken"] = $viewData["tocken"];
@@ -24,8 +43,7 @@ function run(){
     mergeFullArrayTo($docu,$viewData);
     $viewData["flujos"] = addSelectedCmbArray($viewData["flujos"],"flujoportafolio", $viewData["documentoportafolioflujoactual"]);
 
-    $affected = updateDocumentosPortfolio();
-  }
+  } //end if
   renderizar("portafolios/documentos/docuversion",$viewData);
 //  print_r($viewData);
 //  print_r($_SESSION);

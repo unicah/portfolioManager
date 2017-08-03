@@ -25,36 +25,12 @@
     }
 
     //recoje el docod que tiene el documentoportafoliocodigo xD
-  /*  if($_SERVER["REQUEST_METHOD"]=="POST"){
-      if(isset($_POST["docod"])){
-        $_SESSION["documentoportafoliocodigo"] = $_POST["docod"];
-        $viewData["documentoportafoliocodigo"] = $_SESSION["documentoportafoliocodigo"];
-        redirectToUrl("index.php?page=docuview");//esto para que es?
-      }
-    //__________________________________________________________________________________________
-      if(isset($_POST["btnComentar"])){
-        $viewData["usuarioingresa"]=$_SESSION["userCode"];
-        $viewData["comentario"]=$_POST["comentarioNuevo"];
-
-        $fch = Date('Y-m-d h:i:s');
-        $lastId = insertComent($viewData["documentoportafoliocodigo"],
-                  $viewData["comentario"], $viewData["usuarioingresa"],
-                  $fch, "ACT");
-
-        if($lastId){
-          redirectWithMessage("Comentario realizado.", "index.php?page=docuview");
-          die();
-        }else{
-          redirectWithMessage("Error al crear comentario.", "index.php?page=docuview");
-          $viewData["errores"][] = "Error al crear comentario";
-        }
-      } // end post btnComentar
-
-
-
+    if(isset($_POST["btnComentar"])){
+        $lastId = insertComent($viewData["documentoportafolio"],
+                  $_POST["comentarioNuevo"], $_SESSION["userCode"]);
 
     }
-    */
+
     if($_SERVER["REQUEST_METHOD"]=="POST"){
       if(isset($_POST["docod"])){
         $_SESSION["documentoportafolio"] = $_POST["docod"];
@@ -74,11 +50,11 @@
 //           $viewData["colaboradores"] = obtenerColaboradoresDelDocumento($_SESSION["documentoportafolio"]);
 //     }
 //TODO: Eliminar esto cuando quede los del la llave corregido
-  if($viewData["documentoportafoliocodigo"] > 0){
-    $viewData["versiones"]=obtenerVersionesPortafolio($viewData["documentoportafolio"],'');
-     $viewData["colaboradores"] = obtenerColaboradoresDelDocumento($_SESSION["documentoportafolio"]);
-
-  }
+    if($viewData["documentoportafolio"] > 0){
+      $viewData["versiones"]=obtenerVersionesPortafolio($viewData["documentoportafolio"]);
+      $viewData["colaboradores"] = obtenerColaboradoresDelDocumento($viewData["documentoportafolio"]);
+      $viewData["comentarios"] = obtenerComentarios($viewData["documentoportafolio"]);
+    }
 
 
     renderizar("portafolios/documentos/docuview", $viewData);

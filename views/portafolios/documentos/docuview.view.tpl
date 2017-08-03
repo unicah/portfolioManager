@@ -34,21 +34,24 @@
             <form action="index.php?page=docuview" method="post" class="col-sm-12">
               <input type="hidden" name="btnComentar" value="INS"  />
               <input type="hidden" name="tocken" value=""  />
-              <table>
-                <div class="row s-padding">
-                  <textarea style="width:100%" placeholder="Escribe tu comentario" class="col-sm-12" maxlength="500"  name="comentarioNuevo" id="comentarioNuevo"></textarea>
-                  </div>
-                  <div class="row" style="text-align:right">
-                    <button style="position:relative;"class="right" id="btnComentar">
-                    <span class="ion-plus-circled">&nbsp;Comentar</span></button>
-                </div>
+              <table class="full-width">
                 <tbody>
+                  <tr>
+                    <td colspan="3">
+                      <div class="row s-padding">
+                        <textarea style="width:100%" placeholder="Escribe tu comentario" class="col-sm-12" maxlength="500"  name="comentarioNuevo" id="comentarioNuevo"></textarea>
+                        </div>
+                        <div class="row" style="text-align:right">
+                          <button style="position:relative;"class="right" id="btnComentar">
+                          <span class="ion-plus-circled">&nbsp;Comentar</span></button>
+                      </div>
+                    </td>
+                  </tr>
                   {{foreach comentarios}}
                     <tr>
-                       <td></td>
-                       <td></td>
-                       <td></td>
-                       <td><a  href="" class="btn depth-1 s-margin"><span class="ion-eye"></span></a></td>
+                       <td>{{documentocomentario}}</td>
+                       <td>{{usuarionom}}</td>
+                       <td>{{documentocomentariofecha}}</td>
                     </tr>
                   {{endfor comentarios}}
                 </tbody>
@@ -64,7 +67,7 @@
   <div class="col-md-4 col-sm-12">
     <div class="card">
       <div class="row">
-        <button class="col-sm-6 " id="btnFiltro"><span class="ion-android-download">&nbsp;Descargar</span></button>
+        <button class="col-sm-6 " id="btnFiltro"><a href="{{documentourl}}" target"_blank"><span class="ion-android-download">&nbsp;Descargar</span></a></button>
         <button class="col-sm-6" id="btnSubir"><span class="ion-android-upload">&nbsp;Subir</span></button>
       </div>
       <section class="panel">

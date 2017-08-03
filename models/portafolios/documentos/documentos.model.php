@@ -19,12 +19,40 @@
 
     return $documentos;
   }
-  function updateDocumentosPortfolio(){
-    $sqlstr = "UPDATE `portafolio_documento`
-    SET documentoportafolioflujoactual = %d,documentoportafolioobservacion='%s', documentofechamodificado='%s',documentoversionactual='%s',documentoeditoractual=%d,
-       documentofichero='%s', documentousuariomodifica=%d, documentoultimaversion=%d,
-       documentourl='%s' WHERE `documentoportafolio`=%d;";
-       $sqlstr = sprintf();
+  function updateDocumentosPortfolio($f_act,$obs,$cod_user, $newFile, $doccod ){
+    iniciarTransaccion();
+    $sqlstr = "Select * from `portafolio_documento` where `documentoportafolio`=%d;";
+    $documentoActual = obtenerUnRegistro(sprintf($sqlstr, $doccod));
+    //documentourl, documentoversionactual, documentoultimaversion
+    $nuevVersion = $documentoActual["documentoultimaversion"] + 1;
+    $updStr = "INSERT INTO `portafolio_documento_version`
+          (`documentoversion`,`documentoportafolio`,`versionfechaingreso`,
+          `versionusuarioingresa`,`versionobservacion`,`versionobservacionsistema`,
+          `versionurl`,`versionhash`)
+          VALUES
+          (%d, %d, now(),
+          %d, '%s', '',
+          '%s', '');";
+    if(ejecutarNonQuery(sprintf($updStr,$nuevVersion,$doccod,$cod_user,
+    $documentoActual["documentoportafolioobservacion"],$documentoActual["documentourl"]))){
+      ///segundo paso
+      $sqlstr = "UPDATE `portafolio_documento`
+      SET documentoportafolioflujoactual = '%s',documentoportafolioobservacion='%s',
+        documentofechamodificado=now(),documentoeditoractual=%d,
+         documentousuariomodifica=%d,
+         documentourl='%s',
+         documentoversionactual = %d, documentoultimaversion = %d
+          WHERE `documentoportafolio`=%d;";
+         $sqlstr = sprintf($sqlstr, $f_act,$obs,$cod_user, $cod_user,$newFile,
+                  $nuevVersion, $nuevVersion,
+                  $doccod);
+          if(ejecutarNonQuery($sqlstr)){
+            terminarTransaccion(true);
+            return true;
+          }
+    }
+    terminarTransaccion(false);
+    return false;
   }
 
   function insertarNuevoDocumentoPortafolio( $codPortafolio, $documentoportafoliocodigo ,
