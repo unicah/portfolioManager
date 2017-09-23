@@ -22,3 +22,21 @@ Los componentes de este programa son:
   1. Apache Web Server o Nginx
   2. PHP 5.6 o superior
   3. Mysql 5.5 o superior
+
+## Instrucciones de Instalación en ubuntu server 16
+
+  1. ```sudo apt-get update```
+  2. ```sudo apt-get install apache2 mysql-server php php-mysql libapache2-mod-php```
+  3. ```cd /var/www/html```
+  4. ```git clone https://github.com/unicah/portfolioManager.git .```
+  5. ```cd docs/scripts```
+  6. ```mysql -u root -password=cambiaraqui portfoliomanager < 0*.sql```
+  7. En el browser buscar la url http://ipohostname/setup.php
+  8. Eliminar o quitar el script setup.php
+
+## Instrucciones de Instalación en WAMP server
+  1. Instalar WAMP server
+  2. Descargar del repositorio y descomprimirlo en la carpeta www
+  3. correr en phpMyAdmin los scripts en la carpeta docs/scripts
+  4. correr en el browser http://ipohostname/setup.php
+  
