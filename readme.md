@@ -34,9 +34,10 @@ Los componentes de este programa son:
   7. En el browser buscar la url http://ipohostname/setup.php
   8. Eliminar o quitar el script setup.php
 
+  Puedes ver el video en https://youtu.be/uwqle5L2bGc
+
 ## Instrucciones de Instalación en WAMP server
   1. Instalar WAMP server
   2. Descargar del repositorio y descomprimirlo en la carpeta www
   3. correr en phpMyAdmin los scripts en la carpeta docs/scripts
   4. correr en el browser http://ipohostname/setup.php
-  
